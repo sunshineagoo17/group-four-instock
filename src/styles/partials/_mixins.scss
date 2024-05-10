@@ -1,0 +1,28 @@
+//Funtion to convert px to rem
+@function toRem($value) {
+  $remValue: calc($value / 16) + rem;
+  @return $remValue;
+}
+
+@function sizeIncrement($increment) {
+  $spacing: calc(4 * $increment) + px;
+  @return $spacing;
+}
+
+// Padding
+@mixin padding($direction, $amount) {
+    @if $direction == all {
+      padding: $amount;
+    } @else if $direction == side {
+      padding-right: $amount;
+      padding-left: $amount;
+    } @else if $direction == top {
+      padding-top: $amount;
+    } @else if $direction == left {
+      padding-left: $amount;
+    } @else if $direction == right {
+      padding-right: $amount;
+    } @else {
+      padding-bottom: $amount;
+    }
+  }

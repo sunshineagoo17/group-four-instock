@@ -1,0 +1,39 @@
+@use './mediaquery';
+ 
+// Color Scheme
+$pri-black: #13182c;
+$pri-indigo: #2e66e5;
+$pri-white: #ffffff;
+
+$sec-slate: #5c667e;
+$sec-cloud: #bdc5d5;
+$sec-green: #158463;
+$sec-red: #c94515;
+
+$bg-graphite: #232940;
+$bg-grey: #f7f8f9;
+
+
+//Paddding
+$padding-page-side-mobile: 16px;
+$padding-page-side-tablet: 36px;
+
+.page-max-width {
+  padding-left: $padding-page-side-mobile;
+  padding-right: $padding-page-side-mobile;
+  @include mediaquery.for-tablet {
+    padding-left: $padding-page-side-tablet;
+    padding-right: $padding-page-side-tablet;
+  }
+  @include mediaquery.for-desktop {
+    max-width: 1280px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+//  CTA
+$btn-height-mobile: 36px;
+$btn-height-tablet: 38px;

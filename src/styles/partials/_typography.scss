@@ -1,0 +1,116 @@
+@use './mediaquery';
+@use './variables' as *;
+@use './mixins';
+
+$defaultFont: "TitilliumWeb";
+
+// Fonts
+@font-face {
+  font-family: $defaultFont;
+  src: url(/assets/fonts/TitilliumWeb-Regular.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: $defaultFont;
+  src: url(/assets/fonts/TitilliumWeb-SemiBold.ttf) format("truetype");
+  font-style: normal;
+  font-weight: 600;
+}
+
+//Font Classes
+.txt-header {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(28);
+  line-height: mixins.toRem(36);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(32);
+    line-height: mixins.toRem(40);
+  }
+}
+
+.txt-subheader {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(20);
+  line-height: mixins.toRem(28);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(24);
+    line-height: mixins.toRem(32);
+  }
+}
+
+.txt-button,
+.txt-link,
+.txt-label {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(13);
+  line-height: mixins.toRem(20);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(14);
+    line-height: mixins.toRem(22);
+  }
+}
+
+.txt-table {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(11);
+  line-height: mixins.toRem(16);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(12);
+    line-height: mixins.toRem(18);
+  }
+}
+
+.txt-l {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(15);
+  line-height: mixins.toRem(26);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(16);
+    line-height: mixins.toRem(28);
+  }
+}
+
+.txt-m {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(13);
+  line-height: mixins.toRem(20);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(14);
+    line-height: mixins.toRem(22);
+  }
+}
+
+.txt-s {
+  font-family: $defaultFont;
+  font-size: mixins.toRem(11);
+  line-height: mixins.toRem(16);
+
+  @include mediaquery.for-tablet {
+    font-size: mixins.toRem(12);
+    line-height: mixins.toRem(18);
+  }
+}
+
+.txt-bold {
+  font-weight: 600;
+}
+
+.txt-regular {
+  font-weight: 400;
+}
+
+.txt-black {
+  color: $pri-black;
+}
+
+.txt-slate {
+  color: $sec-slate;
+}
