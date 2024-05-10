@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import './warehouse.scss';
+import './Warehouse.scss';
 
 const Warehouse = () => {
   const { warehouseId } = useParams();

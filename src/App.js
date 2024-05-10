@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './app.scss';
+import './App.scss';
 
 //Page Import
-import Warehouse from './pages/warehouse/Warehouse';
-import Inventory from './pages/inventory/Inventory';
+import Inventory from './pages/Inventory/Inventory.js';
+import Warehouse from './pages/Warehouse/Warehouse.js';
 const App = () => (
   <BrowserRouter>
     <Routes>
