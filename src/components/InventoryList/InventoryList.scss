@@ -1,12 +1,12 @@
 @use '../../styles/partials/index' as *;
 
-.inventory-list{
-    @include padding(side,sizeIncrement(6));
-    @include padding(top,sizeIncrement(8));
+.inventory-list {
+  @include padding(side, sizeIncrement(6));
+  @include padding(top, sizeIncrement(8));
 
-    @include for-tablet{
-        @include padding(side,sizeIncrement(8));
-    }
+  @include for-tablet {
+    @include padding(side, sizeIncrement(8));
+  }
 }
 
 .inventory-list-header {
@@ -34,8 +34,6 @@
     &:focus {
       border-color: $pri-indigo;
     }
-
-    
   }
 
   &__add-btn {

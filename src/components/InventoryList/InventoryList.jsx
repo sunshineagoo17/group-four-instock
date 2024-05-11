@@ -14,7 +14,7 @@ const InventoryList = () => {
           + Add New Item
         </button>
       </div>
-      
+      div.
     </div>
   );
 };
