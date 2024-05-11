@@ -7,7 +7,7 @@ function Header() {
     const navigate = useNavigate()
   return (<>
   <header>
-  <img className='instock-logo' src={logo}/>
+  <img className='instock-logo' onClick={()=> navigate('/')} src={logo}/>
   <div className='button-header-container'>
   <button className='header-button' onClick={()=> navigate('warehouse')} >Warehouses</button>
   <button className='header-button' onClick={()=> navigate('inventory')}>Inventory</button>
