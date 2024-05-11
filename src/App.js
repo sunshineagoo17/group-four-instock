@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-
 import './App.scss';
+
+//components
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 //Page Import
 import Inventory from './pages/Inventory/Inventory.js';
@@ -15,6 +17,7 @@ const App = () => (<>
       <Route path='/:warehouseId' element={<Warehouse />} />
       <Route path='/inventory' element={<Inventory />} />
     </Routes>
+    <Footer />
   </BrowserRouter>
   </>);
 export default App;
