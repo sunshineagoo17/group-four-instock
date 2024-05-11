@@ -43,7 +43,7 @@ header{
 
 }
 
-@media (min-width: $breakpoint-tablet){
+@include for-tablet{
     header{
         height: 92px;
         flex-direction: row;
@@ -69,7 +69,7 @@ header{
 
 }
 
-@media (min-width: $breakpoint-desktop){
+@include for-desktop {
     .instock-logo{
         margin-left: 5%;
     }
