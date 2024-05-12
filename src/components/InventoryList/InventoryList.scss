@@ -1,0 +1,45 @@
+@use '../../styles/partials/index' as *;
+
+.inventory-list {
+  @include padding(side, sizeIncrement(6));
+  @include padding(top, sizeIncrement(8));
+
+  @include for-tablet {
+    @include padding(side, sizeIncrement(8));
+  }
+}
+
+.inventory-list-header {
+  background-color: $pri-white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: sizeIncrement(4);
+
+  @include for-tablet {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  &__title {
+    flex-grow: 1;
+  }
+
+  &__search {
+    border: 1px solid $sec-cloud;
+    background-image: url(../../assets/images/search-24px.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - sizeIncrement(4)) center;
+    background-color: $pri-white;
+
+    &:active,
+    &:focus {
+      border-color: $pri-indigo;
+    }
+  }
+
+  &__add-btn {
+    background-color: $pri-indigo;
+    color: $pri-white;
+    font-family: $defaultFont;
+    font-weight: bold;
+  }
+}

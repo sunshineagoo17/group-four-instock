@@ -1,5 +1,6 @@
 @use './mediaquery';
- 
+@use './mixins';
+
 // Color Scheme
 $pri-black: #13182c;
 $pri-indigo: #2e66e5;
@@ -13,10 +14,9 @@ $sec-red: #c94515;
 $bg-graphite: #232940;
 $bg-grey: #f7f8f9;
 
-
 //Paddding
-$padding-page-side-mobile: 16px;
-$padding-page-side-tablet: 36px;
+$padding-page-side-mobile: mixins.sizeIncrement(4);
+$padding-page-side-tablet: mixins.sizeIncrement(9);
 
 .page-max-width {
   padding-left: $padding-page-side-mobile;
@@ -37,3 +37,37 @@ $padding-page-side-tablet: 36px;
 //  CTA
 $btn-height-mobile: 36px;
 $btn-height-tablet: 38px;
+$btn-radius: 20px;
+// Form Fields
+$input-height-mobile: 36px;
+$input-height-tablet: 38px;
+$input-radius: 20px;
+
+//Input Fields
+.input {
+  height: $input-height-mobile;
+  width: 100%;
+  border-radius: $input-radius;
+  outline: none;
+  @include mixins.padding(side, mixins.sizeIncrement(4));
+  @include mediaquery.for-tablet {
+    height: $input-height-tablet;
+    width: fit-content;
+  }
+}
+
+//Button
+.btn {
+  height: $btn-height-mobile;
+  width: 100%;
+  border-radius: $btn-radius;
+  outline: none;
+  border: none;
+  @include mixins.padding(side, mixins.sizeIncrement(4));
+
+  @include mediaquery.for-tablet {
+    height: $btn-height-tablet;
+    width: fit-content;
+    @include mixins.padding(side, mixins.sizeIncrement(4));
+  }
+}
