@@ -1,88 +1,74 @@
 @use '../../styles/partials/index' as *;
-header{
+
+header {
+  width: 100%;
+  background-color: $bg-graphite;
+  
+}
+.main-nav {
+  height: toRem(136);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  @include for-tablet {
+    height: toRem(92);
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  &__logo {
+    max-height: toRem(28);
     width: 100%;
-    height: 136px;
-    background-color: $bg-graphite;
+
+    @include for-tablet {
+      flex-grow: 1;
+    }
+  }
+}
+
+.main-nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include for-tablet {
+    width: fit-content;
+    gap: sizeIncrement(2);
+  }
+
+  &__link {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-}
-.instock-logo{
-    width: 129px;
-    margin-top: 28px;
-    cursor: pointer;
-}
-.button-header-container{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between; 
-}
-.header-button:hover{
-    background-color: $pri-black;
-    text-decoration: underline solid $pri-indigo;
-    border:2px solid$pri-indigo; 
-    color: #fafafa;
-}
-
-.header-button{
-    width: 163px;
-    height: 36px;
+    color: $sec-cloud;
     font-family: $defaultFont;
-    font-weight: 600;
-    font-size: 13px;
-    background-color: $bg-graphite;
-    color:$sec-slate;
-    border-color:$bg-graphite;
-    border: none;
-    border-radius: 40px;
-    margin-left: 5%;
-    margin-right: 5%;
-    flex-grow: 1;
-    cursor: pointer;
 
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.active {
+      background-color: $pri-black;
+      color: $pri-white;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
-@include for-tablet{
-    header{
-        height: 92px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .instock-logo{
-        width: 150px;
-        margin-top: 0px;
-        margin-left: 30px;
-    }
-    .button-header-container{
-        width: 30%;
-        margin: 0;
-        margin-right: 30px;
-    }
-    .header-button{
-        width: 107px;
-        height: 38px;
-        font-size: 14px;
-    }
-   
+.header-bg{
+  background-color:$bg-graphite;
+  position: absolute;
+  top:0;
+  z-index: -1;
+  height: 200px;
+  width: 100vw;
 
-}
-
-@include for-desktop {
-    .instock-logo{
-        margin-left: 5%;
-    }
-    .button-header-container{
-        width: 280px;
-        margin-right: 5%;
-        justify-content:space-evenly;
-
-    }
-    .header-button{
-        margin: 0;
-        flex-grow: 0;
-    }
-
-
+  @include for-tablet{
+    height: 186px;
+  }
 }

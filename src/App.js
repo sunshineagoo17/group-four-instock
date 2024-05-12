@@ -8,10 +8,9 @@ import Footer from './components/Footer/Footer';
 //Page Import
 import Inventory from './pages/Inventory/Inventory.js';
 import Warehouse from './pages/Warehouse/Warehouse.js';
-const App = () => (<>
-  
+const App = () => (
   <BrowserRouter>
-  <Header />
+    <Header />
     <Routes>
       <Route path='/' element={<Warehouse />} />
       <Route path='/:warehouseId' element={<Warehouse />} />
@@ -19,5 +18,6 @@ const App = () => (<>
     </Routes>
     <Footer />
   </BrowserRouter>
-  </>);
+);
+
 export default App;

@@ -1,9 +1,10 @@
 @use '../../styles/partials/index' as *;
 
 .inventory-list {
+  background-color: $pri-white;
   @include padding(side, sizeIncrement(6));
   @include padding(top, sizeIncrement(8));
-
+  border-radius: 3px;
   @include for-tablet {
     @include padding(side, sizeIncrement(8));
   }
