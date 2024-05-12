@@ -1,1 +1,5 @@
 @use './styles/partials/index' as *;
+
+body{
+    background: $bg-grey;
+}
