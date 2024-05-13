@@ -16,7 +16,7 @@ $bg-grey: #f7f8f9;
 
 //Paddding
 $padding-page-side-mobile: mixins.sizeIncrement(4);
-$padding-page-side-tablet: mixins.sizeIncrement(9);
+$padding-page-side-tablet: mixins.sizeIncrement(8);
 
 .page-max-width {
   padding-left: $padding-page-side-mobile;
@@ -26,7 +26,7 @@ $padding-page-side-tablet: mixins.sizeIncrement(9);
     padding-right: $padding-page-side-tablet;
   }
   @include mediaquery.for-desktop {
-    max-width: 1280px;
+    max-width: 1020px;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;

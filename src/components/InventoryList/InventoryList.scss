@@ -1,12 +1,9 @@
 @use '../../styles/partials/index' as *;
 
 .inventory-list {
-  @include padding(side, sizeIncrement(6));
+  background-color: $pri-white;
+  border-radius: 4px;
   @include padding(top, sizeIncrement(8));
-
-  @include for-tablet {
-    @include padding(side, sizeIncrement(8));
-  }
 }
 
 .inventory-list-header {
@@ -14,7 +11,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: sizeIncrement(4);
-
+  @include padding(bottom, sizeIncrement(6));
+  
   @include for-tablet {
     flex-wrap: nowrap;
     align-items: center;
@@ -41,5 +39,13 @@
     color: $pri-white;
     font-family: $defaultFont;
     font-weight: bold;
+  }
+}
+
+.list-padding-side {
+  @include padding(side, sizeIncrement(6));
+
+  @include for-desktop{
+    @include padding(side, sizeIncrement(10));
   }
 }
