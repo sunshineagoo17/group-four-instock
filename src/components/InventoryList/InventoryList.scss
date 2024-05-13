@@ -2,12 +2,7 @@
 
 .inventory-list {
   background-color: $pri-white;
-  @include padding(side, sizeIncrement(6));
-  @include padding(top, sizeIncrement(8));
-  border-radius: 3px;
-  @include for-tablet {
-    @include padding(side, sizeIncrement(8));
-  }
+  border-radius: 4px;
 }
 
 .inventory-list-header {
@@ -15,7 +10,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: sizeIncrement(4);
-
+  @include padding(bottom, sizeIncrement(6));
+  @include padding(top, sizeIncrement(8));
   @include for-tablet {
     flex-wrap: nowrap;
     align-items: center;
@@ -43,4 +39,8 @@
     font-family: $defaultFont;
     font-weight: bold;
   }
+}
+
+.list-padding-side {
+  @include padding(side, sizeIncrement(6));
 }

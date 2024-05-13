@@ -16,7 +16,10 @@
     } @else if $direction == side {
       padding-right: $amount;
       padding-left: $amount;
-    } @else if $direction == top {
+    } @else if $direction == topbottom {
+      padding-top: $amount;
+      padding-bottom: $amount;
+    }@else if $direction == top {
       padding-top: $amount;
     } @else if $direction == left {
       padding-left: $amount;
