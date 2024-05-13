@@ -3,6 +3,7 @@
 .inventory-list {
   background-color: $pri-white;
   border-radius: 4px;
+  @include padding(top, sizeIncrement(8));
 }
 
 .inventory-list-header {
@@ -11,7 +12,7 @@
   flex-wrap: wrap;
   gap: sizeIncrement(4);
   @include padding(bottom, sizeIncrement(6));
-  @include padding(top, sizeIncrement(8));
+  
   @include for-tablet {
     flex-wrap: nowrap;
     align-items: center;

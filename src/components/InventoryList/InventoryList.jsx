@@ -7,7 +7,7 @@ const InventoryList = () => {
           Inventory
         </h1>
         <input
-          className='inventory-list-header__search input'
+          className='inventory-list-header__search input txt-m txt-black'
           placeholder='Search...'
         />
         <button className='inventory-list-header__add-btn btn txt-section'>
