@@ -3,19 +3,25 @@
 header {
   width: 100%;
   background-color: $bg-graphite;
+  height: toRem(136);
   
+
+  @include for-tablet{
+    height: toRem(92);
+  }
 }
 .main-nav {
-  height: toRem(136);
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-
+  padding: sizeIncrement(6) 0;
+  
   @include for-tablet {
-    height: toRem(92);
+    align-items: center;
     flex-wrap: nowrap;
     justify-content: space-between;
+    padding: sizeIncrement(8) 0;
   }
   &__logo {
     max-height: toRem(28);
@@ -29,13 +35,15 @@ header {
 
 .main-nav-container {
   width: 100%;
+  height: fit-content;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
+  align-self: flex-end;
 
   @include for-tablet {
     width: fit-content;
     gap: sizeIncrement(2);
+    align-self: auto;
   }
 
   &__link {
