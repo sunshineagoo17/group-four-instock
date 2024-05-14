@@ -1,74 +1,119 @@
 @use '../../styles/partials/index' as *;
 
 .list-padding-side {
-    @include padding(side, sizeIncrement(6));
-  
-    @include for-desktop{
-      @include padding(side, sizeIncrement(10));
+  @include padding(side, sizeIncrement(6));
+
+  @include for-desktop {
+    @include padding(side, sizeIncrement(10));
+  }
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: sizeIncrement(4);
+  padding-top: sizeIncrement(4);
+  padding-bottom: sizeIncrement(6);
+
+  @include for-tablet {
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover{
+        background-color: rgba($color: $pri-indigo, $alpha: 7%);
+  color: $sec-red;
     }
   }
-
-.item{
+  &__cell {
     display: flex;
     flex-wrap: wrap;
-    row-gap: sizeIncrement(4);
-    padding-top:sizeIncrement(4);
-    padding-bottom: sizeIncrement(6);
-    &__cell{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        gap:sizeIncrement(1);
-        
+    width: 50%;
+    gap: sizeIncrement(1);
 
-        &--full-width{
-            width: 100%;
-            padding-left: 50%;
+    @include for-tablet {
+      width: auto;
+    }
 
-        }
-
-        &--flex-space-between{
-            padding-left: 0;
-            width: 100%;
-            flex-grow: 1;
-            display: flex;
-            width: fit-content;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-
-
-        &_desc--btn{
-           border-radius: $btn-radius;
-           border: none;
-           @include padding(topbottom,4px);
-           @include padding(side,8px);
-           text-transform: uppercase;
-        }
-
-        &_desc--title{
-            height: sizeIncrement(6);
-        }
-
-        &_btn{
-            height: sizeIncrement(6);
-        }
+    &_header {
+      width: 100%;
+        text-transform: uppercase;
+      @include for-tablet {
+        display: none;
+      }
     }
 
 
+    &--full-width {
+      width: 100%;
+      padding-left: 50%;
+
+      @include for-tablet {
+        padding-left: 0;
+        width: auto;
+      }
+    }
+
+    &--flex-space-between {
+      padding-left: 0;
+      flex-grow: 1;
+      display: flex;
+      width: fit-content;
+      justify-content: space-between;
+
+      @include for-tablet {
+        flex-grow: 0;
+        gap: sizeIncrement(4);
+        justify-content: center;
+      }
+    }
+
+
+    &_desc--btn {
+      border-radius: $btn-radius;
+      border: none;
+      @include padding(topbottom, 4px);
+      @include padding(side, 8px);
+      text-transform: uppercase;
+
+    }
+
+    &_btn {
+      height: sizeIncrement(6);
+    }
+  }
 }
 
-.right-arrow{
-    vertical-align: middle;
-    height: 20px;
+.right-arrow {
+  vertical-align: middle;
+  height: 20px;
 }
 
-.instock{
-    background-color: rgba($color: $sec-green, $alpha: 7%);
-    color:$sec-green;
+.instock {
+  background-color: rgba($color: $sec-green, $alpha: 7%);
+  color: $sec-green;
 }
 
-.outstock{
-    background-color: rgba($color: $sec-red, $alpha: 7%);
-    color:$sec-red;
+.outstock {
+  background-color: rgba($color: $sec-red, $alpha: 7%);
+  color: $sec-red;
+}
+
+
+// Order for tablet
+@include for-tablet {
+    .item__cell{
+        &:nth-of-type(1){
+            order: 1;
+        }
+        &:nth-of-type(2){
+            order:3
+        }
+        &:nth-of-type(3){
+            order:2;
+        }
+        order:3;
+    }
+
+    
 }
