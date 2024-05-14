@@ -1,0 +1,74 @@
+@use '../../styles/partials/index' as *;
+
+.list-padding-side {
+    @include padding(side, sizeIncrement(6));
+  
+    @include for-desktop{
+      @include padding(side, sizeIncrement(10));
+    }
+  }
+
+.item{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: sizeIncrement(4);
+    padding-top:sizeIncrement(4);
+    padding-bottom: sizeIncrement(6);
+    &__cell{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        gap:sizeIncrement(1);
+        
+
+        &--full-width{
+            width: 100%;
+            padding-left: 50%;
+
+        }
+
+        &--flex-space-between{
+            padding-left: 0;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            width: fit-content;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+
+        &_desc--btn{
+           border-radius: $btn-radius;
+           border: none;
+           @include padding(topbottom,4px);
+           @include padding(side,8px);
+           text-transform: uppercase;
+        }
+
+        &_desc--title{
+            height: sizeIncrement(6);
+        }
+
+        &_btn{
+            height: sizeIncrement(6);
+        }
+    }
+
+
+}
+
+.right-arrow{
+    vertical-align: middle;
+    height: 20px;
+}
+
+.instock{
+    background-color: rgba($color: $sec-green, $alpha: 7%);
+    color:$sec-green;
+}
+
+.outstock{
+    background-color: rgba($color: $sec-red, $alpha: 7%);
+    color:$sec-red;
+}

@@ -4,6 +4,7 @@
   background-color: $pri-white;
   border-radius: 4px;
   @include padding(top, sizeIncrement(8));
+  font-family: $defaultFont;
 }
 
 .inventory-list-header {

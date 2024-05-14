@@ -1,3 +1,4 @@
+import InventoryItemDetails from '../InventoryItemDetails/InventoryItemDetails';
 import './InventoryList.scss';
 const InventoryList = () => {
   return (
@@ -14,7 +15,8 @@ const InventoryList = () => {
           + Add New Item
         </button>
       </div>
-       List Item will go here
+       <InventoryItemDetails />
+       <InventoryItemDetails />
     </div>
   );
 };
