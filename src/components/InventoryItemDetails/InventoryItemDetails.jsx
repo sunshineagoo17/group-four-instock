@@ -5,21 +5,13 @@ import rightIcon from '../../assets/images/chevron_right-24px.svg'
 
 import { Link } from 'react-router-dom';
 
-const inventory = 
-    {
-      "id": 1,
-      "warehouse_name": "Manhattan",
-      "item_name": "Phone Charger",
-      "description": "This 50\", 4K LED TV provides a crystal-clear picture and vivid colors.",
-      "category": "Electronics",
-      "status": "IN STOCk",
-      "quantity": 500
-    };
-const InventoryItemDetails = () => {
+
+const InventoryItemDetails = ({inventory,index}) => {
 
   return (
     <>
-    <div className="divider"></div>
+    {/* conditional rendering based on index of map */}
+    <div className={`${index === 0 ? '':'divider'}`}></div>
     <div className='item list-padding-side'>
         <div className="item__cell">
             <div className="item__cell_header txt-slate txt-table txt-bold">INVENTORY ITEM</div>
@@ -40,7 +32,7 @@ const InventoryItemDetails = () => {
         </div>
         <div className="item__cell item__cell--full-width">
             <div className="item__cell_header txt-slate txt-table txt-bold">WAREHOUSE</div>
-            <div className="item__cell_desc item__cell_desc--generic txt-m txt-black txt-regular">{inventory.warehouse_name}</div>
+            <div className="item__cell_desc item__cell_desc--generic txt-m txt-black txt-regular">{inventory.warehouse_id}</div>
         </div>
         <div className="item__cell item__cell--full-width item__cell--flex-space-between">
             <img className='item__cell_btn'src={deleteIcon} alt="delete button" />
@@ -48,6 +40,8 @@ const InventoryItemDetails = () => {
         </div>
 
     </div>
+
+    
     </>
   )
 }

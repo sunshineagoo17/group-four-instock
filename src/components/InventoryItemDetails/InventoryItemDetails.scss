@@ -32,7 +32,7 @@
     gap: sizeIncrement(1);
 
     @include for-tablet {
-      width: auto;
+      
     }
 
     &_header {
@@ -50,7 +50,7 @@
 
       @include for-tablet {
         padding-left: 0;
-        width: auto;
+        
       }
     }
 
@@ -58,13 +58,11 @@
       padding-left: 0;
       flex-grow: 1;
       display: flex;
-      width: fit-content;
       justify-content: space-between;
 
       @include for-tablet {
-        flex-grow: 0;
         gap: sizeIncrement(4);
-        justify-content: center;
+        flex-wrap: nowrap;
       }
     }
 
@@ -100,20 +98,31 @@
 }
 
 
-// Order for tablet
+// Order and width for tablet 
 @include for-tablet {
     .item__cell{
         &:nth-of-type(1){
             order: 1;
+            width: 90%;
         }
         &:nth-of-type(2){
-            order:3
+            order:3;
+            width:70%;
         }
         &:nth-of-type(3){
             order:2;
+            width: 70%;
         }
-        order:3;
-    }
-
-    
+        &:nth-of-type(4){
+            width: 40%;
+        }
+        &:nth-of-type(5){
+            width: 70%;
+        }
+        &:nth-of-type(6){
+            width: 40%;
+        }
+        order: 4;
+    } 
 }
+
