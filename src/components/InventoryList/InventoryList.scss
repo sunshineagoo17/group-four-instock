@@ -78,7 +78,7 @@
                   width: 70%;
               }
               &:nth-of-type(6){
-                  width: 40%;
+                  width: 30%;
                   justify-content: end;
               }
               
@@ -100,3 +100,8 @@
   }
 }
 
+@include for-tablet{
+  .hide-tablet{
+    display: none;
+  }
+}

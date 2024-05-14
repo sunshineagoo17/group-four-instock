@@ -61,8 +61,10 @@
       justify-content: space-between;
 
       @include for-tablet {
+        justify-content: end;
         gap: sizeIncrement(4);
         flex-wrap: nowrap;
+
       }
     }
 
@@ -120,7 +122,7 @@
             width: 70%;
         }
         &:nth-of-type(6){
-            width: 40%;
+            width: 30%;
         }
         order: 4;
     } 

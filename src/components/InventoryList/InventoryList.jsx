@@ -79,6 +79,7 @@ const InventoryList = () => {
           + Add New Item
         </button>
       </div>
+      <div className="divider hide-tablet"></div>
       <div className="inventory-list__filter list-padding-side">
         <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">INVENTORY ITEM <img className='icon' src={sortIcon} alt="sort icon" /></div>
         <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">CATEGORY <img className='icon' src={sortIcon} alt="sort icon" /></div>
