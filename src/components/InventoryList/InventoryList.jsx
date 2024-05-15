@@ -1,7 +1,8 @@
-import InventoryItemDetails from '../InventoryItemDetails/InventoryItemDetails';
+import InventoryListRow from '../InventoryListRow/InventoryListRow';
 import './InventoryList.scss';
 
 import sortIcon from '../../assets/images/sort-24px.svg';
+
 
 const inventory =[
   {
@@ -88,7 +89,7 @@ const InventoryList = () => {
         <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">WHAREHOUSE<img className='icon' src={sortIcon} alt="sort icon" /></div>
         <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">ACTIONS</div>
       </div>
-       {inventory.map((item ,index)=><InventoryItemDetails inventory={item} key={index} index={index}/>)}
+       {inventory.map((item ,index)=><InventoryListRow inventory={item} key={index} index={index}/>)}
     </div>
   );
 };
