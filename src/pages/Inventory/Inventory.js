@@ -16,6 +16,7 @@ const Inventory = () => {
 
   //Fetching Data from API
   useEffect(() => {
+    console.log('use effect ran');
     if (typeof inventoryId === 'undefined') {
       // Fetch the list of Inventory
       axios
@@ -45,7 +46,6 @@ const Inventory = () => {
       {typeof inventoryId == 'undefined' && inventoryList && (
         <InventoryList inventoryList={inventoryList} />
       )}
-      {console.log(inventoryDetail)}
     </div>
   );
 };
