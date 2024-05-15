@@ -68,6 +68,10 @@
       }
     }
 
+    &_desc{
+      display: flex;
+      flex-wrap: wrap;
+    }
 
     &_desc--btn {
       border-radius: $btn-radius;
