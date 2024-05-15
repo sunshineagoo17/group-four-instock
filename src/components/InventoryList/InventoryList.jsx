@@ -1,5 +1,10 @@
+import InventoryListRow from '../InventoryListRow/InventoryListRow';
 import './InventoryList.scss';
-const InventoryList = () => {
+
+import sortIcon from '../../assets/images/sort-24px.svg';
+
+
+const InventoryList = ({inventoryList}) => {
   return (
     <div className='inventory-list'>
       <div className='inventory-list-header list-padding-side'>
@@ -14,7 +19,16 @@ const InventoryList = () => {
           + Add New Item
         </button>
       </div>
-       List Item will go here
+      <div className="divider hide-tablet"></div>
+      <div className="inventory-list__filter list-padding-side">
+        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">INVENTORY ITEM <img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">CATEGORY <img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">STATUS<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">QTY<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">WHAREHOUSE<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">ACTIONS</div>
+      </div>
+       {inventoryList.map((item ,index)=><InventoryListRow inventory={item} key={index} index={index}/>)}
     </div>
   );
 };
