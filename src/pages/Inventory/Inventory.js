@@ -16,6 +16,7 @@ const Inventory = () => {
 
   //Fetching Data from API
   useEffect(() => {
+    // for testing
     console.log('use effect ran');
     if (typeof inventoryId === 'undefined') {
       // Fetch the list of Inventory
