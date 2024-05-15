@@ -32,7 +32,7 @@ const InventoryListRow = ({inventory,index}) => {
         </div>
         <div className="item__cell item__cell--full-width">
             <div className="item__cell_header txt-slate txt-table txt-bold">WAREHOUSE</div>
-            <div className="item__cell_desc item__cell_desc--generic txt-m txt-black txt-regular">{inventory.warehouse_id}</div>
+            <div className="item__cell_desc item__cell_desc--generic txt-m txt-black txt-regular">{inventory.warehouse_name}</div>
         </div>
         <div className="item__cell item__cell--full-width item__cell--flex-space-between">
             <img className='item__cell_btn'src={deleteIcon} alt="delete button" />
