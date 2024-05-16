@@ -1,0 +1,149 @@
+@use '../../styles/partials/index' as *;
+
+.list-padding-side {
+  @include padding(side, sizeIncrement(6));
+
+  @include for-desktop {
+    @include padding(side, sizeIncrement(10));
+  }
+}
+
+.warehouse {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: sizeIncrement(4);
+  padding-top: sizeIncrement(4);
+  padding-bottom: sizeIncrement(6);
+
+  @include for-tablet {
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: sizeIncrement(4);
+
+    &:hover{
+        background-color: rgba($color: $pri-indigo, $alpha: 7%);
+  color: $sec-red;
+    }
+  }
+  &__cell {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    gap: sizeIncrement(1);
+
+    @include for-tablet {
+      
+    }
+
+    &_header {
+      width: 100%;
+        text-transform: uppercase;
+      @include for-tablet {
+        display: none;
+      }
+    }
+
+
+    &--full-width {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      @include for-tablet{
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap:sizeIncrement(4) ;
+        width: auto;
+      }
+    }
+
+    &--pl{
+      padding-left: 50%;
+
+      @include for-tablet{
+        padding-left: 0;
+      }
+    }
+
+
+    &_desc{
+      padding-right: sizeIncrement(6);
+      display: flex;
+      flex-wrap: wrap;
+
+      @include for-tablet{
+        padding-right: 0;
+      }
+    }
+
+    &_desc--btn {
+      border-radius: $btn-radius;
+      border: none;
+      @include padding(topbottom, 4px);
+      @include padding(side, 8px);
+      text-transform: uppercase;
+
+    }
+
+    &_btn {
+      height: sizeIncrement(6);
+    }
+  }
+}
+
+.right-arrow {
+  vertical-align: middle;
+  height: 20px;
+}
+
+.instock {
+  background-color: rgba($color: $sec-green, $alpha: 7%);
+  color: $sec-green;
+}
+
+.outstock {
+  background-color: rgba($color: $sec-red, $alpha: 7%);
+  color: $sec-red;
+}
+
+
+// Order and width for tablet 
+@include for-tablet {
+    .warehouse__cell{
+        &:nth-of-type(1){
+           order:1;
+           width: 18%;
+  
+        }
+        &:nth-of-type(2){
+            order:3; 
+            width: 15%;
+          
+        }
+        &:nth-of-type(3){
+            order:2;
+            width: 16%;
+
+            @include for-desktop{
+              width: 30%;
+            }
+            
+        }
+        &:nth-of-type(4){
+          width: 25%; 
+          order:4;
+          
+          @include for-desktop{
+            width: 20%;
+          }
+           
+        }
+        &:nth-of-type(5){
+            width: 10%;
+            justify-content: flex-end;
+        }
+        order:5;
+    } 
+}
+
