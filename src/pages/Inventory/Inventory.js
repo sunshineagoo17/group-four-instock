@@ -49,7 +49,7 @@ const Inventory = () => {
       {typeof inventoryId == 'undefined' && inventoryList && (
         <InventoryList inventoryList={inventoryList} />
       )}
-      {inventoryDetails.length > 0 && (
+      {inventoryId && inventoryDetails.length > 0 && (
         <InventoryItemDetails details={inventoryDetails[0]} />
       )}
     </div>
