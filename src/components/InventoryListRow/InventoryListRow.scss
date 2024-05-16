@@ -46,11 +46,14 @@
 
     &--full-width {
       width: 100%;
+
+    }
+
+    &--pl{
       padding-left: 50%;
 
-      @include for-tablet {
+      @include for-tablet{
         padding-left: 0;
-        
       }
     }
 
