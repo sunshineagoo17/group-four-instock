@@ -1,5 +1,7 @@
+import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
+import sortIcon from '../../assets/images/sort-24px.svg';
 import './WarehouseList.scss';
-const WarehouseList = () => {
+const WarehouseList = ({warehouseList}) => {
   return (
     <div className='warehouse-list'>
       <div className='warehouse-list-header list-padding-side'>
@@ -14,7 +16,15 @@ const WarehouseList = () => {
           + Add New Item
         </button>
       </div>
-       Warehouse List will go here
+      <div className="divider hide-tablet"></div>
+      <div className="warehouse-list__filter list-padding-side">
+        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">WAREHOUSE<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">ADDRESS<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">CONTACT NAME<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">CONTACT INFORMATION<img className='icon' src={sortIcon} alt="sort icon" /></div>
+        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">ACTIONS</div>
+      </div>
+       {warehouseList.map((item,index)=><WarehouseListRow warehouse={item} key={index} index={index} />)}
     </div>
   );
 };

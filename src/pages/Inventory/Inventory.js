@@ -49,9 +49,10 @@ const Inventory = () => {
       {typeof inventoryId == 'undefined' && inventoryList && (
         <InventoryList inventoryList={inventoryList} />
       )}
-      {inventoryId && inventoryDetails.length > 0 && (
-        <InventoryItemDetails details={inventoryDetails[0]} />
+      {typeof inventoryId == 'string' && inventoryDetails && (
+        <InventoryItemDetails details={inventoryDetails} />
       )}
+      {console.log(typeof inventoryId)}
     </div>
   );
 };
