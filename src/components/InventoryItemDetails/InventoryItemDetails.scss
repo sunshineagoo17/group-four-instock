@@ -71,10 +71,7 @@
     justify-content: space-between;
     row-gap: 0;
 
-    &:hover {
-      background-color: rgba($color: $pri-indigo, $alpha: 7%);
-      color: $sec-red;
-    }
+    
   }
   &__cell {
     display: flex;
