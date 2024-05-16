@@ -13,7 +13,7 @@ const WarehouseList = ({warehouseList}) => {
           placeholder='Search...'
         />
         <button className='warehouse-list-header__add-btn btn txt-section'>
-          + Add New Item
+          + Add New Warehouse
         </button>
       </div>
       <div className="divider hide-tablet"></div>
