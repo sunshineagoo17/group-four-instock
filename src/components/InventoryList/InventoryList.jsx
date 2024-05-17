@@ -1,11 +1,11 @@
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
 import './InventoryList.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import sortIcon from '../../assets/images/sort-24px.svg';
 
 
 const InventoryList = ({inventoryList}) => {
-  const navigate =useNavigate();
+
 
 
   return (
@@ -18,8 +18,8 @@ const InventoryList = ({inventoryList}) => {
           className='inventory-list-header__search input txt-m txt-black'
           placeholder='Search...'
         />
-        <button className='inventory-list-header__add-btn btn txt-section' onClick={() =>navigate('add-new-inventory')}>
-          + Add New Item
+        <button className='inventory-list-header__add-btn btn txt-section'>
+          < Link   to='add-new-inventory'>+ Add New Item</Link> 
         </button>
       </div>
       <div className="divider hide-tablet"></div>
