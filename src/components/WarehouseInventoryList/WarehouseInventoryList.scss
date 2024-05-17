@@ -1,0 +1,217 @@
+@use '../../styles/partials/index' as *;
+
+.warehouseInventoryList {
+    display: flex;
+    background-color: $pri-white;
+    border-radius: sizeIncrement(1);
+    flex-wrap: wrap;
+  
+    &__header {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: sizeIncrement(8);
+      padding-bottom: sizeIncrement(6);
+  
+      &_title {
+        display: flex;
+        align-items: center;
+        gap: sizeIncrement(1);
+      }
+  
+      .edit-btn {
+        height: sizeIncrement(9);
+        width: sizeIncrement(9);
+        background-color: $pri-indigo;
+        border-radius: $btn-radius;
+        border: none;
+        outline: none;
+  
+        @include for-tablet {
+          display: flex;
+          align-items: center;
+          height: $btn-height-tablet;
+          width: fit-content;
+          @include padding(side, sizeIncrement(4));
+          gap: sizeIncrement(1);
+        }
+  
+        .edit-icon {
+          height: sizeIncrement(6);
+          filter: brightness(0) invert(1);
+  
+          @include for-tablet {
+            height: sizeIncrement(5);
+          }
+        }
+  
+        .edit-text {
+          display: none;
+          color: $pri-white;
+          font-family: $defaultFont;
+          @include for-tablet {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+
+  .warehouseDetails {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: sizeIncrement(4);
+    padding-top: sizeIncrement(4);
+    padding-bottom: sizeIncrement(6);
+    flex-grow: 1;
+  
+    @include for-tablet {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      row-gap: 0;
+      padding-top: sizeIncrement(6);
+      
+    }
+    &__cell {
+      display: flex;
+      flex-wrap: wrap;
+      width: 50%;
+      gap: sizeIncrement(1);
+      
+  
+      @include for-tablet {
+        width: 50%;
+      }
+  
+      &_header {
+        width: 100%;
+        text-transform: uppercase;
+      }
+  
+      &--full-width {
+        width: 100%;
+        
+        @include for-tablet {
+          width: 40%;
+
+        }
+    
+      }
+  
+      &--pl {
+        padding-left: 50%;
+  
+        @include for-tablet {
+          padding-left: 0;
+        }
+      }
+  
+      &--half {
+        padding-right:sizeIncrement(4) ;
+        @include for-tablet {
+          width: 25%;
+          padding-right:sizeIncrement(0) ;
+        }
+      }
+      &--flex-space-between {
+        padding-left: 0;
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+  
+        @include for-tablet {
+        }
+      }
+  
+      &_desc {
+        display: flex;
+        flex-wrap: wrap;
+      }
+  
+      &_desc--btn {
+        border-radius: $btn-radius;
+        border: none;
+        @include padding(topbottom, 4px);
+        @include padding(side, 8px);
+        text-transform: uppercase;
+      }
+  
+      &_btn {
+        height: sizeIncrement(6);
+      }
+    }
+  }
+  .hide{
+    &--mobile{
+        display: none;
+
+        @include for-tablet{
+            display: inline;
+        }
+        
+    }
+    &--tablet {
+            
+        @include for-tablet{
+            display: none;
+        }
+    
+  }
+}
+
+  .border-right{
+    @include for-tablet{
+        border-right:1px solid $sec-cloud;
+        padding-right: sizeIncrement(10);
+ }
+  }
+
+  .hide--warehouseInventoryList{
+    display: none;
+  }
+
+  .warehouseInventory-list__filter{
+    display: none;
+    @include for-tablet{
+      display: flex;
+      height: 40px;
+      background-color:$bg-grey; 
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      flex-grow: 1;
+      width: 100%;
+  
+      &_cell{
+        display: flex;
+        gap: sizeIncrement(1);
+        align-items: center;
+        justify-content: flex-start;
+  
+              &:nth-of-type(1){
+                  width: 80%;
+              }
+              &:nth-of-type(2){  
+                  width:70%;
+              }
+              &:nth-of-type(3){
+                  width: 70%;
+              }
+              &:nth-of-type(4){
+                  width: 40%;
+              }
+              &:nth-of-type(5){
+                  width: 40%;
+                  justify-content: flex-end;
+              }
+              
+          }
+      
+    }
+    .icon{
+      height: sizeIncrement(4);
+    }
+    }
+   

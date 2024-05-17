@@ -1,12 +1,5 @@
 @use '../../styles/partials/index' as *;
 
-.list-padding-side {
-  @include padding(side, sizeIncrement(6));
-
-  @include for-desktop {
-    @include padding(side, sizeIncrement(10));
-  }
-}
 
 .item {
   display: flex;

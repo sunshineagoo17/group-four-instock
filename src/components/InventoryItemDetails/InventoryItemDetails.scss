@@ -78,6 +78,7 @@
     flex-wrap: wrap;
     width: 50%;
     gap: sizeIncrement(1);
+    
 
     @include for-tablet {
       width: 50%;
@@ -105,8 +106,10 @@
     }
 
     &--half {
+      padding-right:sizeIncrement(4) ;
       @include for-tablet {
         width: 25%;
+        padding-right:sizeIncrement(0) ;
       }
     }
     &--flex-space-between {
@@ -147,13 +150,7 @@
   background-color: rgba($color: $sec-red, $alpha: 7%);
   color: $sec-red;
 }
-.list-padding-side {
-  @include padding(side, sizeIncrement(6));
 
-  @include for-desktop {
-    @include padding(side, sizeIncrement(10));
-  }
-}
 
 // Order and width for tablet
 @include for-tablet {
