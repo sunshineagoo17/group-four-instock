@@ -56,6 +56,11 @@
             border-top: none;
             border-left: 1px solid $sec-cloud;
         }
+        @include for-desktop{
+            :nth-last-child(5){
+                width: 122px;
+            }
+        }
     }
     &__container{
         @include for-tablet{
@@ -99,6 +104,7 @@
     border: 1px solid $sec-cloud;
     @include for-tablet{
         margin-bottom: 30px;
+        margin-top: 5px;
     }
 }
 .inventory-add-icon__container{
@@ -118,6 +124,9 @@
     margin-bottom: 20px;
     @include for-tablet{
         margin-bottom: 30px;
+    }
+    @include for-desktop{
+        width: 250px;
     }
 }
 
