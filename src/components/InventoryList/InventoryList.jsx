@@ -1,10 +1,18 @@
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
+import { useState, useEffect } from 'react';
 import './InventoryList.scss';
 
 import sortIcon from '../../assets/images/sort-24px.svg';
 
+const InventoryList = ({ fetchFn }) => {
+  const [inventoryList, setInventoryList] = useState([]);
 
-const InventoryList = ({inventoryList}) => {
+  // Fetching Data from API
+  useEffect(() => {
+    // Fetch the list for invetory
+        fetchFn('/inventories').then(res=> setInventoryList(res));
+    }, [fetchFn]);
+
   return (
     <div className='inventory-list'>
       <div className='inventory-list-header list-padding-side'>
@@ -19,16 +27,33 @@ const InventoryList = ({inventoryList}) => {
           + Add New Item
         </button>
       </div>
-      <div className="divider hide-tablet"></div>
-      <div className="inventory-list__filter list-padding-side">
-        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">INVENTORY ITEM <img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">CATEGORY <img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">STATUS<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">QTY<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">WHAREHOUSE<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="inventory-list__filter_cell txt-slate txt-table txt-bold">ACTIONS</div>
+      <div className='divider hide-tablet'></div>
+      <div className='inventory-list__filter list-padding-side'>
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
+          INVENTORY ITEM <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
+          CATEGORY <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
+          STATUS
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
+          QTY
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
+          WHAREHOUSE
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
+          ACTIONS
+        </div>
       </div>
-       {inventoryList.map((item ,index)=><InventoryListRow inventory={item} key={index} index={index}/>)}
+      {inventoryList.map((item, index) => (
+        <InventoryListRow inventory={item} key={index} index={index} />
+      ))}
     </div>
   );
 };
