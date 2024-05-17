@@ -10,15 +10,8 @@ const WarehouseList = ({ fetchFn }) => {
   // Fetching Data from API
   useEffect(() => {
     // Fetch the list of warehouses
-    const fetchWarehouses = async () => {
-      try {
-        setWarehouseList(await fetchFn('/warehouses'));
-      } catch (error) {
-        console.error('Error fetching warehouses:', error);
-      }
-    };
-    fetchWarehouses();
-  }, [fetchFn]);
+        fetchFn('/warehouses').then(res=> setWarehouseList(res));
+    }, [fetchFn]);
 
   return (
     <div className='warehouse-list'>

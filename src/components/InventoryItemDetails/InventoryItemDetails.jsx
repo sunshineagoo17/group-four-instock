@@ -8,19 +8,12 @@ const InventoryItemDetails = ({ fetchFn }) => {
   const { inventoryId } = useParams();
   const [inventoryDetails, setInventoryDetails] = useState([]);
 
-  useEffect(() => {
-    const fetchInventoryDetail = async () => {
-      try {
-        setInventoryDetails(await fetchFn(`/inventories/${inventoryId}`));
-      } catch (error) {
-        console.error(
-          'Error fetching invetory detail with id ' + inventoryId,
-          error
-        );
-      }
-    };
-    fetchInventoryDetail();
-  }, [fetchFn, inventoryId]);
+    // Fetching Data from API
+    useEffect(() => {
+      // Fetch inventory details
+          fetchFn(`/inventories/${inventoryId}`).then(res=> setInventoryDetails(res));
+      }, [fetchFn,inventoryId]);
+
 
   return (
     <div className='inventoryItemDetails'>

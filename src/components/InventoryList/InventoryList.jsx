@@ -7,18 +7,11 @@ import sortIcon from '../../assets/images/sort-24px.svg';
 const InventoryList = ({ fetchFn }) => {
   const [inventoryList, setInventoryList] = useState([]);
 
-  //Fetching Data from API
+  // Fetching Data from API
   useEffect(() => {
-    // Fetch the list of inventories
-    const fetchInventories = async () => {
-      try {
-        setInventoryList(await fetchFn('/inventories'));
-      } catch (error) {
-        console.error('Error fetching inventories:', error);
-      }
-    };
-    fetchInventories();
-  }, [fetchFn]);
+    // Fetch the list for invetory
+        fetchFn('/inventories').then(res=> setInventoryList(res));
+    }, [fetchFn]);
 
   return (
     <div className='inventory-list'>
