@@ -1,7 +1,25 @@
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
+import { useState, useEffect } from 'react';
 import sortIcon from '../../assets/images/sort-24px.svg';
 import './WarehouseList.scss';
-const WarehouseList = ({warehouseList}) => {
+
+const WarehouseList = ({ fetchFn }) => {
+  //Init WarehouseList
+  const [warehouseList, setWarehouseList] = useState([]);
+
+  // Fetching Data from API
+  useEffect(() => {
+    // Fetch the list of warehouses
+    const fetchWarehouses = async () => {
+      try {
+        setWarehouseList(await fetchFn('/warehouses'));
+      } catch (error) {
+        console.error('Error fetching warehouses:', error);
+      }
+    };
+    fetchWarehouses();
+  }, [fetchFn]);
+
   return (
     <div className='warehouse-list'>
       <div className='warehouse-list-header list-padding-side'>
@@ -16,15 +34,31 @@ const WarehouseList = ({warehouseList}) => {
           + Add New Warehouse
         </button>
       </div>
-      <div className="divider hide-tablet"></div>
-      <div className="warehouse-list__filter list-padding-side">
-        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">WAREHOUSE<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">ADDRESS<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">CONTACT NAME<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">CONTACT INFORMATION<img className='icon' src={sortIcon} alt="sort icon" /></div>
-        <div className="warehouse-list__filter_cell txt-slate txt-table txt-bold">ACTIONS</div>
+      <div className='divider hide-tablet'></div>
+      <div className='warehouse-list__filter list-padding-side'>
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+          WAREHOUSE
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+          ADDRESS
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+          CONTACT NAME
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+          CONTACT INFORMATION
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+          ACTIONS
+        </div>
       </div>
-       {warehouseList.map((item,index)=><WarehouseListRow warehouse={item} key={index} index={index} />)}
+      {warehouseList.map((item, index) => (
+        <WarehouseListRow warehouse={item} key={index} index={index} />
+      ))}
     </div>
   );
 };
