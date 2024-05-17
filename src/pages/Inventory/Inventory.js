@@ -4,6 +4,7 @@ import axios from 'axios';
 import InventoryList from '../../components/InventoryList/InventoryList';
 import './Inventory.scss';
 import InventoryItemDetails from '../../components/InventoryItemDetails/InventoryItemDetails';
+import AddInventory from '../../components/AddInventory/AddInventory';
 
 const URL = `http://127.0.0.1:8080/api`;
 
@@ -45,13 +46,14 @@ const Inventory = () => {
 
   return (
     <div className='page-max-width'>
-      {/* Render Inventory List if InvetoryId is undefined*/}
+      Render Inventory List if InvetoryId is undefined
       {typeof inventoryId == 'undefined' && inventoryList && (
         <InventoryList inventoryList={inventoryList} />
       )}
       {inventoryId && inventoryDetails.length > 0 && (
         <InventoryItemDetails details={inventoryDetails[0]} />
       )}
+
     </div>
   );
 };
