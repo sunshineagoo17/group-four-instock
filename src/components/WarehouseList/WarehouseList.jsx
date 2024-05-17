@@ -17,7 +17,7 @@ const WarehouseList = ({ fetchFn }) => {
     <div className='warehouse-list'>
       <div className='warehouse-list-header list-padding-side'>
         <h1 className='warehouse-list-header__title txt-header txt-black '>
-          Warehouse
+          Warehouses
         </h1>
         <input
           className='warehouse-list-header__search input txt-m txt-black'
