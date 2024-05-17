@@ -1,17 +1,45 @@
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
+import WarehouseDeleteModal from '../WarehouseDeleteModal';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import sortIcon from '../../assets/images/sort-24px.svg';
 import './WarehouseList.scss';
 
 const WarehouseList = ({ fetchFn }) => {
-  //Init WarehouseList
+  // Init WarehouseList
   const [warehouseList, setWarehouseList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
 
   // Fetching Data from API
   useEffect(() => {
     // Fetch the list of warehouses
-        fetchFn('/warehouses').then(res=> setWarehouseList(res));
+        fetchFn('/warehouses').then(res => setWarehouseList(res));
     }, [fetchFn]);
+
+  // Handles delete button click and shows modal
+  const handleDeleteClick = (warehouse) => {
+    setSelectedWarehouse(warehouse);
+    setShowModal(true);
+  }
+
+  // Closes the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedWarehouse(null);
+  };
+
+  // Confirms deletion
+  const handleDeleteConfirm = () => {
+    axios.delete(`api/warehouses/${selectedWarehouse.id}`)
+      .then(() => {
+        setWarehouseList(warehouseList.filter(wh => wh.id !== selectedWarehouse.id));
+        handleCloseModal();
+      })
+      .catch(error => {
+        console.error('Error deleting warehouse:', error);
+      });
+  };
 
   return (
     <div className='warehouse-list'>
@@ -50,8 +78,19 @@ const WarehouseList = ({ fetchFn }) => {
         </div>
       </div>
       {warehouseList.map((item, index) => (
-        <WarehouseListRow warehouse={item} key={index} index={index} />
+        <WarehouseListRow
+          warehouse={item}
+          key={index}
+          index={index}
+          onDeleteClick={handleDeleteClick}
+        />
       ))}
+      <WarehouseDeleteModal
+        show={showModal}
+        onClose={handleCloseModal}
+        onDelete={handleDeleteConfirm}
+        warehouseName={selectedWarehouse ? selectedWarehouse.warehouse_name : ''}
+      />
     </div>
   );
 };
