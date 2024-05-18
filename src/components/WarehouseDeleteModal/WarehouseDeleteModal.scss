@@ -1,24 +1,10 @@
 @use '../../styles/partials/index' as *;
 
-.warehouse-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
 .warehouse-modal {
     background-color: $pri-white;
-    border-radius: $btn-radius;
     width: 100%;
-    max-width: 500px;
-    height: 100%; /* Ensure full coverage on mobile */
+    max-width: 375px;
+    height: 667px; 
     padding: sizeIncrement(4);
     display: flex;
     flex-direction: column;
@@ -26,80 +12,88 @@
     position: relative;
 
     @include for-tablet {
-        height: auto; /* Adjust height for tablet */
+        height: auto; 
         padding: sizeIncrement(8);
+        border-radius: $btn-radius;
     }
-}
 
-.warehouse-modal__bg {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: sizeIncrement(4);
-}
-
-.warehouse-modal-close__btn {
-    position: absolute;
-    top: sizeIncrement(2);
-    right: sizeIncrement(2);
-    cursor: pointer;
-}
-
-.warehouse-modal-close__icon {
-    width: 24px;
-    height: 24px;
-}
-
-.warehouse-modal__title {
-    @extend .txt-header;
-    margin-top: sizeIncrement(4);
-    margin-bottom: sizeIncrement(4);
-    text-align: center;
-}
-
-.warehouse-modal__txt {
-    @extend .txt-m;
-    margin-bottom: sizeIncrement(4);
-    text-align: center;
-}
-
-.warehouse-modal__buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: sizeIncrement(4);
-
-    @include for-tablet {
-        margin-top: sizeIncrement(8);
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
     }
-}
 
-.btn-cancel {
-    @extend .btn;
-    background-color: $pri-white;
-    color: $sec-slate;
-    border: 1px solid $sec-cloud;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 48%;
-}
+    &__bg {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: sizeIncrement(4);
+    }
 
-.btn-delete {
-    @extend .btn;
-    background-color: $sec-red;
-    color: $pri-white;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 48%;
-}
+    &__close-btn {
+        position: absolute;
+        top: sizeIncrement(2);
+        right: sizeIncrement(2);
+        cursor: pointer;
+    }
 
-.txt-header {
-    @extend .txt-header;
-}
+    &__close-icon {
+        width: 24px;
+        height: 24px;
+    }
 
-.txt-m {
-    @extend .txt-m;
+    &__title {
+        @extend .txt-header;
+        margin-top: sizeIncrement(4);
+        margin-bottom: sizeIncrement(4);
+        text-align: center;
+    }
+    
+    &__txt {
+        @extend .txt-m;
+        margin-bottom: sizeIncrement(4);
+        text-align: center;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: sizeIncrement(4);
+    
+        @include for-tablet {
+            margin-top: sizeIncrement(8);
+        }
+    }
+
+    & .btn-cancel {
+        @extend .btn;
+        background-color: $pri-white;
+        color: $sec-slate;
+        border: 1px solid $sec-cloud;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 48%;
+        cursor: pointer;
+    }
+    
+    & .btn-delete {
+        @extend .btn;
+        background-color: $sec-red;
+        color: $pri-white;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 48%;
+        cursor: pointer;
+    }
 }

@@ -7,14 +7,14 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
   }
 
   return (
-    <div className='warehouse-modal-overlay'>
+    <div className='warehouse-modal__overlay'>
       <div className='warehouse-modal'>
         <div className='warehouse-modal__bg'>
-          <div className='warehouse-modal-close__btn'>
+          <div className='warehouse-modal__close-btn'>
             <img
               src={closeIcon}
               alt='close'
-              className='warehouse-modal-close__icon'
+              className='warehouse-modal__close-icon'
               onClick={onClose}
             />
           </div>
