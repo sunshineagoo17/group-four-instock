@@ -7,24 +7,29 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
   }
 
   return (
-    // For testing purposes
     <div className='warehouse-modal-overlay'>
       <div className='warehouse-modal'>
-        <img
-          src={closeIcon}
-          alt='close'
-          className='warehouse-modal-close-icon'
-          onClick={onClose}
-        />
-        <h1>Delete {warehouseName} warehouse?</h1>
-        <p>Are you sure you want to delete the warehouse {warehouseName}?</p>
-        <div className='modal-buttons'>
-          <button className='btn btn-cancel' onClick={onClose}>
-            Cancel
-          </button>
-          <button className='btn btn-delete' onClick={onDelete}>
-            Delete
-          </button>
+        <div className='warehouse-modal__bg'>
+          <div className='warehouse-modal-close__btn'>
+            <img
+              src={closeIcon}
+              alt='close'
+              className='warehouse-modal-close__icon'
+              onClick={onClose}
+            />
+          </div>
+          <h1 className='warehouse-modal__title'>Delete {warehouseName} warehouse?</h1>
+          <p className='warehouse-modal__txt'>
+            Please confirm that you’d like to delete the {warehouseName} from the list of warehouses. You won’t be able to undo this action.
+          </p>
+          <div className='warehouse-modal__buttons'>
+            <button className='btn btn-cancel' onClick={onClose}>
+              Cancel
+            </button>
+            <button className='btn btn-delete' onClick={onDelete}>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
