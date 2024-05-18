@@ -38,7 +38,7 @@
         padding: sizeIncrement(4);
     }
 
-    &__close-btn {
+    &__btn-close {
         position: absolute;
         top: sizeIncrement(2);
         right: sizeIncrement(2);
@@ -63,7 +63,7 @@
         text-align: center;
     }
 
-    &__buttons {
+    &__buttons-container {
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -74,7 +74,7 @@
         }
     }
 
-    & .btn-cancel {
+    &__btn--cancel {
         @extend .btn;
         background-color: $pri-white;
         color: $sec-slate;
@@ -86,7 +86,7 @@
         cursor: pointer;
     }
     
-    & .btn-delete {
+    &__btn--delete {
         @extend .btn;
         background-color: $sec-red;
         color: $pri-white;

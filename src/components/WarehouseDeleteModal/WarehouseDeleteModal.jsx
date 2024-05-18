@@ -10,7 +10,7 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
     <div className='warehouse-modal__overlay'>
       <div className='warehouse-modal'>
         <div className='warehouse-modal__bg'>
-          <div className='warehouse-modal__close-btn'>
+          <div className='warehouse-modal__btn-close'>
             <img
               src={closeIcon}
               alt='close'
@@ -22,11 +22,11 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
           <p className='warehouse-modal__txt'>
             Please confirm that you’d like to delete the {warehouseName} from the list of warehouses. You won’t be able to undo this action.
           </p>
-          <div className='warehouse-modal__buttons'>
-            <button className='btn btn-cancel' onClick={onClose}>
+          <div className='warehouse-modal__buttons-container'>
+            <button className='btn warehouse-modal__btn--cancel' onClick={onClose}>
               Cancel
             </button>
-            <button className='btn btn-delete' onClick={onDelete}>
+            <button className='btn warehouse-modal__btn--delete' onClick={onDelete}>
               Delete
             </button>
           </div>
