@@ -1,66 +1,69 @@
 @use '../../styles/partials/index' as *;
 
 .warehouse-modal {
-    background-color: $pri-white;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 375px;
-    height: 667px; 
-    padding: sizeIncrement(4);
+    height: 100%;
+    background-color: rgba($pri-black, .7);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+    justify-content: center;
+    z-index: 1000;
 
-    @include for-tablet {
-        height: auto; 
-        padding: sizeIncrement(8);
-        border-radius: $btn-radius;
+    &__container {
+        background-color: $pri-white;
+        width: 100%;
+        height: 41.688rem;
+        padding: sizeIncrement(4);
+        display: flex;
+        flex-direction: row;
+
+        @include for-tablet {
+            width: 42rem;
+            height: 16.375rem; 
+            border-radius: $btn-radius;
+            margin-top: 11.56rem;
+        }
+
+        @include for-desktop {
+            // Desktop specific styles
+        }
     }
 
-    &__overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+    &__content {
+        // styles
+        display: flex; // get rid of this
+        flex-direction: column; // get rid of this
+    }
+
+    &__btn-close-bg {
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
-    }
-
-    &__bg {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: sizeIncrement(4);
-    }
-
-    &__btn-close {
         position: absolute;
-        top: sizeIncrement(2);
-        right: sizeIncrement(2);
+        top: 1rem;
+        right: 1rem;
         cursor: pointer;
+        width: 1.5rem; 
+        height: 1.5rem;
     }
 
-    &__close-icon {
-        width: 24px;
-        height: 24px;
-    }
+    // &__btn-close-icon {
+    //     width: .875rem;
+    //     height: .875rem;
+    // }
 
     &__title {
         @extend .txt-header;
-        margin-top: sizeIncrement(4);
-        margin-bottom: sizeIncrement(4);
-        text-align: center;
+        margin-top: 3.25rem;
+        line-height: 36px;
     }
     
     &__txt {
         @extend .txt-m;
         margin-bottom: sizeIncrement(4);
-        text-align: center;
+        margin-top: 1rem;
     }
 
     &__buttons-container {
@@ -72,28 +75,31 @@
         @include for-tablet {
             margin-top: sizeIncrement(8);
         }
+
+        @include for-desktop {
+            // Dekstop specific styles
+        }
+    }
+
+    &__btn--cancel,
+    &__btn--delete {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 48%;
+        cursor: pointer;
     }
 
     &__btn--cancel {
         @extend .btn;
         background-color: $pri-white;
         color: $sec-slate;
-        border: 1px solid $sec-cloud;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 48%;
-        cursor: pointer;
+        border: .063rem solid $sec-cloud;
     }
     
     &__btn--delete {
         @extend .btn;
         background-color: $sec-red;
         color: $pri-white;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 48%;
-        cursor: pointer;
     }
 }
