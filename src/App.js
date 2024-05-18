@@ -24,7 +24,7 @@ const App = () => (
   <BrowserRouter>
     <Layout>
       <Routes>
-        <Route path='/' element={<WarehouseList fetchFn={fetchData} />} />
+        <Route path='/' element={<WarehouseList fetchFn={fetchData} baseURL={URL} />} />
         {/* <Route path='/:warehouseId' element={<Warehouse />} /> */}
         <Route
           path='/inventory'

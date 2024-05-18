@@ -1,11 +1,11 @@
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
-import WarehouseDeleteModal from '../WarehouseDeleteModal';
+import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import sortIcon from '../../assets/images/sort-24px.svg';
 import './WarehouseList.scss';
 
-const WarehouseList = ({ fetchFn }) => {
+const WarehouseList = ({ fetchFn, baseURL }) => {
   // Init WarehouseList
   const [warehouseList, setWarehouseList] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -14,14 +14,14 @@ const WarehouseList = ({ fetchFn }) => {
   // Fetching Data from API
   useEffect(() => {
     // Fetch the list of warehouses
-        fetchFn('/warehouses').then(res => setWarehouseList(res));
-    }, [fetchFn]);
+    fetchFn('/warehouses').then((res) => setWarehouseList(res));
+  }, [fetchFn]);
 
   // Handles delete button click and shows modal
   const handleDeleteClick = (warehouse) => {
     setSelectedWarehouse(warehouse);
     setShowModal(true);
-  }
+  };
 
   // Closes the modal
   const handleCloseModal = () => {
@@ -30,15 +30,16 @@ const WarehouseList = ({ fetchFn }) => {
   };
 
   // Confirms deletion
-  const handleDeleteConfirm = () => {
-    axios.delete(`api/warehouses/${selectedWarehouse.id}`)
-      .then(() => {
-        setWarehouseList(warehouseList.filter(wh => wh.id !== selectedWarehouse.id));
-        handleCloseModal();
-      })
-      .catch(error => {
-        console.error('Error deleting warehouse:', error);
-      });
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`${baseURL}/warehouses/${selectedWarehouse.id}`);
+      setWarehouseList(
+        warehouseList.filter((wh) => wh.id !== selectedWarehouse.id)
+      );
+      handleCloseModal();
+    } catch (error) {
+      console.error(`Error deleting warehouse: ${error.message}`);
+    }
   };
 
   return (
@@ -89,7 +90,9 @@ const WarehouseList = ({ fetchFn }) => {
         show={showModal}
         onClose={handleCloseModal}
         onDelete={handleDeleteConfirm}
-        warehouseName={selectedWarehouse ? selectedWarehouse.warehouse_name : ''}
+        warehouseName={
+          selectedWarehouse ? selectedWarehouse.warehouse_name : ''
+        }
       />
     </div>
   );
