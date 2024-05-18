@@ -30,22 +30,11 @@ function AddInventory() {
         setWarehouse(event.target.value)
     }
 
-    const isFormValid = () => {
-        return itemName && description && category && quantity && warehouse;
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!itemName) {
-            alert('Item Name must be filled 😑');
-        } else if (!description) {
-            alert('Description must be filled 😑');
-        } else if (!category) {
-            alert('Category must be filled 😑');
-        } else if (!quantity) {
-            alert('Quantity must be filled 😑');
-        } else if (!warehouse) {
-            alert('Warehouse must be filled 😑');
+        
+        if (!itemName || !description || !category || !quantity || !warehouse) {
+            alert('All fields must be filled 😑');
         } else {
             alert('Items added successfully 😎');
             // axios request to database.
@@ -118,7 +107,7 @@ function AddInventory() {
           </div>
           <div className='inventory-add-button__container'>
             <button className='inventory-add-button inventory-add-button__one' type='button' onClick={handleCancel} >Cancel</button>
-            <button type='submit' className='inventory-add-button inventory-add-button__two' disabled={!isFormValid()}>+Add Item</button>
+            <button type='submit' className='inventory-add-button inventory-add-button__two' >+Add Item</button>
             
         </div>
         </form>
