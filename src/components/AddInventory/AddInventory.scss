@@ -1,0 +1,191 @@
+@use '../../styles/partials/index' as *;
+
+.inventory-add{
+    background-color: $pri-white;
+  border-radius: 4px;
+  @include padding(top, sizeIncrement(8));
+  font-family: $defaultFont;
+}
+.inventory-add-header{
+  background-color: $pri-white;
+  padding-left: 30px;
+  font-size: 32px;
+  border-bottom: 1px solid $sec-cloud;
+  gap: sizeIncrement(4);
+  @include padding(bottom, sizeIncrement(6));
+  img{
+    position: absolute;
+    left: 25px;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  @include for-tablet {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  &__title {
+    flex-grow: 1;
+    margin-left: 30px;
+  }
+}
+    
+
+.inventory-add-form{
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 20px;
+    color: $pri-black;
+    font-weight: 600;
+    @include for-tablet{
+        width: 100%;
+        padding-bottom: 0;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+    &__one{
+        @include for-tablet{
+            :last-child{
+                margin-bottom: 2px;
+            }
+        }
+    }
+    &__two{
+        border-top: 1px solid $sec-cloud;
+        @include for-tablet{
+            border-top: none;
+            border-left: 1px solid $sec-cloud;
+        }
+        @include for-desktop{
+            :nth-last-child(5){
+                width: 122px;
+            }
+        }
+    }
+    &__container{
+        @include for-tablet{
+           display: flex;
+           width: 100%;
+        }
+    }
+}
+.inventory-add-title{
+ font-size: 20px;
+ font-weight: 600;
+ margin-top: 20px;
+ margin-bottom: 20px;
+ @include for-tablet{
+    font-size: 24px;
+ }
+}
+.inventory-add-label{
+    font-size: 13px;
+    @include for-tablet{
+      font-size: 14px;
+    }
+}
+.inventory-add-input{
+    width: 100%;
+    height: 36px;
+    border-radius: 20px;
+    border: 1px solid $sec-cloud;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    @include for-tablet{
+        margin-bottom: 30px;
+        margin-top: 5px;
+        height: 38px;
+    }
+}
+.inventory-add-textarea{
+    width: 100%;
+    height: 120px;
+    border-radius: 20px;
+    border: 1px solid $sec-cloud;
+    @include for-tablet{
+        margin-bottom: 30px;
+        margin-top: 5px;
+    }
+}
+.inventory-add-icon__container{
+    position: relative;
+    img{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
+
+}
+
+.status-inventory-add{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    @include for-tablet{
+        margin-bottom: 30px;
+    }
+    @include for-desktop{
+        width: 250px;
+    }
+}
+
+.inventory-add-status{
+    font-weight: 400;
+    color: $sec-slate;
+    margin-right: 30px;
+}
+.inventory-oval-container{
+    display: flex;
+}
+
+.oval {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #BDC5D5;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.inventory-add-button__container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 68px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: $bg-grey;
+    @include for-tablet{
+        justify-content: flex-end;
+     
+    }
+}
+.inventory-add-button{
+    width: 46%;
+    height: 36px;
+    border-radius: 20px;
+    border: 1px;  
+    font-family: $defaultFont;
+    cursor: pointer;
+    &__one{
+        background-color:$pri-white;
+        color: $sec-slate;
+        border: 1px solid $sec-cloud;
+        @include for-tablet{
+            width: 72px;
+            margin-right: 20px;
+        }
+    }
+    &__two{
+        background-color: $pri-indigo;
+        color: $pri-white;
+        @include for-tablet{
+            width: 98px;
+        }
+    }
+
+}
+::placeholder{
+    font-family: $defaultFont;
+}
