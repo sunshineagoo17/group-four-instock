@@ -12,8 +12,8 @@ function Header() {
         </Link>
 
         <ul className='main-nav-container'>
-          <NavLink to='/' className='main-nav-container__link btn'>
-            Warehouse
+          <NavLink to='/warehouse' className='main-nav-container__link btn'>
+            Warehouses
           </NavLink>
           <NavLink to='/inventory' className='main-nav-container__link btn'>
             Inventory

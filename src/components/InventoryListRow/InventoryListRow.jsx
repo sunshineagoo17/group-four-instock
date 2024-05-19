@@ -30,7 +30,7 @@ const InventoryListRow = ({inventory,index}) => {
             <div className="item__cell_header txt-slate txt-table txt-bold">QTY</div>
             <div className="item__cell_desc item__cell_desc--generic  txt-m txt-black txt-regular">{inventory.quantity}</div>
         </div>
-        <div className="item__cell item__cell--full-width item__cell--pl ">
+        <div className="item__cell item__cell--full-width item__cell--pl">
             <div className="item__cell_header txt-slate txt-table txt-bold">WAREHOUSE</div>
             <div className="item__cell_desc item__cell_desc--generic txt-m txt-black txt-regular">{inventory.warehouse_name}</div>
         </div>
