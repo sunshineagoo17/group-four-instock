@@ -15,27 +15,27 @@
         background-color: $pri-white;
         width: 100%;
         height: 41.6875rem;
-        padding: 1rem 1rem 1.5rem 1rem;
+        @include padding(all, sizeIncrement(4));
         display: flex;
         flex-direction: column;
         position: relative;
 
         @include for-tablet {
             width: 42rem;
-            height: 16.375rem; 
+            height: 16.375rem;
             border-radius: .188rem;
-            margin-top: 11.56rem;
+            margin-top: sizeIncrement(29);
         }
     }
 
     &__content {
-        display: flex; 
-        flex-direction: column; 
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
 
         @include for-tablet {
-            padding-left: 3rem;
+            @include padding(left, sizeIncrement(12));
             justify-content: flex-start;
         }
     }
@@ -47,12 +47,12 @@
     }
 
     &__btn-close {
-        right: 1rem;
+        right: sizeIncrement(4);
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        width: 1.5rem; 
+        width: 1.5rem;
         height: 1.5rem;
     }
 
@@ -63,8 +63,8 @@
 
     &__title {
         @extend .txt-header;
-        margin-top: 1.25rem;
-        line-height: 2.25rem;
+        margin-top: sizeIncrement(5);
+        line-height: toRem(36);
         color: $pri-black;
 
         @include for-tablet {
@@ -76,16 +76,15 @@
         @extend .txt-m;
         color: $pri-black;
         margin-bottom: sizeIncrement(4);
-        margin-top: 1rem;
-        font-size: .938rem;
-        line-height: 1.625rem;
+        margin-top: sizeIncrement(4);
+        line-height: toRem(26);
         padding-right: .1rem;
 
         @include for-tablet {
-           padding-right: 4.06rem;
-           margin-top: 1.25rem;
-           margin-bottom: 0;
-           letter-spacing: .027rem;
+            padding-right: sizeIncrement(16);
+            margin-top: sizeIncrement(5);
+            margin-bottom: 0;
+            letter-spacing: toRem(.27);
         }
     }
 
@@ -94,10 +93,10 @@
         width: 100%;
         margin-top: auto;
         gap: sizeIncrement(4);
-    
+
         @include for-tablet {
-            margin-top: 2.25rem;
-            margin-right: 3rem;
+            margin-top: sizeIncrement(9);
+            margin-right: sizeIncrement(12);
             justify-content: flex-end;
             align-self: flex-end;
         }
@@ -109,10 +108,10 @@
         justify-content: center;
         align-items: center;
         width: 47.5%;
-        height: 2.25rem;
+        height: sizeIncrement(9);
         cursor: pointer;
         font-family: $defaultFont;
-        font-size: .875rem;
+        font-size: toRem(14);
 
         @include for-tablet {
             width: 4.5rem;
