@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.scss';
 import axios from 'axios';
 // Layout
@@ -7,6 +7,7 @@ import Layout from './Layout/Layout.jsx';
 import WarehouseList from './components/WarehouseList/WarehouseList.jsx';
 import InventoryList from './components/InventoryList/InventoryList.jsx';
 import InventoryItemDetails from './components/InventoryItemDetails/InventoryItemDetails.jsx';
+import WarehouseInventoryList from './components/WarehouseInventoryList/WarehouseInventoryList.jsx';
 
 // Fetch Function
 const URL = `http://127.0.0.1:8080/api`;
@@ -24,8 +25,15 @@ const App = () => (
   <BrowserRouter>
     <Layout>
       <Routes>
-        <Route path='/' element={<WarehouseList fetchFn={fetchData} />} />
-        {/* <Route path='/:warehouseId' element={<Warehouse />} /> */}
+        <Route path='/' element={<Navigate to='/warehouse' />} />
+        <Route
+          path='/warehouse'
+          element={<WarehouseList fetchFn={fetchData} />}
+        />
+        <Route
+          path='/warehouse/:warehouseId'
+          element={<WarehouseInventoryList fetchFn={fetchData} />}
+        />
         <Route
           path='/inventory'
           element={<InventoryList fetchFn={fetchData} />}
