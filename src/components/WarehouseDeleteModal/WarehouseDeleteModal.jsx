@@ -9,13 +9,15 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
   return (
     <div className='warehouse-modal'>
       <div className='warehouse-modal__container'>
-        <div className='warehouse-modal__btn-close-bg'>
-          <img
-            src={closeIcon}
-            alt='close'
-            className='warehouse-modal__btn-close-icon'
-            onClick={onClose}
-          />
+        <div className='warehouse-modal__btn-close-container'>
+          <div className='warehouse-modal__btn-close'>
+            <img
+              src={closeIcon}
+              alt='close'
+              className='warehouse-modal__btn-close-icon'
+              onClick={onClose}
+            />
+          </div>
         </div>
         <div className='warehouse-modal__content'>
           <h1 className='warehouse-modal__title'>Delete {warehouseName} warehouse?</h1>

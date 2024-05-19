@@ -91,15 +91,6 @@
     }
    
 
-
-.list-padding-side {
-  @include padding(side, sizeIncrement(6));
-
-  @include for-desktop{
-    @include padding(side, sizeIncrement(10));
-  }
-}
-
 @include for-tablet{
   .hide-tablet{
     display: none;

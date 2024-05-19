@@ -77,3 +77,21 @@ $input-radius: 20px;
   height: 1px;
   background-color: $sec-cloud;
 }
+
+.list-padding-side {
+  @include mixins.padding(side, mixins.sizeIncrement(6));
+
+  
+    @include mediaquery.for-tablet{
+      @include mixins.padding(side, mixins.sizeIncrement(8))
+    }
+    
+
+  @include mediaquery.for-desktop {
+    @include mixins.padding(side, mixins.sizeIncrement(10));
+  }
+}
+
+.box-shadow{
+  box-shadow: 0px 2px 5px 0px rgba(rgb(19, 24, 44),10%);
+}

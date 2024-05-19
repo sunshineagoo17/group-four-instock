@@ -1,9 +1,9 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
 import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import sortIcon from '../../assets/images/sort-24px.svg';
 import './WarehouseList.scss';
+import sortIcon from '../../assets/images/sort-24px.svg';
 
 const WarehouseList = ({ fetchFn, baseURL }) => {
   // Init WarehouseList
@@ -43,7 +43,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   };
 
   return (
-    <div className='warehouse-list'>
+    <div className='warehouse-list box-shadow'>
       <div className='warehouse-list-header list-padding-side'>
         <h1 className='warehouse-list-header__title txt-header txt-black '>
           Warehouses

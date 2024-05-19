@@ -3,6 +3,7 @@
     width: 100%;
     height: 100%;
     background-color:$bg-grey ;
+    margin-top: 4px;
 }
 
 .footer-container{
@@ -13,7 +14,7 @@
 .footer-description{
     font-family: $defaultFont;
     
-    @include padding(top,sizeIncrement(10));
+    @include padding(top,sizeIncrement(9));
     @include padding(bottom,sizeIncrement(10));
 }
 
