@@ -29,6 +29,7 @@
     }
 
     &__content {
+        @include padding(bottom, sizeIncrement(2));
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -48,6 +49,9 @@
 
     &__btn-close {
         right: sizeIncrement(4);
+        background: none;
+        border: none;
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -64,7 +68,6 @@
     &__title {
         @extend .txt-header;
         margin-top: sizeIncrement(5);
-        line-height: toRem(36);
         color: $pri-black;
 
         @include for-tablet {
@@ -73,15 +76,14 @@
     }
     
     &__txt {
-        @extend .txt-m;
+        @extend .txt-l;
+        @include padding(right, sizeIncrement(.5));
         color: $pri-black;
         margin-bottom: sizeIncrement(4);
         margin-top: sizeIncrement(4);
-        line-height: toRem(26);
-        padding-right: .1rem;
 
         @include for-tablet {
-            padding-right: sizeIncrement(16);
+            @include padding(right, sizeIncrement(16));
             margin-top: sizeIncrement(5);
             margin-bottom: 0;
             letter-spacing: toRem(.27);
