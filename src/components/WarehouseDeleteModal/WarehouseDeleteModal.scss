@@ -23,9 +23,8 @@
         @include for-tablet {
             width: 42rem;
             height: 16.375rem; 
-            border-radius: $btn-radius;
+            border-radius: .188rem;
             margin-top: 11.56rem;
-            margin-top: 0;
         }
 
         @include for-desktop {
@@ -37,8 +36,12 @@
         display: flex; 
         flex-direction: column; 
         justify-content: space-between;
-        // height: 100%;
         flex-grow: 1;
+
+        @include for-tablet {
+            padding-left: 3rem;
+            justify-content: flex-start;
+        }
     }
 
     &__btn-close-container {
@@ -66,15 +69,28 @@
         @extend .txt-header;
         margin-top: 1.25rem;
         line-height: 36px;
+        color: $pri-black;
+
+        @include for-tablet {
+            margin-top: 0;
+        }
     }
     
     &__txt {
         @extend .txt-m;
+        color: $pri-black;
         margin-bottom: sizeIncrement(4);
         margin-top: 1rem;
         font-size: .938rem;
         line-height: 1.625rem;
         padding-right: .1rem;
+
+        @include for-tablet {
+           padding-right: 4.06rem;
+           margin-top: 1.25rem;
+           margin-bottom: 0;
+           letter-spacing: .027rem;
+        }
     }
 
     &__buttons-container {
@@ -84,7 +100,10 @@
         gap: sizeIncrement(4);
     
         @include for-tablet {
-            margin-top: sizeIncrement(8);
+            margin-top: 2.25rem;
+            margin-right: 3rem;
+            justify-content: flex-end;
+            align-self: flex-end;
         }
     }
 
@@ -98,6 +117,11 @@
         cursor: pointer;
         font-family: $defaultFont;
         font-size: .875rem;
+
+        @include for-tablet {
+            width: 4.5rem;
+            height: 2.375rem;
+        }
     }
 
     &__btn--cancel {

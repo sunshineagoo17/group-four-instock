@@ -8,7 +8,7 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
 
   return (
     <div className='warehouse-modal'>
-      <div className='warehouse-modal__container'>
+      <div className='warehouse-modal__container box-shadow'>
         <div className='warehouse-modal__btn-close-container'>
           <div className='warehouse-modal__btn-close'>
             <img
