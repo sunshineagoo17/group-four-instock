@@ -26,10 +26,6 @@
             border-radius: .188rem;
             margin-top: 11.56rem;
         }
-
-        @include for-desktop {
-            // Desktop specific styles
-        }
     }
 
     &__content {
@@ -68,7 +64,7 @@
     &__title {
         @extend .txt-header;
         margin-top: 1.25rem;
-        line-height: 36px;
+        line-height: 2.25rem;
         color: $pri-black;
 
         @include for-tablet {

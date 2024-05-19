@@ -26,6 +26,7 @@
     flex-wrap: wrap;
     width: 50%;
     gap: sizeIncrement(1);
+    cursor: pointer;
 
     @include for-tablet {
     
