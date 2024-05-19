@@ -102,8 +102,7 @@
         }
     }
 
-    &__btn--cancel,
-    &__btn--delete {
+    &__btn {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -117,18 +116,18 @@
             width: 4.5rem;
             height: 2.375rem;
         }
-    }
 
-    &__btn--cancel {
-        @extend .btn;
-        background-color: $pri-white;
-        color: $sec-slate;
-        border: .063rem solid $sec-cloud;
-    }
+        &--cancel {
+            @extend .btn;
+            background-color: $pri-white;
+            color: $sec-slate;
+            border: .063rem solid $sec-cloud;
+        }
     
-    &__btn--delete {
-        @extend .btn;
-        background-color: $sec-red;
-        color: $pri-white;
+        &--delete {
+            @extend .btn;
+            background-color: $sec-red;
+            color: $pri-white;
+        }
     }
 }
