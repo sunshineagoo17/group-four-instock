@@ -4,6 +4,8 @@ header {
   width: 100%;
   background-color: $bg-graphite;
   height: toRem(136);
+  
+
   @include for-tablet{
     height: toRem(92);
   }

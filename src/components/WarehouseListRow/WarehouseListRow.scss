@@ -1,7 +1,8 @@
 @use '../../styles/partials/index' as *;
 
 
-.item {
+
+.warehouse {
   display: flex;
   flex-wrap: wrap;
   row-gap: sizeIncrement(4);
@@ -12,6 +13,8 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
+    gap: sizeIncrement(4);
+    
 
     &:hover{
         background-color: rgba($color: $pri-indigo, $alpha: 7%);
@@ -39,7 +42,15 @@
 
     &--full-width {
       width: 100%;
+      display: flex;
+      justify-content: space-between;
 
+      @include for-tablet{
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap:sizeIncrement(4) ;
+        width: auto;
+      }
     }
 
     &--pl{
@@ -50,23 +61,15 @@
       }
     }
 
-    &--flex-space-between {
-      padding-left: 0;
-      flex-grow: 1;
-      display: flex;
-      justify-content: space-between;
-
-      @include for-tablet {
-        justify-content: end;
-        gap: sizeIncrement(4);
-        flex-wrap: nowrap;
-
-      }
-    }
 
     &_desc{
+      padding-right: sizeIncrement(6);
       display: flex;
       flex-wrap: wrap;
+
+      @include for-tablet{
+        padding-right: 0;
+      }
     }
 
     &_desc--btn {
@@ -102,29 +105,40 @@
 
 // Order and width for tablet 
 @include for-tablet {
-    .item__cell{
+    .warehouse__cell{
         &:nth-of-type(1){
-            order: 1;
-            width: 90%;
+           order:1;
+           width: 18%;
+  
         }
         &:nth-of-type(2){
-            order:3;
-            width:70%;
+            order:3; 
+            width: 15%;
+          
         }
         &:nth-of-type(3){
             order:2;
-            width: 70%;
+            width: 16%;
+
+            @include for-desktop{
+              width: 30%;
+            }
+            
         }
         &:nth-of-type(4){
-            width: 40%;
+          width: 25%; 
+          order:4;
+          
+          @include for-desktop{
+            width: 20%;
+          }
+           
         }
         &:nth-of-type(5){
-            width: 70%;
+            width: 10%;
+            justify-content: flex-end;
         }
-        &:nth-of-type(6){
-            width: 30%;
-        }
-        order: 4;
+        order:5;
     } 
 }
 

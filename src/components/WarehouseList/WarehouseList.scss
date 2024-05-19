@@ -13,9 +13,11 @@
   gap: sizeIncrement(4);
   @include padding(bottom, sizeIncrement(6));
   
+
   @include for-tablet {
     flex-wrap: nowrap;
     align-items: center;
+    
   }
   &__title {
     flex-grow: 1;
@@ -28,10 +30,14 @@
     background-position: calc(100% - sizeIncrement(4)) center;
     background-color: $pri-white;
 
+    @include for-desktop{
+      min-width: toRem(274);
+    }
     &:active,
     &:focus {
       border-color: $pri-indigo;
     }
+   
   }
 
   &__add-btn {
@@ -42,10 +48,55 @@
   }
 }
 
-.list-padding-side {
-  @include padding(side, sizeIncrement(6));
+.warehouse-list__filter {
+  display: none;
+  @include for-tablet {
+    display: flex;
+    height: 40px;
+    background-color: $bg-grey;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 
-  @include for-desktop{
-    @include padding(side, sizeIncrement(10));
+    &_cell {
+      display: flex;
+      gap: sizeIncrement(1);
+      align-items: center;
+      justify-content: flex-start;
+
+      &:nth-of-type(1) {
+        order: 1;
+        width: 18%;
+      }
+      &:nth-of-type(2) {
+        order: 3;
+        width: 15%;
+      }
+      &:nth-of-type(3) {
+        order: 2;
+        width: 16%;
+
+        @include for-desktop {
+          width: 30%;
+        }
+      }
+      &:nth-of-type(4) {
+        width: 25%;
+        order: 4;
+
+        @include for-desktop {
+          width: 20%;
+          
+        }
+      }
+      &:nth-of-type(5) {
+        width: 10%;
+        justify-content: flex-end;
+      }
+      order: 5;
+    }
+  }
+  .icon {
+    height: sizeIncrement(4);
   }
 }
