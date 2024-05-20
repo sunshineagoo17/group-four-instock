@@ -1,17 +1,46 @@
-import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
-import sortIcon from '../../assets/images/sort-24px.svg';
+import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
+import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
 import './WarehouseList.scss';
+import sortIcon from '../../assets/images/sort-24px.svg';
 
-const WarehouseList = ({ fetchFn }) => {
-  //Init WarehouseList
+const WarehouseList = ({ fetchFn, baseURL }) => {
+  // Init WarehouseList
   const [warehouseList, setWarehouseList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedWarehouse, setSelectedWarehouse] = useState(null);
 
   // Fetching Data from API
   useEffect(() => {
     // Fetch the list of warehouses
-        fetchFn('/warehouses').then(res=> setWarehouseList(res));
-    }, [fetchFn]);
+    fetchFn('/warehouses').then((res) => setWarehouseList(res));
+  }, [fetchFn]);
+
+  // Handles delete button click and shows modal
+  const handleDeleteClick = (warehouse) => {
+    setSelectedWarehouse(warehouse);
+    setShowModal(true);
+  };
+
+  // Closes the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedWarehouse(null);
+  };
+
+  // Confirms deletion
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`${baseURL}/warehouses/${selectedWarehouse.id}`);
+      setWarehouseList(
+        warehouseList.filter((wh) => wh.id !== selectedWarehouse.id)
+      );
+      handleCloseModal();
+    } catch (error) {
+      console.error(`Error deleting warehouse: ${error.message}`);
+    }
+  };
 
   return (
     <div className='warehouse-list box-shadow'>
@@ -50,8 +79,21 @@ const WarehouseList = ({ fetchFn }) => {
         </div>
       </div>
       {warehouseList.map((item, index) => (
-        <WarehouseListRow warehouse={item} key={index} index={index} />
+        <WarehouseListRow
+          warehouse={item}
+          key={index}
+          index={index}
+          onDeleteClick={handleDeleteClick}
+        />
       ))}
+      <WarehouseDeleteModal
+        show={showModal}
+        onClose={handleCloseModal}
+        onDelete={handleDeleteConfirm}
+        warehouseName={
+          selectedWarehouse ? selectedWarehouse.warehouse_name : ''
+        }
+      />
     </div>
   );
 };

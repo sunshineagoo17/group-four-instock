@@ -5,7 +5,7 @@ import rightIcon from '../../assets/images/chevron_right-24px.svg';
 
 import { Link } from 'react-router-dom';
 
-const WarehouseListRow = ({ warehouse, index }) => {
+const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
   return (
     <>
       {/* conditional rendering based on index of map */}
@@ -40,13 +40,18 @@ const WarehouseListRow = ({ warehouse, index }) => {
           <div className='warehouse__cell_header txt-slate txt-table txt-bold'>
             CONTACT INFORMATION
           </div>
-          <div className='warehouse__cell_desc warehouse__cell_desc--generic  txt-m txt-black txt-regular'>{warehouse.contact_phone}<br/>{warehouse.contact_email}</div>
+          <div className='warehouse__cell_desc warehouse__cell_desc--generic  txt-m txt-black txt-regular'>
+            {warehouse.contact_phone}
+            <br />
+            {warehouse.contact_email}
+          </div>
         </div>
         <div className='warehouse__cell warehouse__cell--full-width '>
           <img
             className='warehouse__cell_btn'
             src={deleteIcon}
             alt='delete button'
+            onClick={() => onDeleteClick(warehouse)}
           />
           <img
             className='warehouse__cell_btn'
