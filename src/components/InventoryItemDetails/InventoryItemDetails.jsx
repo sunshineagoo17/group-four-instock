@@ -6,14 +6,18 @@ import { useEffect, useState } from 'react';
 
 const InventoryItemDetails = ({ fetchFn }) => {
   const { inventoryId } = useParams();
-  const [inventoryDetails, setInventoryDetails] = useState([]);
+  const [inventoryDetails, setInventoryDetails] = useState({});
 
     // Fetching Data from API
     useEffect(() => {
       // Fetch inventory details
-          fetchFn(`/inventories/${inventoryId}`).then(res=> setInventoryDetails(res));
+          fetchFn(`/inventories/${inventoryId}`).then(res => setInventoryDetails(res));
       }, [fetchFn,inventoryId]);
 
+    // Conditionally set the class based on the status
+      const statusClass =
+      inventoryDetails.status &&
+      (inventoryDetails.status.toLowerCase() === 'in stock' ? 'instock' : 'outstock');
 
   return (
     <div className='inventoryItemDetails'>
@@ -39,7 +43,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
             {inventoryDetails.description}
           </div>
         </div>
-        <div className='detail__cell detail__cell detail__cell--full-width'>
+        <div className='detail__cell detail__cell--full-width'>
           <div className='detail__cell_header txt-slate txt-table txt-bold'>
             CATEGORY:
           </div>
@@ -51,12 +55,10 @@ const InventoryItemDetails = ({ fetchFn }) => {
           <div className='detail__cell_header txt-slate txt-table txt-bold'>
             STATUS:
           </div>
-          {/* condtionally add class (instock || outstock)*/}
           <div className='detail__cell_desc'>
-            <button
-              className={`txt-table txt-bold  detail__cell_desc--btn ${
-                inventoryDetails.status === 'in stock' ? 'instock' : 'outstock'
-              }`}>
+          <button
+              className={`txt-table txt-bold detail__cell_desc--btn ${statusClass}`}
+            >
               {inventoryDetails.status}
             </button>
           </div>
