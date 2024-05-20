@@ -11,12 +11,13 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [sortBy, setSortBy] = useState('warehouse_name');
   const [orderBy, setOrderBy] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
-  // Fetch the warehouse data whenever sortBy or orderBy changes
+  // Fetch the warehouse data whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchFn(`/warehouses?sort_by=${sortBy}&order_by=${orderBy}`);
+        const response = await fetchFn(`/warehouses?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`);
         setWarehouseList(response);
       } catch (error) {
         console.error('Error fetching warehouses:', error);
@@ -24,7 +25,11 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
     };
 
     fetchData();
-  }, [fetchFn, sortBy, orderBy]);
+  }, [fetchFn, sortBy, orderBy, searchTerm]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   // Opens the delete confirmation modal
   const handleDeleteClick = (warehouse) => {
@@ -119,6 +124,8 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
         <input
           className='warehouse-list-header__search input txt-m txt-black'
           placeholder='Search...'
+          value={searchTerm}
+          onChange={handleSearch}
         />
         <button className='warehouse-list-header__add-btn btn txt-section'>
           + Add New Warehouse

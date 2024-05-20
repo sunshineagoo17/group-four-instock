@@ -8,12 +8,13 @@ const InventoryList = ({ fetchFn }) => {
   const [inventoryList, setInventoryList] = useState([]);
   const [sortBy, setSortBy] = useState('item_name');
   const [orderBy, setOrderBy] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Fetching Data from API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchFn(`/inventories?sort_by=${sortBy}&order_by=${orderBy}`);
+        const response = await fetchFn(`/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`);
         setInventoryList(response);
       } catch (error) {
         console.error('Error fetching inventory:', error);
@@ -21,7 +22,11 @@ const InventoryList = ({ fetchFn }) => {
     };
 
     fetchData();
-  }, [fetchFn, sortBy, orderBy]);
+  }, [fetchFn, sortBy, orderBy, searchTerm]);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const handleSort = (column) => {
     if (sortBy === column) {
@@ -41,6 +46,8 @@ const InventoryList = ({ fetchFn }) => {
         <input
           className='inventory-list-header__search input txt-m txt-black'
           placeholder='Search...'
+          value={searchTerm}
+          onChange={handleSearch}
         />
         <Link
           className='inventory-list-header__add-btn btn txt-section'
