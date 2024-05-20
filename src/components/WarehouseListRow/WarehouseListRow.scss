@@ -70,6 +70,10 @@
       @include for-tablet{
         padding-right: 0;
       }
+
+      &:hover .right-arrow {
+        transform: translateX(4px);
+      }
     }
 
     &_desc--btn {
@@ -91,6 +95,7 @@
 .right-arrow {
   vertical-align: middle;
   height: 20px;
+  transition: transform .3s ease;
 }
 
 .instock {

@@ -67,6 +67,10 @@
     &_desc{
       display: flex;
       flex-wrap: wrap;
+
+      &:hover .right-arrow {
+        transform: translateX(4px);
+      }
     }
 
     &_desc--btn {
@@ -87,6 +91,7 @@
 .right-arrow {
   vertical-align: middle;
   height: 20px;
+  transition: transform 0.3s ease;
 }
 
 .instock {
