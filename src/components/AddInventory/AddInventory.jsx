@@ -106,30 +106,35 @@ function AddInventory({ baseURL }) {
                 <div className='inventory-add-form__container'>
                     <div className='inventory-add-form__one inventory-add-form'>
                         <h2 className='inventory-add-title'>Item Details</h2>
+                        
                         <label className='inventory-add-label'>Item Name</label><br />
+                        {errors.itemName && <span className='error'>{errors.itemName}</span>}<br></br>
                         <input
                             className='inventory-add-input'
                             type='text'
                             onChange={handleItemName}
                             value={itemName}
-                            placeholder='Item Name'
+                            placeholder='   Item Name'
                         />
-                        {errors.itemName && <span className='error'>{errors.itemName}</span>}
+                       
                         <br />
+                        
                         <label className='inventory-add-label'>Description</label><br />
+                        {errors.description && <span className='error'>{errors.description}</span>}<br/>
                         <textarea
                             className='inventory-add-textarea'
                             onChange={handleDescription}
                             value={description}
-                            placeholder='Please enter a brief item description...'
+                            placeholder='   Please enter a brief item description...'
                         ></textarea>
-                        {errors.description && <span className='error'>{errors.description}</span>}
+                        
                         <br />
+                    
                         <label className='inventory-add-label'>Category</label><br />
-                        <div className='inventory-add-icon__container'>
-                            <img src={arrowDrop} alt='arrow-drop' />
+                        {errors.category && <span className='error'>{errors.category}</span>}<br/>
+                            
                             <select
-                                className='inventory-add-select'
+                                className='inventory-add-select inventory-add-input'
                                 onChange={handleCategory}
                                 value={category}
                             >
@@ -138,8 +143,7 @@ function AddInventory({ baseURL }) {
                                     <option key={cat.id} value={cat.name}>{cat.name}</option>
                                 ))}
                             </select>
-                        </div>
-                        {errors.category && <span className='error'>{errors.category}</span>}
+                                    
                     </div>
 
                     <div className='inventory-add-form__two inventory-add-form'>
@@ -150,7 +154,7 @@ function AddInventory({ baseURL }) {
                                 className={`inventory-oval-container ${status === 'In Stock' ? 'selected' : ''}`}
                                 onClick={() => handleStatusChange('In Stock')}
                             >
-                                <div className='oval'></div>
+                                <div className={'oval'}></div>
                                 <div className='inventory-add-status'>In stock</div>
                             </div>
                             <div
@@ -164,6 +168,7 @@ function AddInventory({ baseURL }) {
                         {status === 'In Stock' && (
                             <>
                                 <label className='inventory-add-label'>Quantity</label><br />
+                                {errors.quantity && <span className='error'>{errors.quantity}</span>}<br />
                                 <input
                                     className='inventory-add-input'
                                     type='number'
@@ -171,15 +176,15 @@ function AddInventory({ baseURL }) {
                                     value={quantity}
                                     placeholder='0'
                                 />
-                                {errors.quantity && <span className='error'>{errors.quantity}</span>}
+                                
                                 <br />
                             </>
                         )}
                         <label className='inventory-add-label'>Warehouse</label><br />
-                        <div className='inventory-add-icon__container'>
-                            <img alt='arrow-drop' src={arrowDrop} />
+                        {errors.warehouse && <span className='error'>{errors.warehouse}</span>}<br/>
+                        
                             <select
-                                className='inventory-add-select'
+                                className='inventory-add-select inventory-add-input'
                                 onChange={handleWarehouse}
                                 value={warehouse}
                             >
@@ -188,8 +193,7 @@ function AddInventory({ baseURL }) {
                                     <option key={wh.id} value={wh.id}>{wh.warehouse_name}</option>
                                 ))}
                             </select>
-                        </div>
-                        {errors.warehouse && <span className='error'>{errors.warehouse}</span>}
+                                              
                     </div>
                 </div>
                 <div className='inventory-add-button__container'>
