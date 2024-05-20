@@ -15,7 +15,7 @@ const InventoryListRow = ({inventory,index}) => {
     <div className='item list-padding-side'>
         <div className="item__cell">
             <div className="item__cell_header txt-slate txt-table txt-bold">INVENTORY ITEM</div>
-            <div className="item__cell_desc item__cell_desc--title txt-m txt-bold txt-indigo"><Link to={`/inventory/${inventory.id}`}className='txt-indigo'>{inventory.item_name} <img className='right-arrow' src={rightIcon} alt="" /></Link></div>
+            <div className="item__cell_desc item__cell_desc--title txt-m txt-bold txt-indigo"><Link to={`/inventory/${inventory.id}`}className='txt-indigo'>{inventory.item_name} <img className='right-arrow' src={rightIcon} alt="Navigate to inventory item details" /></Link></div>
         </div>
         <div className="item__cell item__cell">
             <div className="item__cell_header txt-slate txt-table txt-bold">STATUS</div>
