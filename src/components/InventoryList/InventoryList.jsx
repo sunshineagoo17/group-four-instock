@@ -1,10 +1,11 @@
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,} from 'react';
 import './InventoryList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
 import { Link } from 'react-router-dom';
 
 const InventoryList = ({ fetchFn }) => {
+
   const [inventoryList, setInventoryList] = useState([]);
 
   // Fetching Data from API

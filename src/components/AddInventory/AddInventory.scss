@@ -8,6 +8,7 @@
 }
 .inventory-add-header{
   background-color: $pri-white;
+  position: relative;
   padding-left: 30px;
   font-size: 32px;
   border-bottom: 1px solid $sec-cloud;
@@ -15,9 +16,16 @@
   @include padding(bottom, sizeIncrement(6));
   img{
     position: absolute;
-    left: 25px;
+    left: 10px;
     margin-top: 8px;
     cursor: pointer;
+    @include for-tablet{
+        margin-left: 10px;
+    }
+    @include for-desktop{
+        margin-left: 20px;
+    }
+
   }
 
   @include for-tablet {
@@ -26,7 +34,15 @@
   }
   &__title {
     flex-grow: 1;
-    margin-left: 30px;
+    margin-left: 5px;
+    width: 250px;
+    @include for-tablet{
+        width: auto;
+        padding-left: 20px;
+    }
+    @include for-desktop{
+        padding-left: 30px;
+    }
   }
 }
     
@@ -107,16 +123,6 @@
         margin-top: 5px;
     }
 }
-.inventory-add-icon__container{
-    position: relative;
-    img{
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        cursor: pointer;
-    }
-
-}
 
 .status-inventory-add{
     display: flex;
@@ -134,9 +140,23 @@
     font-weight: 400;
     color: $sec-slate;
     margin-right: 30px;
+    width: 130px;
+    margin: 0;
 }
 .inventory-oval-container{
     display: flex;
+
+    &.selected {
+        border-color: #000;
+    }
+    @include for-desktop{
+        width: 130px;
+        &.selected{
+            width: 130px;
+            margin-right: 0;
+        }
+    }
+    
 }
 
 .oval {
@@ -147,6 +167,7 @@
     margin-right: 10px;
     margin-top: 5px;
 }
+
 .inventory-add-button__container{
     display: flex;
     justify-content: space-between;
@@ -188,4 +209,7 @@
 }
 ::placeholder{
     font-family: $defaultFont;
+}
+.error{
+    color: red;
 }
