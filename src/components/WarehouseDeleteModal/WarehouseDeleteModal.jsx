@@ -10,25 +10,36 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
     <div className='warehouse-modal'>
       <div className='warehouse-modal__container box-shadow'>
         <div className='warehouse-modal__btn-close-container'>
-          <div className='warehouse-modal__btn-close'>
+          <button
+            className='warehouse-modal__btn-close'
+            onClick={onClose}
+            aria-label='Close modal'>
             <img
               src={closeIcon}
-              alt='close'
+              alt='Close'
               className='warehouse-modal__btn-close-icon'
-              onClick={onClose}
             />
-          </div>
+          </button>
         </div>
         <div className='warehouse-modal__content'>
-          <h1 className='warehouse-modal__title'>Delete {warehouseName} warehouse?</h1>
-          <p className='warehouse-modal__txt'>
-            Please confirm that you’d like to delete the {warehouseName} from the list of warehouses. You won’t be able to undo this action.
+          <h1 id='modal-title' className='warehouse-modal__title'>
+            Delete {warehouseName} warehouse?
+          </h1>
+          <p id='modal-description' className='warehouse-modal__txt'>
+            Please confirm that you’d like to delete the {warehouseName} from
+            the list of warehouses. You won’t be able to undo this action.
           </p>
           <div className='warehouse-modal__buttons-container'>
-            <button className='warehouse-modal__btn warehouse-modal__btn--cancel' onClick={onClose}>
+            <button
+              className='warehouse-modal__btn warehouse-modal__btn--cancel'
+              onClick={onClose}
+              aria-label='Cancel deletion'>
               Cancel
             </button>
-            <button className='warehouse-modal__btn warehouse-modal__btn--delete' onClick={onDelete}>
+            <button
+              className='warehouse-modal__btn warehouse-modal__btn--delete'
+              onClick={onDelete}
+              aria-label='Confirm deletion'>
               Delete
             </button>
           </div>
