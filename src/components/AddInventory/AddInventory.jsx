@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './AddInventory.scss';
-import arrowDrop from '../../assets/images/arrow_drop_down-24px.svg';
 import ArrowBack from '../../assets/images/arrow_back-24px.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -98,6 +97,9 @@ function AddInventory({ baseURL }) {
         <div className='inventory-add-form__container'>
           <div className='inventory-add-form__one inventory-add-form'>
             <h2 className='inventory-add-title'>Item Details</h2>
+            {errors.itemName && (
+              <span className='error'>{errors.itemName}</span> 
+            )}<br />
             <label className='inventory-add-label'>Item Name</label>
             <br />
             <input
@@ -107,9 +109,7 @@ function AddInventory({ baseURL }) {
               value={itemName}
               placeholder='Item Name'
             />
-            {errors.itemName && (
-              <span className='error'>{errors.itemName}</span>
-            )}
+            
             <br />
             <label className='inventory-add-label'>Description</label>
             <br />
@@ -124,10 +124,9 @@ function AddInventory({ baseURL }) {
             <br />
             <label className='inventory-add-label'>Category</label>
             <br />
-            <div className='inventory-add-icon__container'>
-              <img src={arrowDrop} alt='arrow-drop' />
+
               <select
-                className='inventory-add-select'
+                className='inventory-add-select inventory-add-input'
                 onChange={handleInputChange(setCategory)}
                 value={category}>
                 <option value='' disabled>
@@ -139,7 +138,7 @@ function AddInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-            </div>
+           
             {errors.category && (
               <span className='error'>{errors.category}</span>
             )}
@@ -173,7 +172,7 @@ function AddInventory({ baseURL }) {
                   value='Out of Stock'
                   checked={status === 'Out of Stock'}
                   onChange={handleStatusChange}
-                  className='inventory-oval-input'
+                  className='inventory-oval-input '
                 />
                 <div className='inventory-add-status'>Out of stock</div>
               </label>
@@ -197,10 +196,9 @@ function AddInventory({ baseURL }) {
             )}
             <label className='inventory-add-label'>Warehouse</label>
             <br />
-            <div className='inventory-add-icon__container'>
-              <img alt='arrow-drop' src={arrowDrop} />
+             
               <select
-                className='inventory-add-select'
+                className='inventory-add-select inventory-add-input'
                 onChange={handleInputChange(setWarehouse)}
                 value={warehouse}>
                 <option value='' disabled>
@@ -212,7 +210,7 @@ function AddInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-            </div>
+            
             {errors.warehouse && (
               <span className='error'>{errors.warehouse}</span>
             )}

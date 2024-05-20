@@ -1,10 +1,14 @@
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,} from 'react';
 import './InventoryList.scss';
 
 import sortIcon from '../../assets/images/sort-24px.svg';
+import { Link } from 'react-router-dom';
+ 
+
 
 const InventoryList = ({ fetchFn }) => {
+
   const [inventoryList, setInventoryList] = useState([]);
 
   // Fetching Data from API
@@ -12,7 +16,6 @@ const InventoryList = ({ fetchFn }) => {
     // Fetch the list for invetory
         fetchFn('/inventories').then(res=> setInventoryList(res));
     }, [fetchFn]);
-
   return (
     <div className='inventory-list'>
       <div className='inventory-list-header list-padding-side'>
@@ -23,9 +26,11 @@ const InventoryList = ({ fetchFn }) => {
           className='inventory-list-header__search input txt-m txt-black'
           placeholder='Search...'
         />
+      <Link className='inventory-list-header__add-btn btn txt-section' to={'add-inventory'}>  
         <button className='inventory-list-header__add-btn btn txt-section'>
           + Add New Item
-        </button>
+        </button> </Link>
+       
       </div>
       <div className='divider hide-tablet'></div>
       <div className='inventory-list__filter list-padding-side'>
