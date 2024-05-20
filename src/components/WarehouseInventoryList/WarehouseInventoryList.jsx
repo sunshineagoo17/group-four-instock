@@ -1,28 +1,44 @@
 import './WarehouseInventoryList.scss';
 import { Link, useParams } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import sortIcon from '../../assets/images/sort-24px.svg';
 import WarehouseInventoryListRow from '../WarehouseInventoryListRow/WarehouseInventoryListRow';
 
+const WarehouseInventoryList = ({ fetchFn }) => {
+  const { warehouseId } = useParams();
+  const [warehouseInventoryList, setWarehouseInventoryList] = useState([]);
+  const [warehouseDetails, setWarehouseDetails] = useState({});
+  const [sortBy, setSortBy] = useState('item_name');
+  const [orderBy, setOrderBy] = useState('asc');
 
-
-
-const WarehouseInventoryList = ({fetchFn}) => {
-    const {warehouseId} = useParams();
-    const [warehouseInventoryList, setWarehouseInventoryList] = useState([]);
-
-    const [warehouseDetails , setWarehouseDetails ]= useState({})
-      // Fetching Data from API
+  // Fetching Data from API
   useEffect(() => {
-    // Fetch the list for invetory
-        fetchFn(`/warehouses/${warehouseId}/inventories`).then(res=> setWarehouseInventoryList(res));
-        fetchFn(`/warehouses/${warehouseId}`).then(res=> setWarehouseDetails(res));
-    }, [fetchFn,warehouseId]);
+    const fetchData = async () => {
+      try {
+        const response = await fetchFn(`/warehouses/${warehouseId}/inventories?sort_by=${sortBy}&order_by=${orderBy}`);
+        setWarehouseInventoryList(response);
+        const details = await fetchFn(`/warehouses/${warehouseId}`);
+        setWarehouseDetails(details);
+      } catch (error) {
+        console.error('Error fetching inventory or warehouse details:', error);
+      }
+    };
 
+    fetchData();
+  }, [fetchFn, warehouseId, sortBy, orderBy]);
 
-    
+  // Handle sorting logic
+  const handleSort = (column) => {
+    if (sortBy === column) {
+      setOrderBy(orderBy === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(column);
+      setOrderBy('asc');
+    }
+  };
+
   return (
     <div className='warehouseInventoryList'>
       <div className='warehouseInventoryList__header list-padding-side'>
@@ -35,7 +51,7 @@ const WarehouseInventoryList = ({fetchFn}) => {
         <button className='edit-btn'>
           <img className='edit-icon' src={editIcon} alt='edit Item' />
           <p className='edit-text txt-btn txt-bold'>Edit</p>
-        </button> 
+        </button>
       </div>
       <div className='divider'></div>
       <div className='warehouseDetails list-padding-side'>
@@ -52,12 +68,12 @@ const WarehouseInventoryList = ({fetchFn}) => {
             CONTACT NAME:
           </div>
           <div className='warehouseDetails__cell_desc warehouseDetails__cell_desc--title txt-m txt-regular txt-black'>
-            {warehouseDetails.contact_name} <br/> {warehouseDetails.contact_position}
+            {warehouseDetails.contact_name} <br /> {warehouseDetails.contact_position}
           </div>
         </div>
         <div className='warehouseDetails__cell warehouseDetails__cell--half'>
           <div className='warehouseDetails__cell_header txt-slate txt-table txt-bold'>
-            CONTACT INFOMATION:
+            CONTACT INFORMATION:
           </div>
           <div className='warehouseDetails__cell_desc warehouseDetails__cell_desc--title txt-m txt-regular txt-black'>
             {warehouseDetails.contact_phone}
@@ -68,26 +84,43 @@ const WarehouseInventoryList = ({fetchFn}) => {
       </div>
       <div className='divider hide--tablet'></div>
       <div className='warehouseInventory-list__filter list-padding-side'>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('item_name')}
+        >
           INVENTORY ITEM <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('category')}
+        >
           CATEGORY <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          STATUS
-          <img className='icon' src={sortIcon} alt='sort icon' />
+        <div
+          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('status')}
+        >
+          STATUS <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          QUANTITY
-          <img className='icon' src={sortIcon} alt='sort icon' />
+        <div
+          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('quantity')}
+        >
+          QUANTITY <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
         <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS
         </div>
       </div>
-      {warehouseInventoryList.map((item,index)=><WarehouseInventoryListRow inventory={item} key={index} index={index}/>)}
+      {warehouseInventoryList.map((item, index) => (
+        <WarehouseInventoryListRow
+          inventory={item}
+          key={index}
+          index={index}
+        />
+      ))}
     </div>
   );
 };
+
 export default WarehouseInventoryList;

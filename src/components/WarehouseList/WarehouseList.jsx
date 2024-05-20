@@ -6,30 +6,39 @@ import './WarehouseList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
 
 const WarehouseList = ({ fetchFn, baseURL }) => {
-  // Init WarehouseList
   const [warehouseList, setWarehouseList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
+  const [sortBy, setSortBy] = useState('warehouse_name');
+  const [orderBy, setOrderBy] = useState('asc');
 
-  // Fetching Data from API
+  // Fetch the warehouse data whenever sortBy or orderBy changes
   useEffect(() => {
-    // Fetch the list of warehouses
-    fetchFn('/warehouses').then((res) => setWarehouseList(res));
-  }, [fetchFn]);
+    const fetchData = async () => {
+      try {
+        const response = await fetchFn(`/warehouses?sort_by=${sortBy}&order_by=${orderBy}`);
+        setWarehouseList(response);
+      } catch (error) {
+        console.error('Error fetching warehouses:', error);
+      }
+    };
 
-  // Handles delete button click and shows modal
+    fetchData();
+  }, [fetchFn, sortBy, orderBy]);
+
+  // Opens the delete confirmation modal
   const handleDeleteClick = (warehouse) => {
     setSelectedWarehouse(warehouse);
     setShowModal(true);
   };
 
-  // Closes the modal
+  // Closes the delete confirmation modal
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedWarehouse(null);
   };
 
-  // Confirms deletion
+  // Confirms and deletes the warehouse
   const handleDeleteConfirm = async () => {
     try {
       await axios.delete(`${baseURL}/warehouses/${selectedWarehouse.id}`);
@@ -41,6 +50,65 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       console.error(`Error deleting warehouse: ${error.message}`);
     }
   };
+
+  // Handles sorting logic
+  const handleSort = (column) => {
+    if (sortBy === column) {
+      setOrderBy(orderBy === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(column);
+      setOrderBy('asc');
+    }
+  };
+
+  // Decodes addresses to extract numeric values for sorting
+  const decodeAddresses = (warehouses) => {
+    return warehouses.map(warehouse => {
+      const address = warehouse.address || '';
+      const addressNumber = parseInt(address.match(/\d+/) || 0, 10);
+      return { ...warehouse, addressNumber };
+    });
+  };
+
+  // Sorts warehouses based on the current sortBy and orderBy criteria
+  const sortWarehouses = (warehouses) => {
+    if (!warehouses) return [];
+
+    if (sortBy === 'address') {
+      const decoded = decodeAddresses(warehouses);
+      return decoded.sort((a, b) => {
+        const sortOrder = orderBy === 'asc' ? 1 : -1;
+        return (a.addressNumber - b.addressNumber) * sortOrder;
+      });
+    }
+
+    if (sortBy === 'contact_information') {
+      return warehouses.sort((a, b) => {
+        const sortOrder = orderBy === 'asc' ? 1 : -1;
+        const aPhone = a.contact_phone || '';
+        const bPhone = b.contact_phone || '';
+        const aEmail = a.contact_email || '';
+        const bEmail = b.contact_email || '';
+
+        if (aPhone < bPhone) return -1 * sortOrder;
+        if (aPhone > bPhone) return 1 * sortOrder;
+        if (aEmail < bEmail) return -1 * sortOrder;
+        if (aEmail > bEmail) return 1 * sortOrder;
+        return 0;
+      });
+    }
+
+    return warehouses.sort((a, b) => {
+      const sortOrder = orderBy === 'asc' ? 1 : -1;
+      const aValue = a[sortBy] || '';
+      const bValue = b[sortBy] || '';
+      if (aValue < bValue) return -1 * sortOrder;
+      if (aValue > bValue) return 1 * sortOrder;
+      return 0;
+    });
+  };
+
+  const sortedWarehouseList = sortWarehouses(warehouseList);
 
   return (
     <div className='warehouse-list box-shadow'>
@@ -58,19 +126,31 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       </div>
       <div className='divider hide-tablet'></div>
       <div className='warehouse-list__filter list-padding-side'>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('warehouse_name')}
+        >
           WAREHOUSE
           <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
-          ADDRESS
-          <img className='icon' src={sortIcon} alt='sort icon' />
-        </div>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('contact_name')}
+        >
           CONTACT NAME
           <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('address')}
+        >
+          ADDRESS
+          <img className='icon' src={sortIcon} alt='sort icon' />
+        </div>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          onClick={() => handleSort('contact_information')}
+        >
           CONTACT INFORMATION
           <img className='icon' src={sortIcon} alt='sort icon' />
         </div>
@@ -78,7 +158,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           ACTIONS
         </div>
       </div>
-      {warehouseList.map((item, index) => (
+      {sortedWarehouseList.map((item, index) => (
         <WarehouseListRow
           warehouse={item}
           key={index}
@@ -97,4 +177,5 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
     </div>
   );
 };
+
 export default WarehouseList;
