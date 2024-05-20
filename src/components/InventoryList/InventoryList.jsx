@@ -10,10 +10,11 @@ const InventoryList = ({ fetchFn }) => {
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Fetching Data from API
+  // Fetching Data from API whenever sortBy, orderBy or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch inventory data from the API with sorting and search parameters
         const response = await fetchFn(`/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`);
         setInventoryList(response);
       } catch (error) {
@@ -28,10 +29,13 @@ const InventoryList = ({ fetchFn }) => {
     setSearchTerm(e.target.value);
   };
 
+  // Update sorting criteria
   const handleSort = (column) => {
     if (sortBy === column) {
+      // Toggle between ascending and descending order
       setOrderBy(orderBy === 'asc' ? 'desc' : 'asc');
     } else {
+      // Set new sorting column and default to ascending order
       setSortBy(column);
       setOrderBy('asc');
     }

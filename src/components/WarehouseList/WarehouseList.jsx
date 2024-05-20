@@ -47,6 +47,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   const handleDeleteConfirm = async () => {
     try {
       await axios.delete(`${baseURL}/warehouses/${selectedWarehouse.id}`);
+      // Update the warehouse list by removing the deleted warehouse
       setWarehouseList(
         warehouseList.filter((wh) => wh.id !== selectedWarehouse.id)
       );
