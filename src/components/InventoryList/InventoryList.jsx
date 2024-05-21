@@ -1,14 +1,19 @@
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
 import { useState, useEffect,} from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './InventoryList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
 import { Link } from 'react-router-dom';
 
 const InventoryList = ({ fetchFn }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+
   const [inventoryList, setInventoryList] = useState([]);
   const [sortBy, setSortBy] = useState('item_name');
   const [orderBy, setOrderBy] = useState('asc');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
 
   // Fetching Data from API whenever sortBy, orderBy or searchTerm changes
   useEffect(() => {
@@ -24,6 +29,13 @@ const InventoryList = ({ fetchFn }) => {
 
     fetchData();
   }, [fetchFn, sortBy, orderBy, searchTerm]);
+
+  // Update the URL query parameters whenever searchTerm changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchTerm) params.set('s', searchTerm);
+    navigate({ search: params.toString() });
+  }, [searchTerm, navigate]);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);

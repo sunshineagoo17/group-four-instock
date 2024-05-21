@@ -1,17 +1,22 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
 import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
 import './WarehouseList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
 
 const WarehouseList = ({ fetchFn, baseURL }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+
   const [warehouseList, setWarehouseList] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedWarehouse, setSelectedWarehouse] = useState(null);
   const [sortBy, setSortBy] = useState('warehouse_name');
   const [orderBy, setOrderBy] = useState('asc');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
 
   // Fetch the warehouse data whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
@@ -26,6 +31,13 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
 
     fetchData();
   }, [fetchFn, sortBy, orderBy, searchTerm]);
+
+  // Updates the URL query parameters whenever searchTerm changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (searchTerm) params.set('s', searchTerm);
+    navigate({ search: params.toString() });
+  }, [searchTerm, navigate]);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
