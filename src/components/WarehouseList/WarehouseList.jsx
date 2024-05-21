@@ -160,33 +160,21 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       </div>
       <div className='divider hide-tablet'></div>
       <div className='warehouse-list__filter list-padding-side'>
-        <div
-          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('warehouse_name')}
-        >
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           WAREHOUSE
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort warehouses' onClick={() => handleSort('warehouse_name')} />
         </div>
-        <div
-          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('contact_name')}
-        >
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT NAME
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort names' onClick={() => handleSort('contact_name')} />
         </div>
-        <div
-          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('address')}
-        >
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           ADDRESS
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort addresses' onClick={() => handleSort('address')} />
         </div>
-        <div
-          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('contact_information')}
-        >
+        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT INFORMATION
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort contact info' onClick={() => handleSort('contact_information')} />
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS

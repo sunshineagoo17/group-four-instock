@@ -75,40 +75,25 @@ const InventoryList = ({ fetchFn }) => {
       </div>
       <div className='divider hide-tablet'></div>
       <div className='inventory-list__filter list-padding-side'>
-        <div
-          className='inventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('item_name')}
-        >
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           INVENTORY ITEM
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort items' onClick={() => handleSort('item_name')} />
         </div>
-        <div
-          className='inventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('category')}
-        >
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           CATEGORY
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort categories' onClick={() => handleSort('category')} />
         </div>
-        <div
-          className='inventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('status')}
-        >
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           STATUS
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort statuses' onClick={() => handleSort('status')} />
         </div>
-        <div
-          className='inventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('quantity')}
-        >
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           QTY
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort quantities' onClick={() => handleSort('quantity')} />
         </div>
-        <div
-          className='inventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('warehouse_name')}
-        >
+        <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           WAREHOUSE
-          <img className='icon' src={sortIcon} alt='sort icon' />
+          <img className='icon' src={sortIcon} alt='sort warehouses' onClick={() => handleSort('warehouse_name')} />
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS

@@ -84,29 +84,18 @@ const WarehouseInventoryList = ({ fetchFn }) => {
       </div>
       <div className='divider hide--tablet'></div>
       <div className='warehouseInventory-list__filter list-padding-side'>
-        <div
-          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('item_name')}
-        >
-          INVENTORY ITEM <img className='icon' src={sortIcon} alt='sort icon' />
+        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+          INVENTORY ITEM <img className='icon' src={sortIcon} alt='sort items' onClick={() => handleSort('item_name')} />
         </div>
         <div
-          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('category')}
-        >
-          CATEGORY <img className='icon' src={sortIcon} alt='sort icon' />
+          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+          CATEGORY <img className='icon' src={sortIcon} alt='sort categories' onClick={() => handleSort('category')} />
         </div>
-        <div
-          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('status')}
-        >
-          STATUS <img className='icon' src={sortIcon} alt='sort icon' />
+        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+          STATUS <img className='icon' src={sortIcon} alt='sort statuses' onClick={() => handleSort('status')} />
         </div>
-        <div
-          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'
-          onClick={() => handleSort('quantity')}
-        >
-          QUANTITY <img className='icon' src={sortIcon} alt='sort icon' />
+        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+          QUANTITY <img className='icon' src={sortIcon} alt='sort quantities' onClick={() => handleSort('quantity')} />
         </div>
         <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS
