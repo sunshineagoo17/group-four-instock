@@ -81,8 +81,8 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
     }
   };
 
-  // Decodes addresses to extract numeric values for sorting
-  const decodeAddresses = (warehouses) => {
+  // Extract numeric values from Addresses for sorting
+  const extractAddressNumbers = (warehouses) => {
     return warehouses.map(warehouse => {
       const address = warehouse.address || '';
       const addressNumber = parseInt(address.match(/\d+/) || 0, 10);
@@ -95,8 +95,8 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
     if (!warehouses) return [];
 
     if (sortBy === 'address') {
-      const decoded = decodeAddresses(warehouses);
-      return decoded.sort((a, b) => {
+      const extracted = extractAddressNumbers(warehouses);
+      return extracted.sort((a, b) => {
         const sortOrder = orderBy === 'asc' ? 1 : -1;
         return (a.addressNumber - b.addressNumber) * sortOrder;
       });
