@@ -60,8 +60,10 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   // Handles sorting logic
   const handleSort = (column) => {
     if (sortBy === column) {
+      // Toggle between ascending and descending order
       setOrderBy(orderBy === 'asc' ? 'desc' : 'asc');
     } else {
+      // Set new sorting column and default to ascending order
       setSortBy(column);
       setOrderBy('asc');
     }
