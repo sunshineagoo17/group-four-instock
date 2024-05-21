@@ -34,9 +34,21 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
 
   // Updates the URL query parameters whenever searchTerm changes
   useEffect(() => {
+    const cleanSearchTermForURL = (term) => {
+      if (/^\+?\d.*$/.test(term)) {
+        // Format phone number
+        return term.replace(/[^\d\s-]/g, '').replace('+', '').replace(/\s+/g, '-');
+      } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(term) || /@/.test(term)) {
+        // Format email address
+        return term.replace('@', ' ');
+      }
+      return term;
+    };
+
+    const cleanedUpSearchTerm = cleanSearchTermForURL(searchTerm);
     const params = new URLSearchParams();
-    if (searchTerm) params.set('s', searchTerm);
-    navigate({ search: params.toString() });
+    if (cleanedUpSearchTerm) params.set('s', cleanedUpSearchTerm);
+    navigate({ search: params.toString() }, { replace: true });
   }, [searchTerm, navigate]);
 
   const handleSearch = (e) => {
