@@ -98,12 +98,12 @@ function AddInventory({ baseURL }) {
         <div className='inventory-add-form__container'>
           <div className='inventory-add-form__one inventory-add-form'>
             <h2 className='inventory-add-title'>Item Details</h2>
-            
-            <label className='inventory-add-label'>Item Name</label>
-            <br />
             {errors.itemName && (
               <span className='error'>{errors.itemName}</span> 
             )}<br />
+            <label className='inventory-add-label'>Item Name</label>
+            <br />
+          
             <input
               className='inventory-add-input'
               type='text'
@@ -113,25 +113,24 @@ function AddInventory({ baseURL }) {
             />
             
             <br />
-            
-            <label className='inventory-add-label'>Description</label> <br />
             {errors.description && (
               <span className='error'>{errors.description}</span>
             )}
             <br />
+            <label className='inventory-add-label'>Description</label> <br />
+            
             <textarea
               className='inventory-add-textarea'
               onChange={handleInputChange(setDescription)}
               value={description}
               placeholder='Please enter a brief item description...'></textarea>
           
-            <br />
-            <label className='inventory-add-label'>Category</label>
-            <br />
+            
             {errors.category && (
               <span className='error'>{errors.category}</span>
-            )}
-
+            )}<br />
+            <label className='inventory-add-label'>Category</label>
+            <br />
               <select
                 className='inventory-add-select inventory-add-input custom-select-arrow'
                 onChange={handleInputChange(setCategory)}
@@ -150,7 +149,7 @@ function AddInventory({ baseURL }) {
 
           <div className='inventory-add-form__two inventory-add-form'>
             <h2 className='inventory-add-title'>Item Availability</h2>
-            <div>Status</div>
+            <div className='status-inventory-add__title'>Status</div>
             <div className='status-inventory-add'>
               <label
                 className={`inventory-oval-container ${
@@ -182,12 +181,12 @@ function AddInventory({ baseURL }) {
               </label>
             </div>
             {status === 'In Stock' && (
-              <>
-                <label className='inventory-add-label'>Quantity</label>
-                <br />
-                {errors.quantity && (
-                  <span className='error'>{errors.quantity}</span>
-                )} <br/>
+              <> {errors.quantity && (
+                <span className='error'>{errors.quantity}</span>
+              )} <br/>
+                <label className='inventory-add-label'>Quantity</label><br/>
+                
+               
                 <input
                   className='inventory-add-input'
                   type='number'
@@ -195,18 +194,13 @@ function AddInventory({ baseURL }) {
                   value={quantity}
                   placeholder='0'
                 />
-                
-                <br />
               </>
-            )}
-            <label className='inventory-add-label'>Warehouse</label>
-            <br />
+            )}<br />
+          
             {errors.warehouse && (
               <span className='error'>{errors.warehouse}</span>
-            )}
-         
-            
-            
+            )}<br />
+            <label className='inventory-add-label'>Warehouse</label>
               <select
                 className='inventory-add-select inventory-add-input custom-select-arrow'
                 onChange={handleInputChange(setWarehouse)}
@@ -220,7 +214,7 @@ function AddInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-              
+             
             
           </div>
         </div>
