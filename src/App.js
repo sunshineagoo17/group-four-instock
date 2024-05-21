@@ -9,6 +9,7 @@ import InventoryList from './components/InventoryList/InventoryList.jsx';
 import InventoryItemDetails from './components/InventoryItemDetails/InventoryItemDetails.jsx';
 import WarehouseInventoryList from './components/WarehouseInventoryList/WarehouseInventoryList.jsx';
 import AddInventory from './components/AddInventory/AddInventory.jsx';
+import EditWarehouse from './components/EditWarehouse/EditWarehouse.jsx';
 
 // Fetch Function
 const URL = `http://127.0.0.1:8080/api`;
@@ -34,6 +35,10 @@ const App = () => (
         <Route
           path='/warehouse/:warehouseId'
           element={<WarehouseInventoryList fetchFn={fetchData} />}
+        />
+        <Route
+          path='/editwarehouse'
+          element={<EditWarehouse/>}
         />
         <Route
           path='/inventory'
