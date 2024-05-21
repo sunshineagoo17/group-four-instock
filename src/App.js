@@ -49,7 +49,7 @@ const App = () => (
           element={<InventoryItemDetails fetchFn={fetchData} />}
         />
         <Route
-          path='inventory/add-inventory'
+          path='/inventory/add-inventory'
           element={<AddInventory baseURL={URL} />}
         />
       </Routes>

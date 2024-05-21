@@ -74,7 +74,7 @@ const EditWarehouse = () => {
         <div className='warehouseForm__header list-padding-side'>
         <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
           
-            <img src={backIcon} alt='go back to inventory'/>
+            <img src={backIcon} alt='go back to inventory' />
         Edit Warehouse
         </div>
       </div>
