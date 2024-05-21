@@ -3,6 +3,7 @@
 .inventory-add{
     background-color: $pri-white;
   border-radius: 4px;
+  box-shadow: 0px 2px 5px 0px #13182C1A; 
   @include padding(top, sizeIncrement(8));
   font-family: $defaultFont;
 }
@@ -78,7 +79,7 @@
             }
         }
     }
-    &__container{
+    &__container{   
         @include for-tablet{
            display: flex;
            width: 100%;
@@ -107,6 +108,9 @@
     border: 1px solid $sec-cloud;
     margin-bottom: 20px;
     margin-top: 5px;
+    padding-left: 10px;
+    font-family: $defaultFont;
+    cursor: pointer;
     @include for-tablet{
         margin-bottom: 30px;
         margin-top: 5px;
@@ -118,6 +122,10 @@
     height: 120px;
     border-radius: 20px;
     border: 1px solid $sec-cloud;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-family: $defaultFont;
+    cursor: pointer;
     @include for-tablet{
         margin-bottom: 30px;
         margin-top: 5px;
@@ -168,6 +176,25 @@
     margin-top: 5px;
 }
 
+
+
+.inventory-add-select{
+    font-family: $defaultFont;
+    color: #5C667E;
+    appearance: none;
+}
+.custom-select-arrow{
+    background-image: url('../../assets/images/arrow_drop_down-24px.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+  
+}
+.error{
+    color: red;
+}
+
+
+
 .inventory-add-button__container{
     display: flex;
     justify-content: space-between;
@@ -188,6 +215,7 @@
     border-radius: 20px;
     border: 1px;  
     font-family: $defaultFont;
+    font-weight: 600;
     cursor: pointer;
     &__one{
         background-color:$pri-white;
@@ -209,7 +237,5 @@
 }
 ::placeholder{
     font-family: $defaultFont;
-}
-.error{
-    color: red;
+    color: #5C667E;
 }
