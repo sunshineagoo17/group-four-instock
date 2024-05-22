@@ -92,6 +92,11 @@
         }
     }
 
+    &__invalid-input {
+        border-color: $sec-red; 
+        background-color: rgba($sec-red, .05); 
+    }
+
     &__buttonContainer {
         background-color: $bg-grey;
         justify-content: space-between;
@@ -154,7 +159,7 @@
         @extend .message;
         font-family: $defaultFont;
         background-color: $bg-grey;
-        border: solid 1px red;
+        border: solid 1px $sec-red;
         border-radius: 4px;
         padding: .1rem;
     }
@@ -165,7 +170,7 @@
         color: $pri-indigo;
 
         &--error {
-            color: red;
+            color: $sec-red;
         }
     }
 }

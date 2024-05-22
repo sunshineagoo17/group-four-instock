@@ -224,7 +224,7 @@ const EditWarehouse = ({ baseURL }) => {
                             <div className='editForm__inputLabelWrapper'>
                                 <label className='editForm__inputLabel txt-label' htmlFor='contact_phone'>Phone Number</label>
                                 <input
-                                    className='editForm__input'
+                                    className={`editForm__input ${phoneError ? 'editForm__invalid-input' : ''}`}
                                     name='contact_phone'
                                     type='tel'
                                     value={warehouseDetails.contact_phone}
@@ -234,7 +234,7 @@ const EditWarehouse = ({ baseURL }) => {
                             <div className='editForm__inputLabelWrapper'>
                                 <label className='editForm__inputLabel txt-label' htmlFor='contact_email'>Email</label>
                                 <input
-                                    className='editForm__input'
+                                    className={`editForm__input ${emailError ? 'editForm__invalid-input' : ''}`}
                                     name='contact_email'
                                     type='email'
                                     value={warehouseDetails.contact_email}
