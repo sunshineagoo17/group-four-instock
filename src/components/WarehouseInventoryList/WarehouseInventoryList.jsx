@@ -48,10 +48,10 @@ const WarehouseInventoryList = ({ fetchFn }) => {
           </Link>
           {warehouseDetails.warehouse_name}
         </div>
-        <button className='edit-btn'>
-          <img className='edit-icon' src={editIcon} alt='edit Item' />
+        <Link to={`/edit-warehouse/${warehouseId}`} className='edit-btn'>
+          <img className='edit-icon' src={editIcon} alt='edit warehouse' />
           <p className='edit-text txt-btn txt-bold'>Edit</p>
-        </button>
+        </Link>
       </div>
       <div className='divider'></div>
       <div className='warehouseDetails list-padding-side'>

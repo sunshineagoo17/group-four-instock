@@ -1,85 +1,82 @@
 @use '../../styles/partials/index' as *;
 
 .warehouseForm {
-  //display: flex;
-  background-color: $pri-white;
-  border-radius: sizeIncrement(1);
-  flex-wrap: wrap;
+    background-color: $pri-white;
+    border-radius: sizeIncrement(1);
+    flex-wrap: wrap;
 
-  &__header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: sizeIncrement(8);
-    padding-bottom: sizeIncrement(6);
-
-    &_title {
-      display: flex;
-      align-items: center;
-      gap: sizeIncrement(1);
+    &__back-btn {
+        cursor: pointer;
     }
 
-  }
+    &__header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: sizeIncrement(8);
+        padding-bottom: sizeIncrement(6);
+
+        &_title {
+            display: flex;
+            align-items: center;
+            gap: sizeIncrement(1);    
+        }
+    }
 }
 
 .list-padding-side {
-  @include padding(side, sizeIncrement(6));
-
-  @include for-desktop {
-    @include padding(side, sizeIncrement(10));
-  }
-}
-
-// .formWrapper{
-// }
-
-.form-padding-side{
     @include padding(side, sizeIncrement(6));
 
-    @include for-tablet{
-        width:100%
+    @include for-desktop {
+        @include padding(side, sizeIncrement(10));
     }
 }
 
-.form-padding-topbottom{
+.form-padding-side {
+    @include padding(side, sizeIncrement(6));
+
+    @include for-tablet {
+        width: 100%;
+    }
+}
+
+.form-padding-topbottom {
     @include padding(topbottom, sizeIncrement(5));
 
-    &--contact{
+    &--contact {
         @extend .form-padding-topbottom;
         border-top: solid 1px $sec-cloud;
 
-        @include for-tablet{
+        @include for-tablet {
             border-top: none;
             border-left: solid 1px $sec-cloud;
         }
-    @include for-tablet{
-        @include padding(topbottom, sizeIncrement(0));
-    }
+        @include for-tablet {
+            @include padding(topbottom, sizeIncrement(0));
+        }
     }
 }
 
-
-.subheader_spacing{
+.subheader_spacing {
     @include padding(bottom, sizeIncrement(6));
 }
 
-.editForm{
-
-    @include for-tablet{
-        display:flex;
+.editForm {
+    @include for-tablet {
+        display: flex;
         justify-content: center;
     }
 
-    &__warehouse{
+    &__warehouse {
         @include padding(bottom, sizeIncrement(3));
     }
 
-    &__inputLabelWrapper{
+    &__inputLabelWrapper {
         @include padding(topbottom, sizeIncrement(2));
     }
-    &__input{
-      
+
+    &__input {
         height: $input-height-mobile;
         width: 100%;
         border-radius: $input-radius;
@@ -88,56 +85,90 @@
         padding-right: 1rem;
         border: solid $sec-cloud;
         margin-top: 4px;
+
         @mixin for-tablet {
             height: $input-height-tablet;
             width: fit-content;
         }
     }
-    &__buttonContainer{
+
+    &__buttonContainer {
         background-color: $bg-grey;
         justify-content: space-between;
         display: flex;
         padding: 16px 24px;
 
-        @include for-tablet{
+        @include for-tablet {
             justify-content: flex-end;
         }
     }
 }
 
-.btn{
-    &--cancel{
+.btn {
+    &--cancel {
         background-color: $pri-white;
         border: solid 1px $sec-cloud;
         color: $sec-slate;
-        width:50%;
+        width: 50%;
         margin-right: 16px;
-        @include for-tablet{
+        cursor: pointer;
+
+        @include for-tablet {
             width: 4.5rem;
-            }
+        }
     }
 
-    &--save{
+    &--save {
         color: $pri-white;
         border: solid 1px $pri-indigo;
         background-color: $pri-indigo;
-        width:50%;
-        @include for-tablet{
+        width: 50%;
+        cursor: pointer;
+
+        @include for-tablet {
             width: 3.8rem;
-            }
+        }
+    }
+
+    &--confirmation {
+        margin: .5rem;
+        color: $pri-white;
+        border: solid 1px $pri-indigo;
+        background-color: $pri-indigo;
+        border-radius: 20px;
+        width: 3.5rem;
+        height: 1.5rem;
+        font-family: $defaultFont;
     }
 }
 
-.error{
+.message {
+    display: block;
+    text-align: center;
     background-color: $bg-grey;
-    border: solid 1px $sec-slate;
-    display:block;
+    border: solid 1px $pri-indigo;
+    border-radius: 4px;
 
-    &__text{
-        width: 100%; 
-        display: flex;
-        justify-content: center;
+    &--error {
+        @extend .message;
+        font-family: $defaultFont;
+        background-color: $bg-grey;
+        border: solid 1px red;
+        border-radius: 4px;
+        padding: .1rem;
     }
 
+    &__text {
+        width: 100%;
+        font-family: $defaultFont;
+        color: $pri-indigo;
+
+        &--error {
+            color: red;
+        }
+    }
 }
 
+a {
+    justify-content: center;
+}

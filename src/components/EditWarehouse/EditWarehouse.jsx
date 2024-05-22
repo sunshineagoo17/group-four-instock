@@ -1,149 +1,265 @@
 import './EditWarehouse.scss';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
+const EditWarehouse = ({ baseURL }) => {
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-//Things to do 
-    // Clear all inputs when you click cancel 
-    // style the validation 
-    //params from warehouse list
-    //Actuall test put function
+    // State to store warehouse details
+    const [warehouseDetails, setWarehouseDetails] = useState({
+        warehouse_name: '',
+        address: '',
+        city: '',
+        country: '',
+        contact_name: '',
+        contact_position: '',
+        contact_phone: '',
+        contact_email: ''
+    });
 
-const EditWarehouse = () => {
-
+    const [originalDetails, setOriginalDetails] = useState({});
+    // Error States
     const [emailError, setEmailError] = useState('');
     const [phoneError, setPhoneError] = useState('');
     const [emptyError, setEmptyError] = useState('');
-   
-    //Regex functions for validation 
+    const [submit, setSubmit] = useState('');
+
+    // Regex functions for validation
     const phoneRegex = /^\+?(\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?(\d{3})[\s-]?(\d{4})$/;
-    const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    const emptyRegex = /^$/;
+    const emailRegex = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  
-    //Function used upon submittion of form
-    const formSubmit = (event)=>{
+    // Fetch warehouse details on component mount
+    useEffect(() => {
+        const fetchWarehouseDetails = async () => {
+            try {
+                const response = await axios.get(`${baseURL}/warehouses/${id}`);
+                setWarehouseDetails(response.data);
+                setOriginalDetails(response.data);
+            } catch (error) {
+                console.error('Error fetching warehouse details:', error);
+            }
+        };
+        fetchWarehouseDetails();
+    }, [id, baseURL]);
+
+    // Function to reset only the invalid phone number field
+    const resetPhoneNumberField = () => {
+        setWarehouseDetails(prevDetails => ({
+            ...prevDetails,
+            contact_phone: ''
+        }));
+    };
+
+    // Function to reset only the invalid email field
+    const resetEmailField = () => {
+        setWarehouseDetails(prevDetails => ({
+            ...prevDetails,
+            contact_email: ''
+        }));
+    };
+
+    // Form reset following the clicking of the cancellation button or the 'OK' button for errors.
+    const formCancellation = () => {
+        setEmailError('');
+        setPhoneError('');
+        setEmptyError('');
+        setSubmit('');
+        setWarehouseDetails(originalDetails);
+    };
+
+    // Handle input change
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setWarehouseDetails(prevDetails => ({
+            ...prevDetails,
+            [name]: value
+        }));
+    };
+
+    // Function to format the phone number
+    const formatPhoneNumber = (number) => {
+        const cleaned = ('' + number).replace(/\D/g, '');
+        const match = cleaned.match(/^(\d{1,4})(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+            return `+${match[1]} (${match[2]}) ${match[3]}-${match[4]}`;
+        }
+        return number;
+    };
+
+    // Function used upon submission of form
+    const formSubmit = (event) => {
         event.preventDefault();
-        console.log(event);
-        const warehouse__nameInput = [event.target[0].value];
-        const addressInput = [event.target[1].value];
-        const cityInput = [event.target[2].value];
-        const countryInput = [event.target[3].value];
-        const nameInput = [event.target[4].value];
-        const positionInput = [event.target[5].value];
-        const phoneInput = event.target[6].value
-        const emailInput = event.target[7].value
-        
-        const eventArray = [warehouse__nameInput,addressInput,cityInput,countryInput,nameInput,positionInput,phoneInput,emailInput]
+        setSubmit(''); // Clear the submit state on new form submission
+        const {
+            warehouse_name,
+            address,
+            city,
+            country,
+            contact_name,
+            contact_position,
+            contact_phone,
+            contact_email
+        } = warehouseDetails;
 
-        //Returns an array with non empty values
-        const eventArrayLoop = eventArray.filter((input)=>{
-            return input;
-        });
-
-        //Warehouse details from the form that will be used for the put request
-        const warehouseDetails = {
-            warehouse_name: warehouse__nameInput,
-            address: addressInput, 
-            city: cityInput,
-            country: countryInput,
-            contact_name: nameInput,
-            contact_position: positionInput,
-            contact_phone: phoneInput,
-            contact_email: emailInput
+        // Form validation
+        if ([warehouse_name, address, city, country, contact_name, contact_position, contact_phone, contact_email].some(field => !field)) {
+            setEmptyError('One or more fields are empty.');
+        } else if (!phoneRegex.test(contact_phone)) {
+            setPhoneError('The phone number entered is incorrect.');
+            resetPhoneNumberField();
+        } else if (!emailRegex.test(contact_email)) {
+            setEmailError('The email you entered is incorrect.');
+            resetEmailField();
+        } else {
+            const formattedPhone = formatPhoneNumber(contact_phone);
+            const updatedDetails = {
+                ...warehouseDetails,
+                contact_phone: formattedPhone
+            };
+            axios.put(`${baseURL}/warehouses/${id}`, updatedDetails)
+                .then((data) => {
+                    console.log(data);
+                    setSubmit('true');
+                })
+                .catch((error) => {
+                    console.log(error);
+                    setSubmit('false');
+                });
         }
+    };
 
-        if(eventArrayLoop.length <8){
-            setEmptyError('One or more fields are empty')
-        }else if(!phoneRegex.test(phoneInput) && !emptyRegex.test(phoneInput) ){
-            setPhoneError('The phone number entered is incorrect')
-        }else if(!emailRegex.test(emailInput) && !emptyRegex.test(phoneInput)){
-            setEmailError('The email you entered is incorrect')
-        }else{
-            axios.put('https://26abfd85-a3b8-40df-a5ee-048db9cfdaf3.mock.pstmn.io',warehouseDetails).then((data)=>{
-                console.log(data);
-            }).catch((error)=>{
-                console.log(error);
-            });
-        }
-    }
-
-  return(
-    <div className='warehouseForm'>
-        <div className='warehouseForm__header list-padding-side'>
-        <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
-          
-            <img src={backIcon} alt='go back to inventory' />
-        Edit Warehouse
-        </div>
-      </div>
-        <div className='divider'></div>
-        <div className='formWrapper'>
-            <div className='form-padding-side form-padding-topbottom'>
-                
-                    <form className='editForm'id='editWarehouseInfo'onSubmit={formSubmit}>
+    return (
+        <div className='warehouseForm'>
+            <div className='warehouseForm__header list-padding-side'>
+                <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
+                    <img className='warehouseForm__back-btn' src={backIcon} alt='go back to list of warehouses' onClick={() => navigate('/')} />
+                    Edit Warehouse
+                </div>
+            </div>
+            <div className='divider'></div>
+            <div className='formWrapper'>
+                <div className='form-padding-side form-padding-topbottom'>
+                    <form className='editForm' id='editWarehouseInfo' onSubmit={formSubmit}>
                         <div className='editForm__warehouse form-padding-side'>
                             <div className='txt-subheader txt-bold txt-black subheader_spacing'>Warehouse Details</div>
-                                <div className='editForm__inputLabelWrapper'>
-                                    <label className='editForm__inputLabel txt-label'htmlFor='warehouse__name'>Warehouse Name</label>
-                                    <input className='editForm__input'name='warehouse__name'type='text'></input>
-                                </div>
-                                <div className='editForm__inputLabelWrapper'>
-                                    <label className='editForm__inputLabel txt-label'htmlFor='street__address'>Street Address</label>
-                                    <input className='editForm__input'name='street__address'type='text'></input>
-                                </div>
-                                <div className='editForm__inputLabelWrapper'>
-                                    <label className='editForm__inputLabel txt-label'htmlFor='city'>City</label>
-                                    <input className='editForm__input'name='city'type='text'></input>
-                                </div>
-                                <div className='editForm__inputLabelWrapper'>
-                                    <label className='editForm__inputLabel txt-label'htmlFor='country'>Country</label>
-                                    <input className='editForm__input'name='country'type='text'></input>
-                                </div>
+                            <div className='editForm__inputLabelWrapper'>
+                                <label className='editForm__inputLabel txt-label' htmlFor='warehouse_name'>Warehouse Name</label>
+                                <input
+                                    className='editForm__input'
+                                    name='warehouse_name'
+                                    type='text'
+                                    value={warehouseDetails.warehouse_name}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className='editForm__inputLabelWrapper'>
+                                <label className='editForm__inputLabel txt-label' htmlFor='address'>Street Address</label>
+                                <input
+                                    className='editForm__input'
+                                    name='address'
+                                    type='text'
+                                    value={warehouseDetails.address}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className='editForm__inputLabelWrapper'>
+                                <label className='editForm__inputLabel txt-label' htmlFor='city'>City</label>
+                                <input
+                                    className='editForm__input'
+                                    name='city'
+                                    type='text'
+                                    value={warehouseDetails.city}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className='editForm__inputLabelWrapper'>
+                                <label className='editForm__inputLabel txt-label' htmlFor='country'>Country</label>
+                                <input
+                                    className='editForm__input'
+                                    name='country'
+                                    type='text'
+                                    value={warehouseDetails.country}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
                         </div>
-                       
                         <div className='form-padding-topbottom--contact form-padding-side'>
                             <div className='txt-subheader txt-bold txt-black subheader_spacing'>Contact Details</div>
                             <div className='editForm__inputLabelWrapper'>
-                                    <label className='editForm__inputLabel txt-label'htmlFor='contact__name'>Contact Name</label>
-                                    <input className='editForm__input'name='contact__name'type='text'></input>
+                                <label className='editForm__inputLabel txt-label' htmlFor='contact_name'>Contact Name</label>
+                                <input
+                                    className='editForm__input'
+                                    name='contact_name'
+                                    type='text'
+                                    value={warehouseDetails.contact_name}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className='editForm__inputLabelWrapper'>
-                                <label className='editForm__inputLabel txt-label'htmlFor='position'>Position</label>
-                                <input className='editForm__input'name='position'type='text'></input>
+                                <label className='editForm__inputLabel txt-label' htmlFor='contact_position'>Position</label>
+                                <input
+                                    className='editForm__input'
+                                    name='contact_position'
+                                    type='text'
+                                    value={warehouseDetails.contact_position}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className='editForm__inputLabelWrapper'>
-                                <label className='editForm__inputLabel txt-label'htmlFor='phone__number'>Phone Number</label>
-                                <input className='editForm__input'name='phone__number'type='tel'></input>
+                                <label className='editForm__inputLabel txt-label' htmlFor='contact_phone'>Phone Number</label>
+                                <input
+                                    className='editForm__input'
+                                    name='contact_phone'
+                                    type='tel'
+                                    value={warehouseDetails.contact_phone}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                             <div className='editForm__inputLabelWrapper'>
-                                <label className='editForm__inputLabel txt-label'htmlFor='email'>Email</label>
-                                <input className='editForm__input'name='email'type='email'></input>
+                                <label className='editForm__inputLabel txt-label' htmlFor='contact_email'>Email</label>
+                                <input
+                                    className='editForm__input'
+                                    name='contact_email'
+                                    type='email'
+                                    value={warehouseDetails.contact_email}
+                                    onChange={handleInputChange}
+                                />
                             </div>
                         </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div> 
-    <div className='editForm__buttonContainer'>
-        <button className='btn btn--cancel'>Cancel</button>
-        <button className='btn btn--save'type='submit'form='editWarehouseInfo'>Save</button>
-    </div>
-    {emailError || phoneError || emptyError ? 
-    <>
-        <div className='error'>
-            <>
-                <p className='error__text'>{emailError}</p>
-                <p className='error__text'>{phoneError}</p>
-                <p className='error__text'>{emptyError}</p>
-            </>
+            <div className='editForm__buttonContainer'>
+                <button className='btn btn--cancel' onClick={formCancellation}>Cancel</button>
+                <button className='btn btn--save' type='submit' form='editWarehouseInfo'>Save</button>
+            </div>
+            {submit === 'true' && (
+                <div>
+                    <div className='message'>
+                        <>
+                            <p className='message__text'>Congratulations! You've edited Warehouse {id}.</p>
+                            <Link to='/'>
+                                <button className='btn--confirmation'>OK</button>
+                            </Link>
+                        </>
+                    </div>
+                </div>
+            )}
+            {(submit !== 'true' && (emailError || phoneError || emptyError)) && (
+                <div className='message--error'>
+                    <>
+                        <p className='message__text--error'>{emailError}</p>
+                        <p className='message__text--error'>{phoneError}</p>
+                        <p className='message__text--error'>{emptyError}</p>
+                        <button className='btn--confirmation' onClick={() => { setEmailError(''); setPhoneError(''); setEmptyError(''); }}>OK</button>
+                    </>
+                </div>
+            )}
         </div>
-    </>
-    : 
-    <></>  
-    }
-</div>
-  );
+    );
 };
 
 export default EditWarehouse;

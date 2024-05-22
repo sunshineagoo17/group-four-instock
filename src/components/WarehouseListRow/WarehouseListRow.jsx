@@ -53,11 +53,13 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
             alt='delete button'
             onClick={() => onDeleteClick(warehouse)}
           />
-          <img
-            className='warehouse__cell_btn'
-            src={editIcon}
-            alt='edit button'
-          />
+          <Link to ={`/edit-warehouse/${warehouse.id}`}>
+            <img
+              className='warehouse__cell_btn'
+              src={editIcon}
+              alt='edit button'
+            />
+          </Link>
         </div>
       </div>
     </>
