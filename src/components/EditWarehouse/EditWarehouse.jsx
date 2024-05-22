@@ -149,7 +149,7 @@ const EditWarehouse = ({ baseURL }) => {
             <div className='warehouseForm__header list-padding-side'>
                 <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
                     <img className='warehouseForm__back-btn' src={backIcon} alt='go back to list of warehouses' onClick={() => navigate('/')} />
-                    Edit Warehouse
+                    Edit {warehouseDetails.warehouse_name}
                 </div>
             </div>
             <div className='divider'></div>
@@ -253,7 +253,7 @@ const EditWarehouse = ({ baseURL }) => {
                 <div>
                     <div className='message'>
                         <>
-                            <p className='message__text'>Congratulations! You've edited Warehouse {id}.</p>
+                            <p className='message__text'>Congratulations! You've edited the {warehouseDetails.warehouse_name} warehouse.</p>
                             <Link to='/'>
                                 <button className='btn--confirmation'>OK</button>
                             </Link>
