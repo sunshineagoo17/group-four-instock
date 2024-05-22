@@ -104,16 +104,29 @@ const EditWarehouse = ({ baseURL }) => {
             contact_email
         } = warehouseDetails;
 
+        // Reset error states
+        setEmptyError('');
+        setPhoneError('');
+        setEmailError('');
+
         // Form validation
+        let hasError = false;
         if ([warehouse_name, address, city, country, contact_name, contact_position, contact_phone, contact_email].some(field => !field)) {
             setEmptyError('One or more fields are empty.');
-        } else if (!phoneRegex.test(contact_phone)) {
+            hasError = true;
+        }
+        if (!phoneRegex.test(contact_phone)) {
             setPhoneError('The phone number entered is incorrect.');
             resetPhoneNumberField();
-        } else if (!emailRegex.test(contact_email)) {
+            hasError = true;
+        }
+        if (!emailRegex.test(contact_email)) {
             setEmailError('The email you entered is incorrect.');
             resetEmailField();
-        } else {
+            hasError = true;
+        }
+
+        if (!hasError) {
             const formattedPhone = formatPhoneNumber(contact_phone);
             const updatedDetails = {
                 ...warehouseDetails,
