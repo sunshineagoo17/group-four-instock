@@ -4,7 +4,6 @@ import ArrowBack from '../../assets/images/arrow_back-24px.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-
 function AddInventory({ baseURL }) {
   const navigate = useNavigate();
   const [itemName, setItemName] = useState('');
@@ -99,11 +98,11 @@ function AddInventory({ baseURL }) {
           <div className='inventory-add-form__one inventory-add-form'>
             <h2 className='inventory-add-title'>Item Details</h2>
             {errors.itemName && (
-              <span className='error'>{errors.itemName}</span> 
-            )}<br />
+              <span className='error'>{errors.itemName}</span>
+            )}
+            <br />
             <label className='inventory-add-label'>Item Name</label>
             <br />
-          
             <input
               className='inventory-add-input'
               type='text'
@@ -111,40 +110,37 @@ function AddInventory({ baseURL }) {
               value={itemName}
               placeholder='Item Name'
             />
-            
             <br />
             {errors.description && (
               <span className='error'>{errors.description}</span>
             )}
             <br />
-            <label className='inventory-add-label'>Description</label> <br />
-            
+            <label className='inventory-add-label'>Description</label>
+            <br />
             <textarea
               className='inventory-add-textarea'
               onChange={handleInputChange(setDescription)}
               value={description}
               placeholder='Please enter a brief item description...'></textarea>
-          
-            
             {errors.category && (
               <span className='error'>{errors.category}</span>
-            )}<br />
+            )}
+            <br />
             <label className='inventory-add-label'>Category</label>
             <br />
-              <select
-                className='inventory-add-select inventory-add-input custom-select-arrow'
-                onChange={handleInputChange(setCategory)}
-                value={category}>  
-                <option value='' disabled >
-                     Please select
+            <select
+              className='inventory-add-select inventory-add-input custom-select-arrow'
+              onChange={handleInputChange(setCategory)}
+              value={category}>
+              <option value='' disabled>
+                Please select
+              </option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
                 </option>
-                {categories.map((cat) => (
-                  <option key={cat.id} value={cat.name}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>         
-           
+              ))}
+            </select>
           </div>
 
           <div className='inventory-add-form__two inventory-add-form'>
@@ -175,18 +171,19 @@ function AddInventory({ baseURL }) {
                   value='Out of Stock'
                   checked={status === 'Out of Stock'}
                   onChange={handleStatusChange}
-                  className='inventory-oval-input '
+                  className='inventory-oval-input'
                 />
                 <div className='inventory-add-status'>Out of stock</div>
               </label>
             </div>
             {status === 'In Stock' && (
-              <> {errors.quantity && (
-                <span className='error'>{errors.quantity}</span>
-              )} <br/>
-                <label className='inventory-add-label'>Quantity</label><br/>
-                
-               
+              <>
+                {errors.quantity && (
+                  <span className='error'>{errors.quantity}</span>
+                )}
+                <br />
+                <label className='inventory-add-label'>Quantity</label>
+                <br />
                 <input
                   className='inventory-add-input'
                   type='number'
@@ -195,27 +192,26 @@ function AddInventory({ baseURL }) {
                   placeholder='0'
                 />
               </>
-            )}<br />
-          
+            )}
+            <br />
             {errors.warehouse && (
               <span className='error'>{errors.warehouse}</span>
-            )}<br />
+            )}
+            <br />
             <label className='inventory-add-label'>Warehouse</label>
-              <select
-                className='inventory-add-select inventory-add-input custom-select-arrow'
-                onChange={handleInputChange(setWarehouse)}
-                value={warehouse}>
-                <option value='' disabled>
-                  Please select
+            <select
+              className='inventory-add-select inventory-add-input custom-select-arrow'
+              onChange={handleInputChange(setWarehouse)}
+              value={warehouse}>
+              <option value='' disabled>
+                Please select
+              </option>
+              {warehouses.map((wh) => (
+                <option key={wh.id} value={wh.id}>
+                  {wh.warehouse_name}
                 </option>
-                {warehouses.map((wh) => (
-                  <option key={wh.id} value={wh.id}>
-                    {wh.warehouse_name}
-                  </option>
-                ))}
-              </select>
-             
-            
+              ))}
+            </select>
           </div>
         </div>
         <div className='inventory-add-button__container'>
