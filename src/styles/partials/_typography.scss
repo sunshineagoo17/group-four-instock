@@ -2,24 +2,24 @@
 @use './variables' as *;
 @use './mixins';
 
-$defaultFont: "TitilliumWeb";
+$defaultFont: 'TitilliumWeb';
 
 // Fonts
 @font-face {
   font-family: $defaultFont;
-  src: url(/assets/fonts/TitilliumWeb-Regular.ttf) format("truetype");
+  src: url(/assets/fonts/TitilliumWeb-Regular.ttf) format('truetype');
   font-style: normal;
   font-weight: 400;
 }
 
 @font-face {
   font-family: $defaultFont;
-  src: url(/assets/fonts/TitilliumWeb-SemiBold.ttf) format("truetype");
+  src: url(/assets/fonts/TitilliumWeb-SemiBold.ttf) format('truetype');
   font-style: normal;
   font-weight: 600;
 }
 
-//Font Classes
+// Font Classes
 .txt-header {
   font-family: $defaultFont;
   font-size: mixins.toRem(28);
@@ -114,6 +114,7 @@ $defaultFont: "TitilliumWeb";
 .txt-slate {
   color: $sec-slate;
 }
+
 .txt-indigo {
-  color:$pri-indigo;
+  color: $pri-indigo;
 }

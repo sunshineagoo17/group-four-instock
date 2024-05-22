@@ -13,11 +13,12 @@
   flex-wrap: wrap;
   gap: sizeIncrement(4);
   @include padding(bottom, sizeIncrement(6));
-  
+
   @include for-tablet {
     flex-wrap: nowrap;
     align-items: center;
   }
+
   &__title {
     flex-grow: 1;
   }
@@ -43,57 +44,53 @@
   }
 }
 
-  .inventory-list__filter{
-    display: none;
-    @include for-tablet{
-      display: flex;
-      height: 40px;
-      background-color:$bg-grey; 
-      align-items: center;
-      flex-wrap: nowrap;
-      justify-content: space-between;
-  
-      &_cell{
-        display: flex;
-        gap: sizeIncrement(1);
-        align-items: center;
-        justify-content: flex-start;
-  
-              &:nth-of-type(1){
-                 
-                  width: 90%;
-              }
-              &:nth-of-type(2){
-                  
-                  width:70%;
-              }
-              &:nth-of-type(3){
-                  
-                  width: 70%;
-              }
-              &:nth-of-type(4){
-                  width: 40%;
-              }
-              &:nth-of-type(5){
-                  width: 70%;
-              }
-              &:nth-of-type(6){
-                  width: 30%;
-                  justify-content: end;
-              }
-              
-          }
-      
-    }
-    .icon{
-      height: sizeIncrement(4);
-      cursor: pointer;
-    }
-    }
-   
+.inventory-list__filter {
+  display: none;
 
-@include for-tablet{
-  .hide-tablet{
+  @include for-tablet {
+    display: flex;
+    height: 40px;
+    background-color: $bg-grey;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    &_cell {
+      display: flex;
+      gap: sizeIncrement(1);
+      align-items: center;
+      justify-content: flex-start;
+
+      &:nth-of-type(1) {
+        width: 90%;
+      }
+      &:nth-of-type(2) {
+        width: 70%;
+      }
+      &:nth-of-type(3) {
+        width: 70%;
+      }
+      &:nth-of-type(4) {
+        width: 40%;
+      }
+      &:nth-of-type(5) {
+        width: 70%;
+      }
+      &:nth-of-type(6) {
+        width: 30%;
+        justify-content: end;
+      }
+    }
+  }
+
+  .icon {
+    height: sizeIncrement(4);
+    cursor: pointer;
+  }
+}
+
+@include for-tablet {
+  .hide-tablet {
     display: none;
   }
 }

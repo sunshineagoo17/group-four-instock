@@ -4,25 +4,26 @@ header {
   width: 100%;
   background-color: $bg-graphite;
   height: toRem(136);
-  
 
-  @include for-tablet{
+  @include for-tablet {
     height: toRem(92);
   }
 }
+
 .main-nav {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: sizeIncrement(6) 0;
-  
+
   @include for-tablet {
     align-items: center;
     flex-wrap: nowrap;
     justify-content: space-between;
     padding: sizeIncrement(8) 0;
   }
+
   &__logo {
     max-height: toRem(28);
     width: 100%;
@@ -68,15 +69,15 @@ header {
   }
 }
 
-.header-bg{
-  background-color:$bg-graphite;
+.header-bg {
+  background-color: $bg-graphite;
   position: absolute;
-  top:0;
+  top: 0;
   z-index: -1;
   height: 200px;
   width: 100vw;
 
-  @include for-tablet{
+  @include for-tablet {
     height: 186px;
   }
 }

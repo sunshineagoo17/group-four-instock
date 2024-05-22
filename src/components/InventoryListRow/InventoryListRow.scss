@@ -1,6 +1,5 @@
 @use '../../styles/partials/index' as *;
 
-
 .item {
   display: flex;
   flex-wrap: wrap;
@@ -13,39 +12,35 @@
     align-items: center;
     justify-content: space-between;
 
-    &:hover{
-        background-color: rgba($color: $pri-indigo, $alpha: 7%);
-  color: $sec-red;
+    &:hover {
+      background-color: rgba($color: $pri-indigo, $alpha: 7%);
+      color: $sec-red;
     }
   }
+
   &__cell {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
     gap: sizeIncrement(1);
 
-    @include for-tablet {
-      
-    }
-
     &_header {
       width: 100%;
-        text-transform: uppercase;
+      text-transform: uppercase;
+
       @include for-tablet {
         display: none;
       }
     }
 
-
     &--full-width {
       width: 100%;
-
     }
 
-    &--pl{
+    &--pl {
       padding-left: 50%;
 
-      @include for-tablet{
+      @include for-tablet {
         padding-left: 0;
       }
     }
@@ -60,11 +55,10 @@
         justify-content: end;
         gap: sizeIncrement(4);
         flex-wrap: nowrap;
-
       }
     }
 
-    &_desc{
+    &_desc {
       display: flex;
       flex-wrap: wrap;
 
@@ -79,7 +73,6 @@
       @include padding(topbottom, 4px);
       @include padding(side, 8px);
       text-transform: uppercase;
-
     }
 
     &_btn {
@@ -104,32 +97,30 @@
   color: $sec-red;
 }
 
-
-// Order and width for tablet 
+// Order and width for tablet
 @include for-tablet {
-    .item__cell{
-        &:nth-of-type(1){
-            order: 1;
-            width: 90%;
-        }
-        &:nth-of-type(2){
-            order:3;
-            width:70%;
-        }
-        &:nth-of-type(3){
-            order:2;
-            width: 70%;
-        }
-        &:nth-of-type(4){
-            width: 40%;
-        }
-        &:nth-of-type(5){
-            width: 70%;
-        }
-        &:nth-of-type(6){
-            width: 30%;
-        }
-        order: 4;
-    } 
+  .item__cell {
+    &:nth-of-type(1) {
+      order: 1;
+      width: 90%;
+    }
+    &:nth-of-type(2) {
+      order: 3;
+      width: 70%;
+    }
+    &:nth-of-type(3) {
+      order: 2;
+      width: 70%;
+    }
+    &:nth-of-type(4) {
+      width: 40%;
+    }
+    &:nth-of-type(5) {
+      width: 70%;
+    }
+    &:nth-of-type(6) {
+      width: 30%;
+    }
+    order: 4;
+  }
 }
-

@@ -8,16 +8,20 @@ const InventoryItemDetails = ({ fetchFn }) => {
   const { inventoryId } = useParams();
   const [inventoryDetails, setInventoryDetails] = useState({});
 
-    // Fetching Data from API
-    useEffect(() => {
-      // Fetch inventory details
-          fetchFn(`/inventories/${inventoryId}`).then(res => setInventoryDetails(res));
-      }, [fetchFn,inventoryId]);
+  // Fetching Data from API
+  useEffect(() => {
+    // Fetch inventory details
+    fetchFn(`/inventories/${inventoryId}`).then((res) =>
+      setInventoryDetails(res)
+    );
+  }, [fetchFn, inventoryId]);
 
-    // Conditionally set the class based on the status
-      const statusClass =
-      inventoryDetails.status &&
-      (inventoryDetails.status.toLowerCase() === 'in stock' ? 'instock' : 'outstock');
+  // Conditionally set the class based on the status
+  const statusClass =
+    inventoryDetails.status &&
+    (inventoryDetails.status.toLowerCase() === 'in stock'
+      ? 'instock'
+      : 'outstock');
 
   return (
     <div className='inventoryItemDetails'>
@@ -56,19 +60,17 @@ const InventoryItemDetails = ({ fetchFn }) => {
             STATUS:
           </div>
           <div className='detail__cell_desc'>
-          <button
-              className={`txt-table txt-bold detail__cell_desc--btn ${statusClass}`}
-            >
+            <button
+              className={`txt-table txt-bold detail__cell_desc--btn ${statusClass}`}>
               {inventoryDetails.status}
             </button>
           </div>
         </div>
-
         <div className='detail__cell detail__cell--half'>
           <div className='detail__cell_header txt-slate txt-table txt-bold'>
             QUANTITY:
           </div>
-          <div className='detail__cell_desc detail__cell_desc--generic  txt-m txt-black txt-regular'>
+          <div className='detail__cell_desc detail__cell_desc--generic txt-m txt-black txt-regular'>
             {inventoryDetails.quantity}
           </div>
         </div>
@@ -84,4 +86,5 @@ const InventoryItemDetails = ({ fetchFn }) => {
     </div>
   );
 };
+
 export default InventoryItemDetails;

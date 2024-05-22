@@ -1,5 +1,5 @@
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
-import { useState, useEffect,} from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './InventoryList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
@@ -15,12 +15,14 @@ const InventoryList = ({ fetchFn }) => {
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
 
-  // Fetching Data from API whenever sortBy, orderBy or searchTerm changes
+  // Fetching Data from API whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch inventory data from the API with sorting and search parameters
-        const response = await fetchFn(`/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`);
+        const response = await fetchFn(
+          `/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
+        );
         setInventoryList(response);
       } catch (error) {
         console.error('Error fetching inventory:', error);
@@ -52,11 +54,11 @@ const InventoryList = ({ fetchFn }) => {
       setOrderBy('asc');
     }
   };
-  
+
   return (
     <div className='inventory-list'>
       <div className='inventory-list-header list-padding-side'>
-        <h1 className='inventory-list-header__title txt-header txt-black '>
+        <h1 className='inventory-list-header__title txt-header txt-black'>
           Inventory
         </h1>
         <input
@@ -77,23 +79,48 @@ const InventoryList = ({ fetchFn }) => {
       <div className='inventory-list__filter list-padding-side'>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           INVENTORY ITEM
-          <img className='icon' src={sortIcon} alt='sort items' onClick={() => handleSort('item_name')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort items'
+            onClick={() => handleSort('item_name')}
+          />
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           CATEGORY
-          <img className='icon' src={sortIcon} alt='sort categories' onClick={() => handleSort('category')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort categories'
+            onClick={() => handleSort('category')}
+          />
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           STATUS
-          <img className='icon' src={sortIcon} alt='sort statuses' onClick={() => handleSort('status')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort statuses'
+            onClick={() => handleSort('status')}
+          />
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           QTY
-          <img className='icon' src={sortIcon} alt='sort quantities' onClick={() => handleSort('quantity')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort quantities'
+            onClick={() => handleSort('quantity')}
+          />
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           WAREHOUSE
-          <img className='icon' src={sortIcon} alt='sort warehouses' onClick={() => handleSort('warehouse_name')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort warehouses'
+            onClick={() => handleSort('warehouse_name')}
+          />
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS

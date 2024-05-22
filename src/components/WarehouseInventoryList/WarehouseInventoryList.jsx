@@ -17,7 +17,9 @@ const WarehouseInventoryList = ({ fetchFn }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchFn(`/warehouses/${warehouseId}/inventories?sort_by=${sortBy}&order_by=${orderBy}`);
+        const response = await fetchFn(
+          `/warehouses/${warehouseId}/inventories?sort_by=${sortBy}&order_by=${orderBy}`
+        );
         setWarehouseInventoryList(response);
         const details = await fetchFn(`/warehouses/${warehouseId}`);
         setWarehouseDetails(details);
@@ -60,7 +62,8 @@ const WarehouseInventoryList = ({ fetchFn }) => {
             WAREHOUSE ADDRESS:
           </div>
           <div className='warehouseDetails__cell_desc warehouseDetails__cell_desc--title txt-m txt-regular txt-black'>
-            {warehouseDetails.address}, <br className='hide--mobile' />{warehouseDetails.city}, {warehouseDetails.country}
+            {warehouseDetails.address}, <br className='hide--mobile' />
+            {warehouseDetails.city}, {warehouseDetails.country}
           </div>
         </div>
         <div className='warehouseDetails__cell warehouseDetails__cell--half '>
@@ -68,7 +71,8 @@ const WarehouseInventoryList = ({ fetchFn }) => {
             CONTACT NAME:
           </div>
           <div className='warehouseDetails__cell_desc warehouseDetails__cell_desc--title txt-m txt-regular txt-black'>
-            {warehouseDetails.contact_name} <br /> {warehouseDetails.contact_position}
+            {warehouseDetails.contact_name} <br />{' '}
+            {warehouseDetails.contact_position}
           </div>
         </div>
         <div className='warehouseDetails__cell warehouseDetails__cell--half'>
@@ -85,28 +89,47 @@ const WarehouseInventoryList = ({ fetchFn }) => {
       <div className='divider hide--tablet'></div>
       <div className='warehouseInventory-list__filter list-padding-side'>
         <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          INVENTORY ITEM <img className='icon' src={sortIcon} alt='sort items' onClick={() => handleSort('item_name')} />
-        </div>
-        <div
-          className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          CATEGORY <img className='icon' src={sortIcon} alt='sort categories' onClick={() => handleSort('category')} />
+          INVENTORY ITEM{' '}
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort items'
+            onClick={() => handleSort('item_name')}
+          />
         </div>
         <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          STATUS <img className='icon' src={sortIcon} alt='sort statuses' onClick={() => handleSort('status')} />
+          CATEGORY{' '}
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort categories'
+            onClick={() => handleSort('category')}
+          />
         </div>
         <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          QUANTITY <img className='icon' src={sortIcon} alt='sort quantities' onClick={() => handleSort('quantity')} />
+          STATUS{' '}
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort statuses'
+            onClick={() => handleSort('status')}
+          />
+        </div>
+        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+          QUANTITY{' '}
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort quantities'
+            onClick={() => handleSort('quantity')}
+          />
         </div>
         <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS
         </div>
       </div>
       {warehouseInventoryList.map((item, index) => (
-        <WarehouseInventoryListRow
-          inventory={item}
-          key={index}
-          index={index}
-        />
+        <WarehouseInventoryListRow inventory={item} key={index} index={index} />
       ))}
     </div>
   );

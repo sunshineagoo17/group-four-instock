@@ -50,6 +50,7 @@
         display: none;
         color: $pri-white;
         font-family: $defaultFont;
+
         @include for-tablet {
           display: flex;
         }
@@ -70,15 +71,13 @@
     align-items: flex-start;
     justify-content: space-between;
     row-gap: 0;
-
-    
   }
+
   &__cell {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
     gap: sizeIncrement(1);
-    
 
     @include for-tablet {
       width: 50%;
@@ -106,20 +105,19 @@
     }
 
     &--half {
-      padding-right:sizeIncrement(4) ;
+      padding-right: sizeIncrement(4);
+
       @include for-tablet {
         width: 25%;
-        padding-right:sizeIncrement(0) ;
+        padding-right: sizeIncrement(0);
       }
     }
+
     &--flex-space-between {
       padding-left: 0;
       flex-grow: 1;
       display: flex;
       justify-content: space-between;
-
-      @include for-tablet {
-      }
     }
 
     &_desc {
@@ -151,7 +149,6 @@
   color: $sec-red;
 }
 
-
 // Order and width for tablet
 @include for-tablet {
   .detail__cell {
@@ -159,13 +156,13 @@
       order: 1;
       padding-right: sizeIncrement(10);
       border-right: 1px solid $sec-cloud;
-      padding-bottom:sizeIncrement(8);
+      padding-bottom: sizeIncrement(8);
     }
     &:nth-of-type(2) {
       order: 3;
       padding-right: sizeIncrement(10);
       border-right: 1px solid $sec-cloud;
-      padding-bottom:sizeIncrement(3);
+      padding-bottom: sizeIncrement(3);
     }
     &:nth-of-type(3) {
       order: 2;

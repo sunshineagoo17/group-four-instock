@@ -1,20 +1,21 @@
 @use '../../styles/partials/index' as *;
-.main-footer{
-    width: 100%;
-    height: 100%;
-    background-color:$bg-grey ;
-    margin-top: 4px;
+
+.main-footer {
+  width: 100%;
+  height: 100%;
+  background-color: $bg-grey;
+  margin-top: 4px;
 }
 
-.footer-container{
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-.footer-description{
-    font-family: $defaultFont;
-    
-    @include padding(top,sizeIncrement(9));
-    @include padding(bottom,sizeIncrement(10));
+.footer-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
+.footer-description {
+  font-family: $defaultFont;
+
+  @include padding(top, sizeIncrement(9));
+  @include padding(bottom, sizeIncrement(10));
+}

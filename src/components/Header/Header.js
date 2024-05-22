@@ -10,7 +10,10 @@ function Header() {
   // Check if a link should be active
   const isActiveLink = (path) => {
     if (path === '/') {
-      return location.pathname === '/' || location.pathname.startsWith('/edit-warehouse');
+      return (
+        location.pathname === '/' ||
+        location.pathname.startsWith('/edit-warehouse')
+      );
     }
     return location.pathname.startsWith(path);
   };
@@ -21,18 +24,19 @@ function Header() {
         <Link to='/'>
           <img className='main-nav__logo' src={logo} alt='inStock Logo' />
         </Link>
-
         <ul className='main-nav-container'>
-        <NavLink
+          <NavLink
             to='/'
-            className={`main-nav-container__link btn ${isActiveLink('/') ? 'active' : ''}`}
-          >
+            className={`main-nav-container__link btn ${
+              isActiveLink('/') ? 'active' : ''
+            }`}>
             Warehouses
           </NavLink>
           <NavLink
             to='/inventory'
-            className={`main-nav-container__link btn ${isActiveLink('/inventory') ? 'active' : ''}`}
-          >
+            className={`main-nav-container__link btn ${
+              isActiveLink('/inventory') ? 'active' : ''
+            }`}>
             Inventory
           </NavLink>
         </ul>

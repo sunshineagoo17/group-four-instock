@@ -18,11 +18,15 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
           <div className='warehouse__cell_desc warehouse__cell_desc--title txt-m txt-bold txt-indigo'>
             <Link to={`${warehouse.id}`} className='txt-indigo'>
               {warehouse.warehouse_name}{' '}
-              <img className='right-arrow' src={rightIcon} alt='Navigate to warehouse details' />
+              <img
+                className='right-arrow'
+                src={rightIcon}
+                alt='Navigate to warehouse details'
+              />
             </Link>
           </div>
         </div>
-        <div className='warehouse__cell warehouse__cell'>
+        <div className='warehouse__cell'>
           <div className='warehouse__cell_header txt-slate txt-table txt-bold'>
             CONTACT NAME
           </div>
@@ -30,30 +34,32 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
             {warehouse.contact_name}
           </div>
         </div>
-        <div className='warehouse__cell warehouse__cell'>
+        <div className='warehouse__cell'>
           <div className='warehouse__cell_header txt-slate txt-table txt-bold'>
             ADDRESS
           </div>
-          <div className='warehouse__cell_desc warehouse__cell_desc--generic txt-m txt-black txt-regular'>{`${warehouse.address}, ${warehouse.city}, ${warehouse.country}`}</div>
+          <div className='warehouse__cell_desc warehouse__cell_desc--generic txt-m txt-black txt-regular'>
+            {`${warehouse.address}, ${warehouse.city}, ${warehouse.country}`}
+          </div>
         </div>
         <div className='warehouse__cell'>
           <div className='warehouse__cell_header txt-slate txt-table txt-bold'>
             CONTACT INFORMATION
           </div>
-          <div className='warehouse__cell_desc warehouse__cell_desc--generic  txt-m txt-black txt-regular'>
+          <div className='warehouse__cell_desc warehouse__cell_desc--generic txt-m txt-black txt-regular'>
             {warehouse.contact_phone}
             <br />
             {warehouse.contact_email}
           </div>
         </div>
-        <div className='warehouse__cell warehouse__cell--full-width '>
+        <div className='warehouse__cell warehouse__cell--full-width'>
           <img
             className='warehouse__cell_btn'
             src={deleteIcon}
             alt='delete button'
             onClick={() => onDeleteClick(warehouse)}
           />
-          <Link to ={`/edit-warehouse/${warehouse.id}`}>
+          <Link to={`/edit-warehouse/${warehouse.id}`}>
             <img
               className='warehouse__cell_btn'
               src={editIcon}
@@ -65,4 +71,5 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
     </>
   );
 };
+
 export default WarehouseListRow;

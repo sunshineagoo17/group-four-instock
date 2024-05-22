@@ -22,7 +22,9 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchFn(`/warehouses?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`);
+        const response = await fetchFn(
+          `/warehouses?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
+        );
         setWarehouseList(response);
       } catch (error) {
         console.error('Error fetching warehouses:', error);
@@ -37,7 +39,10 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
     const cleanSearchTermForURL = (term) => {
       if (/^\+?\d.*$/.test(term)) {
         // Format phone number
-        return term.replace(/[^\d\s-]/g, '').replace('+', '').replace(/\s+/g, '-');
+        return term
+          .replace(/[^\d\s-]/g, '')
+          .replace('+', '')
+          .replace(/\s+/g, '-');
       } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(term) || /@/.test(term)) {
         // Format email address
         return term.replace('@', ' ');
@@ -95,7 +100,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
 
   // Extract numeric values from Addresses for sorting
   const extractAddressNumbers = (warehouses) => {
-    return warehouses.map(warehouse => {
+    return warehouses.map((warehouse) => {
       const address = warehouse.address || '';
       const addressNumber = parseInt(address.match(/\d+/) || 0, 10);
       return { ...warehouse, addressNumber };
@@ -145,7 +150,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   return (
     <div className='warehouse-list box-shadow'>
       <div className='warehouse-list-header list-padding-side'>
-        <h1 className='warehouse-list-header__title txt-header txt-black '>
+        <h1 className='warehouse-list-header__title txt-header txt-black'>
           Warehouses
         </h1>
         <input
@@ -162,19 +167,39 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       <div className='warehouse-list__filter list-padding-side'>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           WAREHOUSE
-          <img className='icon' src={sortIcon} alt='sort warehouses' onClick={() => handleSort('warehouse_name')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort warehouses'
+            onClick={() => handleSort('warehouse_name')}
+          />
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT NAME
-          <img className='icon' src={sortIcon} alt='sort names' onClick={() => handleSort('contact_name')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort names'
+            onClick={() => handleSort('contact_name')}
+          />
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           ADDRESS
-          <img className='icon' src={sortIcon} alt='sort addresses' onClick={() => handleSort('address')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort addresses'
+            onClick={() => handleSort('address')}
+          />
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT INFORMATION
-          <img className='icon' src={sortIcon} alt='sort contact info' onClick={() => handleSort('contact_information')} />
+          <img
+            className='icon'
+            src={sortIcon}
+            alt='sort contact info'
+            onClick={() => handleSort('contact_information')}
+          />
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS

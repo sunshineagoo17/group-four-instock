@@ -3,7 +3,7 @@ import './App.scss';
 import axios from 'axios';
 // Layout
 import Layout from './Layout/Layout.jsx';
-//components
+// Components
 import WarehouseList from './components/WarehouseList/WarehouseList.jsx';
 import InventoryList from './components/InventoryList/InventoryList.jsx';
 import InventoryItemDetails from './components/InventoryItemDetails/InventoryItemDetails.jsx';
@@ -13,6 +13,7 @@ import EditWarehouse from './components/EditWarehouse/EditWarehouse.jsx';
 
 // Fetch Function
 const URL = `http://127.0.0.1:8080/api`;
+
 async function fetchData(endpoint) {
   try {
     const response = await axios.get(URL + endpoint);
@@ -38,7 +39,7 @@ const App = () => (
         />
         <Route
           path='/edit-warehouse/:id'
-          element={<EditWarehouse baseURL={URL}/>}
+          element={<EditWarehouse baseURL={URL} />}
         />
         <Route
           path='/inventory'
