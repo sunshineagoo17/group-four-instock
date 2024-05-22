@@ -1,11 +1,12 @@
+import axios from 'axios';
 import InventoryListRow from '../InventoryListRow/InventoryListRow';
+import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import './InventoryList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
-import { Link } from 'react-router-dom';
 
-const InventoryList = ({ fetchFn }) => {
+const InventoryList = ({ fetchFn, baseURL }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const params = new URLSearchParams(location.search);
@@ -14,6 +15,8 @@ const InventoryList = ({ fetchFn }) => {
   const [sortBy, setSortBy] = useState('item_name');
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState(null);
 
   // Fetching Data from API whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
@@ -55,6 +58,28 @@ const InventoryList = ({ fetchFn }) => {
     }
   };
 
+  const handleDeleteClick = (inventory) => {
+    setSelectedInventory(inventory);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedInventory(null);
+  };
+
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`${baseURL}/inventories/${selectedInventory.id}`);
+      setInventoryList(
+        inventoryList.filter((item) => item.id !== selectedInventory.id)
+      );
+      handleCloseModal();
+    } catch (error) {
+      console.error(`Error deleting inventory item: ${error.message}`);
+    }
+  };
+
   return (
     <div className='inventory-list'>
       <div className='inventory-list-header list-padding-side'>
@@ -69,7 +94,8 @@ const InventoryList = ({ fetchFn }) => {
         />
         <Link
           className='inventory-list-header__add-btn btn txt-section'
-          to={'add-inventory'}>
+          to={'/add-inventory'}
+        >
           <button className='inventory-list-header__add-btn btn txt-section'>
             + Add New Item
           </button>
@@ -127,8 +153,19 @@ const InventoryList = ({ fetchFn }) => {
         </div>
       </div>
       {inventoryList.map((item, index) => (
-        <InventoryListRow inventory={item} key={index} index={index} />
+        <InventoryListRow
+          inventory={item}
+          key={index}
+          index={index}
+          onDeleteClick={handleDeleteClick}
+        />
       ))}
+      <InventoryDeleteModal
+        show={showModal}
+        onClose={handleCloseModal}
+        onDelete={handleDeleteConfirm}
+        itemName={selectedInventory ? selectedInventory.item_name : ''}
+      />
     </div>
   );
 };

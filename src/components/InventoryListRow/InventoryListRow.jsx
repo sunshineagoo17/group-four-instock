@@ -4,7 +4,7 @@ import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
 import { Link } from 'react-router-dom';
 
-const InventoryListRow = ({ inventory, index }) => {
+const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
   return (
     <>
       {/* conditional rendering based on index of map */}
@@ -29,14 +29,14 @@ const InventoryListRow = ({ inventory, index }) => {
           <div className='item__cell_header txt-slate txt-table txt-bold'>
             STATUS
           </div>
-          {/* conditionally add class (instock || outstock) */}
           <div className='item__cell_desc'>
             <button
               className={`txt-table txt-bold item__cell_desc--btn ${
                 inventory.status.toLowerCase() === 'in stock'
                   ? 'instock'
                   : 'outstock'
-              }`}>
+              }`}
+            >
               {inventory.status}
             </button>
           </div>
@@ -70,8 +70,13 @@ const InventoryListRow = ({ inventory, index }) => {
             className='item__cell_btn'
             src={deleteIcon}
             alt='delete button'
+            onClick={() => onDeleteClick(inventory)}
           />
-          <img className='item__cell_btn' src={editIcon} alt='edit button' />
+          <img
+            className='item__cell_btn'
+            src={editIcon}
+            alt='edit button'
+          />
         </div>
       </div>
     </>
