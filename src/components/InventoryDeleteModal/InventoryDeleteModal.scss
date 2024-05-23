@@ -80,13 +80,12 @@
 
   &__txt {
     @extend .txt-l;
-    @include padding(right, sizeIncrement(0.5));
     color: $pri-black;
     margin-bottom: sizeIncrement(4);
     margin-top: sizeIncrement(4);
 
     @include for-tablet {
-      @include padding(right, sizeIncrement(16));
+      @include padding(right, sizeIncrement(19.75));
       margin-top: sizeIncrement(3.5);
       margin-bottom: 0;
     }
