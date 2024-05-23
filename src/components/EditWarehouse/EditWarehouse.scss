@@ -96,6 +96,10 @@
       height: $input-height-tablet;
       width: fit-content;
     }
+
+    &::placeholder {
+      color: $sec-slate;
+    }
   }
 
   &__invalid-input {

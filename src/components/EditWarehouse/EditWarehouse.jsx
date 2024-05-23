@@ -190,6 +190,7 @@ const EditWarehouse = ({ baseURL }) => {
                 <input
                   className='editForm__input'
                   name='warehouse_name'
+                  placeholder='Warehouse Name'
                   type='text'
                   value={warehouseDetails.warehouse_name}
                   onChange={handleInputChange}
@@ -205,6 +206,7 @@ const EditWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='address'
                   type='text'
+                  placeholder='Street Address'
                   value={warehouseDetails.address}
                   onChange={handleInputChange}
                 />
@@ -219,6 +221,7 @@ const EditWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='city'
                   type='text'
+                  placeholder='City'
                   value={warehouseDetails.city}
                   onChange={handleInputChange}
                 />
@@ -233,6 +236,7 @@ const EditWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='country'
                   type='text'
+                  placeholder='Country'
                   value={warehouseDetails.country}
                   onChange={handleInputChange}
                 />
@@ -252,6 +256,7 @@ const EditWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='contact_name'
                   type='text'
+                  placeholder='Contact Name'
                   value={warehouseDetails.contact_name}
                   onChange={handleInputChange}
                 />
@@ -266,6 +271,7 @@ const EditWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='contact_position'
                   type='text'
+                  placeholder='Position'
                   value={warehouseDetails.contact_position}
                   onChange={handleInputChange}
                 />
@@ -282,6 +288,7 @@ const EditWarehouse = ({ baseURL }) => {
                   }`}
                   name='contact_phone'
                   type='tel'
+                  placeholder='Phone Number'
                   value={warehouseDetails.contact_phone}
                   onChange={handleInputChange}
                 />
@@ -298,6 +305,7 @@ const EditWarehouse = ({ baseURL }) => {
                   }`}
                   name='contact_email'
                   type='email'
+                  placeholder='Email'
                   value={warehouseDetails.contact_email}
                   onChange={handleInputChange}
                 />
