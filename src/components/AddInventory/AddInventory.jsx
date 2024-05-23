@@ -33,6 +33,7 @@ function AddInventory({ baseURL }) {
 
   const clearError = (field) => {
     setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
+    setAlert({ message: '', type: '' });
   };
 
   const handleInputChange = (setter, field) => (event) => {
@@ -66,6 +67,7 @@ function AddInventory({ baseURL }) {
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setAlert({ message: 'Please correct the errors in the form. 💁‍♂️', type: 'error' });
       return;
     }
 
@@ -118,56 +120,43 @@ function AddInventory({ baseURL }) {
         <div className='inventory-add-form__container'>
           <div className='inventory-add-form__one inventory-add-form'>
             <h2 className='inventory-add-title'>Item Details</h2>
-            {errors.itemName && (
-              <span className='error'>{errors.itemName}</span>
-            )}
-            <br />
-            <label className='inventory-add-label'>Item Name</label>
-            <br />
-            <input
-              className={`inventory-add-input ${
-                errors.itemName ? 'input-error' : ''
-              }`}
-              type='text'
-              onChange={handleInputChange(setItemName, 'itemName')}
-              value={itemName}
-              placeholder='Item Name'
-            />
-            <br />
-            {errors.description && (
-              <span className='error'>{errors.description}</span>
-            )}
-            <br />
-            <label className='inventory-add-label'>Description</label>
-            <br />
-            <textarea
-              className={`inventory-add-textarea ${
-                errors.description ? 'input-error' : ''
-              }`}
-              onChange={handleInputChange(setDescription, 'description')}
-              value={description}
-              placeholder='Please enter a brief item description...'></textarea>
-            {errors.category && (
-              <span className='error'>{errors.category}</span>
-            )}
-            <br />
-            <label className='inventory-add-label'>Category</label>
-            <br />
-            <select
-              className={`inventory-add-select ${
-                errors.category ? 'input-error' : ''
-              } inventory-add-input custom-select-arrow`}
-              onChange={handleInputChange(setCategory, 'category')}
-              value={category}>
-              <option value='' disabled>
-                Please select
-              </option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.name}>
-                  {cat.name}
+            <div className='editForm__inputLabelWrapper'>
+              <label className='inventory-add-label'>Item Name</label>
+              <input
+                className={`inventory-add-input ${errors.itemName ? 'input-error' : ''}`}
+                type='text'
+                onChange={handleInputChange(setItemName, 'itemName')}
+                value={itemName}
+                placeholder='Item Name'
+              />
+              {errors.itemName && <span className='error-text'>{errors.itemName}</span>}
+            </div>
+            <div className='editForm__inputLabelWrapper'>
+              <label className='inventory-add-label'>Description</label>
+              <textarea
+                className={`inventory-add-textarea ${errors.description ? 'input-error' : ''}`}
+                onChange={handleInputChange(setDescription, 'description')}
+                value={description}
+                placeholder='Please enter a brief item description...'></textarea>
+              {errors.description && <span className='error-text'>{errors.description}</span>}
+            </div>
+            <div className='editForm__inputLabelWrapper'>
+              <label className='inventory-add-label'>Category</label>
+              <select
+                className={`inventory-add-select ${errors.category ? 'input-error' : ''} inventory-add-input custom-select-arrow`}
+                onChange={handleInputChange(setCategory, 'category')}
+                value={category}>
+                <option value='' disabled>
+                  Please select
                 </option>
-              ))}
-            </select>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+              {errors.category && <span className='error-text'>{errors.category}</span>}
+            </div>
           </div>
 
           <div className='inventory-add-form__two inventory-add-form'>
@@ -175,9 +164,7 @@ function AddInventory({ baseURL }) {
             <div className='status-inventory-add__title'>Status</div>
             <div className='status-inventory-add'>
               <label
-                className={`inventory-oval-container ${
-                  errors.status ? 'input-error' : ''
-                } ${status === 'In Stock' ? 'selected' : ''}`}>
+                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'In Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -189,9 +176,7 @@ function AddInventory({ baseURL }) {
                 <div className='inventory-add-status'>In stock</div>
               </label>
               <label
-                className={`inventory-oval-container ${
-                  errors.status ? 'input-error' : ''
-                } ${status === 'Out of Stock' ? 'selected' : ''}`}>
+                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'Out of Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -204,45 +189,35 @@ function AddInventory({ baseURL }) {
               </label>
             </div>
             {status === 'In Stock' && (
-              <>
-                {errors.quantity && (
-                  <span className='error'>{errors.quantity}</span>
-                )}
-                <br />
+              <div className='editForm__inputLabelWrapper'>
                 <label className='inventory-add-label'>Quantity</label>
-                <br />
                 <input
-                  className={`inventory-add-input ${
-                    errors.quantity ? 'input-error' : ''
-                  }`}
+                  className={`inventory-add-input ${errors.quantity ? 'input-error' : ''}`}
                   type='number'
                   onChange={handleInputChange(setQuantity, 'quantity')}
                   value={quantity}
                   placeholder='0'
                 />
-              </>
+                {errors.quantity && <span className='error-text'>{errors.quantity}</span>}
+              </div>
             )}
-            <br />
-            {errors.warehouse && (
-              <span className='error'>{errors.warehouse}</span>
-            )}
-            <br />
-            <label className='inventory-add-label'>Warehouse</label>
-            <select
-              className={`inventory-add-select ${
-                errors.warehouse ? 'input-error' : ''
-              } inventory-add-input custom-select-arrow`}
-              onChange={handleInputChange(setWarehouse, 'warehouse')}
-              value={warehouse}>
-              <option value='' disabled>
-                Please select
-              </option>
-              {warehouses.map((wh) => (
-                <option key={wh.id} value={wh.id}>
-                  {wh.warehouse_name}
+            <div className='editForm__inputLabelWrapper'>
+              <label className='inventory-add-label'>Warehouse</label>
+              <select
+                className={`inventory-add-select ${errors.warehouse ? 'input-error' : ''} inventory-add-input custom-select-arrow`}
+                onChange={handleInputChange(setWarehouse, 'warehouse')}
+                value={warehouse}>
+                <option value='' disabled>
+                  Please select
                 </option>
-              ))}
-            </select>
+                {warehouses.map((wh) => (
+                  <option key={wh.id} value={wh.id}>
+                    {wh.warehouse_name}
+                  </option>
+                ))}
+              </select>
+              {errors.warehouse && <span className='error-text'>{errors.warehouse}</span>}
+            </div>
           </div>
         </div>
         <div className='inventory-add-button__container'>

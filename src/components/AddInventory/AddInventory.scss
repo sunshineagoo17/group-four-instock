@@ -76,11 +76,7 @@
     @include for-tablet {
       border-top: none;
       border-left: 1px solid $sec-cloud;
-    }
-    @include for-desktop {
-      :nth-last-child(5) {
-        width: 122px;
-      }
+
     }
   }
 
@@ -132,7 +128,8 @@
 .inventory-add-textarea {
   width: 100%;
   height: 120px;
-  margin-bottom: 15px;
+  margin-bottom: -.5rem;
+  padding-bottom: 0;
   border-radius: 20px;
   border: 1px solid $sec-cloud;
   padding-left: 10px;
@@ -140,11 +137,7 @@
   font-family: $defaultFont;
   resize: none;
   @include for-tablet {
-    margin-bottom: 30px;
     margin-top: 5px;
-  }
-  @include for-desktop {
-    margin-bottom: 10px;
   }
 
   &:focus {
@@ -238,12 +231,20 @@
   background-position: calc(100% - 10px) center;
 }
 
-.error {
+.error-text,
+.error-text-description {
   color: $sec-red;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+.error-text-description {
+  margin-top: -8rem; 
 }
 
 .input-error {
   border: 1px solid $sec-red; 
+  background-color: rgba($sec-red, 0.05);
 }
 
 .inventory-add-button__container {
