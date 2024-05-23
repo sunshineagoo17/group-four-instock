@@ -52,6 +52,7 @@ $input-radius: 20px;
   width: 100%;
   border-radius: $input-radius;
   outline: none;
+  border: 1px solid $sec-cloud;
   @include mixins.padding(side, mixins.sizeIncrement(4));
 
   @include mediaquery.for-tablet {
