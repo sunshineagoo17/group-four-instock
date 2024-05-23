@@ -88,9 +88,13 @@
     border: solid $sec-cloud;
     margin-top: 4px;
 
-    @mixin for-tablet {
+    @include for-tablet {
       height: $input-height-tablet;
       width: fit-content;
+    }
+
+    &::placeholder {
+      color: $sec-slate;
     }
   }
 
@@ -115,6 +119,7 @@
   &--cancel {
     background-color: $pri-white;
     border: solid 1px $sec-cloud;
+    font-family: $defaultFont;
     color: $sec-slate;
     width: 50%;
     margin-right: 16px;
@@ -127,13 +132,14 @@
 
   &--save {
     color: $pri-white;
+    font-family: $defaultFont;
     border: solid 1px $pri-indigo;
     background-color: $pri-indigo;
     width: 50%;
     cursor: pointer;
 
     @include for-tablet {
-      width: 3.8rem;
+      width: toRem(138);
     }
   }
 

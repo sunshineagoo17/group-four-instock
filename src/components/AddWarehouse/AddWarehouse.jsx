@@ -16,7 +16,7 @@ const AddWarehouse = ({ baseURL }) => {
     contact_name: '',
     contact_position: '',
     contact_phone: '',
-    contact_email: ''
+    contact_email: '',
   });
 
   const [emailError, setEmailError] = useState('');
@@ -25,7 +25,8 @@ const AddWarehouse = ({ baseURL }) => {
   const [submit, setSubmit] = useState('');
 
   // Regex functions for validation
-  const phoneRegex = /^\+?(\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?(\d{3})[\s-]?(\d{4})$/;
+  const phoneRegex =
+    /^\+?(\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?(\d{3})[\s-]?(\d{4})$/;
   const emailRegex = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   // Function to reset only the invalid phone number field
@@ -164,6 +165,7 @@ const AddWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='warehouse_name'
                   type='text'
+                  placeholder='Warehouse Name'
                   value={formData.warehouse_name}
                   onChange={handleInputChange}
                 />
@@ -178,6 +180,7 @@ const AddWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='address'
                   type='text'
+                  placeholder='Street Address'
                   value={formData.address}
                   onChange={handleInputChange}
                 />
@@ -192,6 +195,7 @@ const AddWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='city'
                   type='text'
+                  placeholder='City'
                   value={formData.city}
                   onChange={handleInputChange}
                 />
@@ -206,6 +210,7 @@ const AddWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='country'
                   type='text'
+                  placeholder='Country'
                   value={formData.country}
                   onChange={handleInputChange}
                 />
@@ -225,6 +230,7 @@ const AddWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='contact_name'
                   type='text'
+                  placeholder='Contact Name'
                   value={formData.contact_name}
                   onChange={handleInputChange}
                 />
@@ -239,6 +245,7 @@ const AddWarehouse = ({ baseURL }) => {
                   className='editForm__input'
                   name='contact_position'
                   type='text'
+                  placeholder='Position'
                   value={formData.contact_position}
                   onChange={handleInputChange}
                 />
@@ -255,6 +262,7 @@ const AddWarehouse = ({ baseURL }) => {
                   }`}
                   name='contact_phone'
                   type='tel'
+                  placeholder='Phone Number'
                   value={formData.contact_phone}
                   onChange={handleInputChange}
                 />
@@ -271,6 +279,7 @@ const AddWarehouse = ({ baseURL }) => {
                   }`}
                   name='contact_email'
                   type='email'
+                  placeholder='Email'
                   value={formData.contact_email}
                   onChange={handleInputChange}
                 />
@@ -280,14 +289,16 @@ const AddWarehouse = ({ baseURL }) => {
         </div>
       </div>
       <div className='editForm__buttonContainer'>
-        <button className='btn btn--cancel' onClick={() => navigate('/warehouse')}>
+        <button
+          className='btn btn--cancel txt-bold'
+          onClick={() => navigate('/warehouse')}>
           Cancel
         </button>
         <button
-          className='btn btn--save'
+          className='btn btn--save txt-bold'
           type='submit'
           form='addWarehouseForm'>
-          Save
+          + Add Warehouse
         </button>
       </div>
       {submit === 'true' && (
