@@ -88,7 +88,7 @@
     border: solid $sec-cloud;
     margin-top: 4px;
 
-    @include for-tablet {
+    @mixin for-tablet {
       height: $input-height-tablet;
       width: fit-content;
     }
