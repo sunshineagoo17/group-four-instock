@@ -67,7 +67,7 @@ function AddInventory({ baseURL }) {
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setAlert({ message: 'Please correct the errors in the form. 💁‍♂️', type: 'error' });
+      setAlert({ message: 'Please correct the errors in the form. 😔', type: 'error' });
       return;
     }
 
