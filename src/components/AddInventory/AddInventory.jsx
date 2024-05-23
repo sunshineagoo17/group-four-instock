@@ -29,8 +29,22 @@ function AddInventory({ baseURL }) {
       .catch((error) => console.error('Error fetching warehouses:', error));
   }, [baseURL]);
 
-  const handleInputChange = (setter) => (event) => setter(event.target.value);
-  const handleStatusChange = (event) => setStatus(event.target.value);
+  const clearError = (field) => {
+    setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
+  };
+
+  const handleInputChange = (setter, field) => (event) => {
+    setter(event.target.value);
+    clearError(field);
+  };
+
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value);
+    clearError('status');
+    if (event.target.value === 'Out of Stock') {
+      clearError('quantity');
+    }
+  };
 
   const validateFields = () => {
     const errors = {};
@@ -104,9 +118,9 @@ function AddInventory({ baseURL }) {
             <label className='inventory-add-label'>Item Name</label>
             <br />
             <input
-              className='inventory-add-input'
+              className={`inventory-add-input ${errors.itemName ? 'input-error' : ''}`}
               type='text'
-              onChange={handleInputChange(setItemName)}
+              onChange={handleInputChange(setItemName, 'itemName')}
               value={itemName}
               placeholder='Item Name'
             />
@@ -118,8 +132,8 @@ function AddInventory({ baseURL }) {
             <label className='inventory-add-label'>Description</label>
             <br />
             <textarea
-              className='inventory-add-textarea'
-              onChange={handleInputChange(setDescription)}
+              className={`inventory-add-textarea ${errors.description ? 'input-error' : ''}`}
+              onChange={handleInputChange(setDescription, 'description')}
               value={description}
               placeholder='Please enter a brief item description...'></textarea>
             {errors.category && (
@@ -129,8 +143,8 @@ function AddInventory({ baseURL }) {
             <label className='inventory-add-label'>Category</label>
             <br />
             <select
-              className='inventory-add-select inventory-add-input custom-select-arrow'
-              onChange={handleInputChange(setCategory)}
+              className={`inventory-add-select ${errors.category ? 'input-error' : ''} inventory-add-input custom-select-arrow`}
+              onChange={handleInputChange(setCategory, 'category')}
               value={category}>
               <option value='' disabled>
                 Please select
@@ -148,7 +162,7 @@ function AddInventory({ baseURL }) {
             <div className='status-inventory-add__title'>Status</div>
             <div className='status-inventory-add'>
               <label
-                className={`inventory-oval-container ${
+                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${
                   status === 'In Stock' ? 'selected' : ''
                 }`}>
                 <input
@@ -162,7 +176,7 @@ function AddInventory({ baseURL }) {
                 <div className='inventory-add-status'>In stock</div>
               </label>
               <label
-                className={`inventory-oval-container ${
+                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${
                   status === 'Out of Stock' ? 'selected' : ''
                 }`}>
                 <input
@@ -185,9 +199,9 @@ function AddInventory({ baseURL }) {
                 <label className='inventory-add-label'>Quantity</label>
                 <br />
                 <input
-                  className='inventory-add-input'
+                  className={`inventory-add-input ${errors.quantity ? 'input-error' : ''}`}
                   type='number'
-                  onChange={handleInputChange(setQuantity)}
+                  onChange={handleInputChange(setQuantity, 'quantity')}
                   value={quantity}
                   placeholder='0'
                 />
@@ -200,8 +214,8 @@ function AddInventory({ baseURL }) {
             <br />
             <label className='inventory-add-label'>Warehouse</label>
             <select
-              className='inventory-add-select inventory-add-input custom-select-arrow'
-              onChange={handleInputChange(setWarehouse)}
+              className={`inventory-add-select ${errors.warehouse ? 'input-error' : ''} inventory-add-input custom-select-arrow`}
+              onChange={handleInputChange(setWarehouse, 'warehouse')}
               value={warehouse}>
               <option value='' disabled>
                 Please select

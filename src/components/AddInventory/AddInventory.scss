@@ -186,9 +186,15 @@
 
 .inventory-oval-container {
   display: flex;
+  border-radius: 20px;
+  padding: 5px;
 
   &.selected {
     border-color: #000;
+  }
+
+  &.input-error {
+    border: 2px solid $sec-red;
   }
 
   @include for-desktop {
@@ -234,6 +240,10 @@
 
 .error {
   color: $sec-red;
+}
+
+.input-error {
+  border: 1px solid $sec-red; 
 }
 
 .inventory-add-button__container {
