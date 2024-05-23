@@ -24,9 +24,10 @@ const EditWarehouse = ({ baseURL }) => {
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ message: '', type: '' });
 
-  // Updated phone regex for validation
+  // Updated regex for validation
   const phoneRegex = /^(\+?\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?\d{3}[\s-]?\d{4}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const nameRegex = /^[a-zA-Z.\s-]*$/; // Regex for contact name validation
 
   // Fetch warehouse details on component mount
   useEffect(() => {
@@ -66,6 +67,15 @@ const EditWarehouse = ({ baseURL }) => {
         [name]: cleanedValue,
       }));
       setErrors((prevErrors) => ({ ...prevErrors, contact_phone: '' }));
+    } else if (name === 'contact_name') {
+      // Validate contact name input
+      if (nameRegex.test(value)) {
+        setWarehouseDetails((prevDetails) => ({
+          ...prevDetails,
+          [name]: value,
+        }));
+        setErrors((prevErrors) => ({ ...prevErrors, contact_name: '' }));
+      }
     } else {
       setWarehouseDetails((prevDetails) => ({
         ...prevDetails,
@@ -111,7 +121,7 @@ const EditWarehouse = ({ baseURL }) => {
     if (!address) newErrors.address = 'Address is required';
     if (!city) newErrors.city = 'City is required';
     if (!country) newErrors.country = 'Country is required';
-    if (!contact_name) newErrors.contact_name = 'Contact name is required';
+    if (!contact_name) newErrors.contact_name = 'Contact name is required and must only contain letters, ".", and "-"';
     if (!contact_position) newErrors.contact_position = 'Contact position is required';
     if (!phoneRegex.test(contact_phone) || warehouseDetails.contact_phone.replace(/\D/g, '').length < 11) newErrors.contact_phone = 'The phone number entered is incorrect';
     if (!emailRegex.test(contact_email)) newErrors.contact_email = 'The email you entered is incorrect';

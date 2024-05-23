@@ -23,22 +23,32 @@ const AddWarehouse = ({ baseURL }) => {
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ message: '', type: '' });
 
-  // Updated email regex function for validation
+  // Regex functions for validation
   const phoneRegex = /^(\+?\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?\d{3}[\s-]?\d{4}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const nameRegex = /^[a-zA-Z.\s-]*$/; 
 
   // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Validate phone number input
     if (name === 'contact_phone') {
+      // Validate phone number input
       const cleanedValue = value.replace(/[^\d\s-()+]/g, '');
       setFormData((prevDetails) => ({
         ...prevDetails,
         [name]: cleanedValue,
       }));
       setErrors((prevErrors) => ({ ...prevErrors, contact_phone: '' }));
+    } else if (name === 'contact_name') {
+      // Validate contact name input
+      if (nameRegex.test(value)) {
+        setFormData((prevDetails) => ({
+          ...prevDetails,
+          [name]: value,
+        }));
+        setErrors((prevErrors) => ({ ...prevErrors, contact_name: '' }));
+      }
     } else {
       setFormData((prevDetails) => ({
         ...prevDetails,
@@ -92,7 +102,7 @@ const AddWarehouse = ({ baseURL }) => {
     if (!address) newErrors.address = 'Address is required';
     if (!city) newErrors.city = 'City is required';
     if (!country) newErrors.country = 'Country is required';
-    if (!contact_name) newErrors.contact_name = 'Contact name is required';
+    if (!contact_name) newErrors.contact_name = 'Contact name is required and must only contain letters, ".", and "-"';
     if (!contact_position) newErrors.contact_position = 'Contact position is required';
     if (!phoneRegex.test(contact_phone) || formData.contact_phone.replace(/\D/g, '').length < 11) newErrors.contact_phone = 'The phone number entered is incorrect';
     if (!emailRegex.test(contact_email)) newErrors.contact_email = 'The email you entered is incorrect';
