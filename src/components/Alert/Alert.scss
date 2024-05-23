@@ -1,0 +1,35 @@
+@use '../../styles/partials/index' as *;
+
+.alert {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  font-family: $defaultFont;
+  font-size: 1rem;
+
+  &-success {
+    background-color: $sec-green;
+    color: $pri-white;
+    border: 1px solid darken($sec-green, 10%);
+  }
+
+  &-error {
+    background-color: $sec-red;
+    color: $pri-white;
+    border: 1px solid darken($sec-red, 10%);
+  }
+
+  &-info {
+    background-color: $sec-cloud;
+    color: $pri-black;
+    border: 1px solid darken($sec-cloud, 10%);
+  }
+
+  &-warning {
+    background-color: $pri-indigo;
+    color: $pri-white;
+    border: 1px solid darken($pri-indigo, 10%);
+  }
+}
