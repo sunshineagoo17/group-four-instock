@@ -26,7 +26,7 @@ function Header() {
         </Link>
         <ul className='main-nav-container'>
           <NavLink
-            to='/'
+            to='/warehouse'
             className={`main-nav-container__link btn ${
               isActiveLink('/') ? 'active' : ''
             }`}>
