@@ -118,7 +118,6 @@
   margin-top: 5px;
   padding-left: 10px;
   font-family: $defaultFont;
-  // cursor: pointer;
   @include for-tablet {
     margin-bottom: 0px;
     margin-top: 5px;
@@ -136,7 +135,6 @@
   padding-top: 10px;
   font-family: $defaultFont;
   resize: none;
-  // cursor: pointer;
   @include for-tablet {
     margin-bottom: 30px;
     margin-top: 5px;
