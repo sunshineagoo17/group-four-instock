@@ -15,7 +15,7 @@
   font-size: 32px;
   border-bottom: 1px solid $sec-cloud;
   gap: sizeIncrement(4);
-  @include padding(bottom, sizeIncrement(6));
+  @include padding(bottom, sizeIncrement(5.5));
 
   img {
     position: absolute;
