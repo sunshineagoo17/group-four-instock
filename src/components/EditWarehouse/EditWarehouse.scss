@@ -88,6 +88,10 @@
     border: solid $sec-cloud;
     margin-top: 4px;
 
+    &:focus {
+      border: 2px solid $pri-indigo; 
+    }
+
     @mixin for-tablet {
       height: $input-height-tablet;
       width: fit-content;

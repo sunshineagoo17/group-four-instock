@@ -123,6 +123,10 @@
     margin-top: 5px;
     height: 38px;
   }
+
+  &:focus {
+    border: 2px solid $pri-indigo; 
+  }
 }
 
 .inventory-add-textarea {
@@ -141,6 +145,10 @@
   }
   @include for-desktop {
     margin-bottom: 10px;
+  }
+
+  &:focus {
+    border: 2px solid $pri-indigo;
   }
 }
 
@@ -211,6 +219,10 @@
   appearance: none;
   cursor: pointer;
   @include for-tablet {
+  }
+
+  &:focus {
+    border: 2px solid $pri-indigo;
   }
 }
 
