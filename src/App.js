@@ -60,7 +60,7 @@ const App = () => (
           element={<AddInventory baseURL={URL} />}
         />
         <Route
-          path='/inventory/edit/:inventoryId'
+          path='/inventory/edit-inventory/:inventoryId'
           element={<EditInventory baseURL={URL} />}
         />
       </Routes>

@@ -91,11 +91,13 @@ const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
             alt='delete button'
             onClick={() => handleDeleteClick(inventory)}
           />
-          <img
-            className='warehouseInventory__cell_btn'
-            src={editIcon}
-            alt='edit button'
-          />
+          <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
+            <img
+              className='warehouseInventory__cell_btn'
+              src={editIcon}
+              alt='edit button'
+            />
+          </Link>
         </div>
       </div>
       {selectedInventory && (

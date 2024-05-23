@@ -71,7 +71,9 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
             alt='delete button'
             onClick={() => onDeleteClick(inventory)}
           />
-          <img className='item__cell_btn' src={editIcon} alt='edit button' />
+          <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
+            <img className='item__cell_btn' src={editIcon} alt='edit button' />
+          </Link>
         </div>
       </div>
     </>
