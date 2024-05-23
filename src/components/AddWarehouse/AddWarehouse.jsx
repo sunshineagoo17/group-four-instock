@@ -307,7 +307,7 @@ const AddWarehouse = ({ baseURL }) => {
       </div>
       <div className='editForm__buttonContainer'>
         <button
-          className='btn btn--cancel txt-bold'
+          className='btn--cancel txt-bold'
           aria-label='Cancel'
           onClick={() => navigate('/warehouse')}>
           Cancel

@@ -319,7 +319,7 @@ const EditWarehouse = ({ baseURL }) => {
         </div>
       </div>
       <div className='editForm__buttonContainer'>
-        <button className='btn txt-bold btn--cancel' aria-label='Cancel' onClick={formCancellation}>
+        <button className='txt-bold btn--cancel' aria-label='Cancel' onClick={formCancellation}>
           Cancel
         </button>
         <button
