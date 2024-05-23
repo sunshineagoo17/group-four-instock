@@ -84,7 +84,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
   };
 
   return (
-    <div className='inventory-list'>
+    <div className='inventory-list box-shadow'>
       <div className='inventory-list-header list-padding-side'>
         <h1 className='inventory-list-header__title txt-header txt-black'>
           Inventory
