@@ -38,7 +38,7 @@ const App = () => (
           element={<WarehouseInventoryList fetchFn={fetchData} baseURL={URL} />}
         />
         <Route
-          path='/edit-warehouse/:id'
+          path='/warehouse/edit-warehouse/:id'
           element={<EditWarehouse baseURL={URL} />}
         />
         <Route
