@@ -53,7 +53,7 @@ const WarehouseInventoryList = ({ baseURL }) => {
           </Link>
           {warehouseDetails.warehouse_name}
         </div>
-        <Link to={`/edit-warehouse/${warehouseId}`} className='edit-btn'>
+        <Link to={`/warehouse/edit-warehouse/${warehouseId}`} className='edit-btn'>
           <img className='edit-icon' src={editIcon} alt='edit warehouse' />
           <p className='edit-text txt-btn txt-bold'>Edit</p>
         </Link>

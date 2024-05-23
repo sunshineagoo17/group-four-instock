@@ -59,7 +59,7 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
             alt='delete button'
             onClick={() => onDeleteClick(warehouse)}
           />
-          <Link to={`/edit-warehouse/${warehouse.id}`}>
+          <Link to={`/warehouse/edit-warehouse/${warehouse.id}`}>
             <img
               className='warehouse__cell_btn'
               src={editIcon}
