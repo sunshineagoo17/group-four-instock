@@ -118,7 +118,7 @@
   margin-top: 5px;
   padding-left: 10px;
   font-family: $defaultFont;
-  cursor: pointer;
+  // cursor: pointer;
   @include for-tablet {
     margin-bottom: 0px;
     margin-top: 5px;
@@ -136,7 +136,7 @@
   padding-top: 10px;
   font-family: $defaultFont;
   resize: none;
-  cursor: pointer;
+  // cursor: pointer;
   @include for-tablet {
     margin-bottom: 30px;
     margin-top: 5px;
@@ -194,6 +194,10 @@
   }
 }
 
+.inventory-oval-input {
+  cursor: pointer;
+}
+
 .oval {
   width: 16px;
   height: 16px;
@@ -207,6 +211,7 @@
   font-family: $defaultFont;
   color: $sec-slate;
   appearance: none;
+  cursor: pointer;
   @include for-tablet {
   }
 }
