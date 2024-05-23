@@ -2,7 +2,8 @@ import './EditWarehouse.scss';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Alert from '../Alert/Alert';
 
 const EditWarehouse = ({ baseURL }) => {
   const { id } = useParams();
@@ -20,17 +21,12 @@ const EditWarehouse = ({ baseURL }) => {
     contact_email: '',
   });
 
-  const [originalDetails, setOriginalDetails] = useState({});
-  // Error States
-  const [emailError, setEmailError] = useState('');
-  const [phoneError, setPhoneError] = useState('');
-  const [emptyError, setEmptyError] = useState('');
-  const [submit, setSubmit] = useState('');
+  const [errors, setErrors] = useState({});
+  const [alert, setAlert] = useState({ message: '', type: '' });
 
-  // Regex functions for validation
-  const phoneRegex =
-    /^\+?(\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?(\d{3})[\s-]?(\d{4})$/;
-  const emailRegex = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
+  // Updated phone regex for validation
+  const phoneRegex = /^(\+?\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?\d{3}[\s-]?\d{4}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   // Fetch warehouse details on component mount
   useEffect(() => {
@@ -38,7 +34,6 @@ const EditWarehouse = ({ baseURL }) => {
       try {
         const response = await axios.get(`${baseURL}/warehouses/${id}`);
         setWarehouseDetails(response.data);
-        setOriginalDetails(response.data);
       } catch (error) {
         console.error('Error fetching warehouse details:', error);
       }
@@ -46,54 +41,55 @@ const EditWarehouse = ({ baseURL }) => {
     fetchWarehouseDetails();
   }, [id, baseURL]);
 
-  // Function to reset only the invalid phone number field
-  const resetPhoneNumberField = () => {
-    setWarehouseDetails((prevDetails) => ({
-      ...prevDetails,
-      contact_phone: '',
-    }));
-  };
-
-  // Function to reset only the invalid email field
-  const resetEmailField = () => {
-    setWarehouseDetails((prevDetails) => ({
-      ...prevDetails,
-      contact_email: '',
-    }));
-  };
-
-  // Form reset following the clicking of the cancellation button or the 'OK' button for errors.
-  const formCancellation = () => {
-    setEmailError('');
-    setPhoneError('');
-    setEmptyError('');
-    setSubmit('');
-    setWarehouseDetails(originalDetails);
-  };
-
-  // Handle input change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setWarehouseDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
-  };
-
   // Function to format the phone number
   const formatPhoneNumber = (number) => {
     const cleaned = ('' + number).replace(/\D/g, '');
-    const match = cleaned.match(/^(\d{1,4})(\d{3})(\d{3})(\d{4})$/);
+    if (cleaned.length < 11) {
+      return number;
+    }
+    const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
     if (match) {
       return `+${match[1]} (${match[2]}) ${match[3]}-${match[4]}`;
     }
     return number;
   };
 
+  // Handle input change
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // Validate phone number input
+    if (name === 'contact_phone') {
+      const cleanedValue = value.replace(/[^\d\s-()+]/g, '');
+      setWarehouseDetails((prevDetails) => ({
+        ...prevDetails,
+        [name]: cleanedValue,
+      }));
+      setErrors((prevErrors) => ({ ...prevErrors, contact_phone: '' }));
+    } else {
+      setWarehouseDetails((prevDetails) => ({
+        ...prevDetails,
+        [name]: value,
+      }));
+      if (name === 'contact_email') setErrors((prevErrors) => ({ ...prevErrors, contact_email: '' }));
+      if (name !== 'contact_phone' && name !== 'contact_email') {
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
+      }
+    }
+
+    setAlert({ message: '', type: '' }); // Clear alert when user starts typing
+  };
+
+  // Form reset following the clicking of the cancellation button or the 'OK' button for errors.
+  const formCancellation = () => {
+    navigate('/warehouse');
+  };
+
   // Function used upon submission of form
   const formSubmit = (event) => {
     event.preventDefault();
-    setSubmit(''); // Clear the submit state on new form submission
+    setAlert({ message: '', type: '' });
+
     const {
       warehouse_name,
       address,
@@ -106,35 +102,23 @@ const EditWarehouse = ({ baseURL }) => {
     } = warehouseDetails;
 
     // Reset error states
-    setEmptyError('');
-    setPhoneError('');
-    setEmailError('');
+    setErrors({});
 
     // Form validation
     let hasError = false;
-    if (
-      [
-        warehouse_name,
-        address,
-        city,
-        country,
-        contact_name,
-        contact_position,
-        contact_phone,
-        contact_email,
-      ].some((field) => !field)
-    ) {
-      setEmptyError('One or more fields are empty.');
-      hasError = true;
-    }
-    if (!phoneRegex.test(contact_phone)) {
-      setPhoneError('The phone number entered is incorrect.');
-      resetPhoneNumberField();
-      hasError = true;
-    }
-    if (!emailRegex.test(contact_email)) {
-      setEmailError('The email you entered is incorrect.');
-      resetEmailField();
+    const newErrors = {};
+    if (!warehouse_name) newErrors.warehouse_name = 'Warehouse name is required';
+    if (!address) newErrors.address = 'Address is required';
+    if (!city) newErrors.city = 'City is required';
+    if (!country) newErrors.country = 'Country is required';
+    if (!contact_name) newErrors.contact_name = 'Contact name is required';
+    if (!contact_position) newErrors.contact_position = 'Contact position is required';
+    if (!phoneRegex.test(contact_phone) || warehouseDetails.contact_phone.replace(/\D/g, '').length < 11) newErrors.contact_phone = 'The phone number entered is incorrect';
+    if (!emailRegex.test(contact_email)) newErrors.contact_email = 'The email you entered is incorrect';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setAlert({ message: 'Please correct the errors in the form. 💁‍♂️', type: 'error' });
       hasError = true;
     }
 
@@ -148,11 +132,16 @@ const EditWarehouse = ({ baseURL }) => {
         .put(`${baseURL}/warehouses/${id}`, updatedDetails)
         .then((data) => {
           console.log(data);
-          setSubmit('true');
+          setAlert({ message: 'Warehouse updated successfully. 🎉🥂', type: 'success' });
+          setTimeout(() => {
+            if (!alert.message) {
+              navigate('/warehouse');
+            }
+          }, 3000);
         })
         .catch((error) => {
           console.log(error);
-          setSubmit('false');
+          setAlert({ message: 'Failed to update warehouse. 🤦', type: 'error' });
         });
     }
   };
@@ -173,6 +162,7 @@ const EditWarehouse = ({ baseURL }) => {
       <div className='divider'></div>
       <div className='formWrapper'>
         <div className='form-padding-side form-padding-topbottom'>
+          {alert.message && <Alert message={alert.message} type={alert.type} />}
           <form
             className='editForm'
             id='editWarehouseInfo'
@@ -188,13 +178,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Warehouse Name
                 </label>
                 <input
-                  className='editForm__input'
+                  className={`editForm__input ${errors.warehouse_name ? 'editForm__invalid-input' : ''}`}
                   name='warehouse_name'
                   placeholder='Warehouse Name'
                   type='text'
                   value={warehouseDetails.warehouse_name}
                   onChange={handleInputChange}
                 />
+                {errors.warehouse_name && <span className='error'>{errors.warehouse_name}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -203,13 +194,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Street Address
                 </label>
                 <input
-                  className='editForm__input'
+                  className={`editForm__input ${errors.address ? 'editForm__invalid-input' : ''}`}
                   name='address'
                   type='text'
                   placeholder='Street Address'
                   value={warehouseDetails.address}
                   onChange={handleInputChange}
                 />
+                {errors.address && <span className='error'>{errors.address}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -218,13 +210,14 @@ const EditWarehouse = ({ baseURL }) => {
                   City
                 </label>
                 <input
-                  className='editForm__input'
+                  className={`editForm__input ${errors.city ? 'editForm__invalid-input' : ''}`}
                   name='city'
                   type='text'
                   placeholder='City'
                   value={warehouseDetails.city}
                   onChange={handleInputChange}
                 />
+                {errors.city && <span className='error'>{errors.city}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -233,13 +226,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Country
                 </label>
                 <input
-                  className='editForm__input'
+                  className={`editForm__input ${errors.country ? 'editForm__invalid-input' : ''}`}
                   name='country'
                   type='text'
                   placeholder='Country'
                   value={warehouseDetails.country}
                   onChange={handleInputChange}
                 />
+                {errors.country && <span className='error'>{errors.country}</span>}
               </div>
             </div>
             <div className='form-padding-topbottom--contact form-padding-side'>
@@ -253,13 +247,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Contact Name
                 </label>
                 <input
-                  className='editForm__input'
+                  className={`editForm__input ${errors.contact_name ? 'editForm__invalid-input' : ''}`}
                   name='contact_name'
                   type='text'
                   placeholder='Contact Name'
                   value={warehouseDetails.contact_name}
                   onChange={handleInputChange}
                 />
+                {errors.contact_name && <span className='error'>{errors.contact_name}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -268,13 +263,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Position
                 </label>
                 <input
-                  className='editForm__input'
+                  className={`editForm__input ${errors.contact_position ? 'editForm__invalid-input' : ''}`}
                   name='contact_position'
                   type='text'
                   placeholder='Position'
                   value={warehouseDetails.contact_position}
                   onChange={handleInputChange}
                 />
+                {errors.contact_position && <span className='error'>{errors.contact_position}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -283,15 +279,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Phone Number
                 </label>
                 <input
-                  className={`editForm__input ${
-                    phoneError ? 'editForm__invalid-input' : ''
-                  }`}
+                  className={`editForm__input ${errors.contact_phone ? 'editForm__invalid-input' : ''}`}
                   name='contact_phone'
                   type='tel'
                   placeholder='Phone Number'
                   value={warehouseDetails.contact_phone}
                   onChange={handleInputChange}
                 />
+                {errors.contact_phone && <span className='error'>{errors.contact_phone}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -300,15 +295,14 @@ const EditWarehouse = ({ baseURL }) => {
                   Email
                 </label>
                 <input
-                  className={`editForm__input ${
-                    emailError ? 'editForm__invalid-input' : ''
-                  }`}
+                  className={`editForm__input ${errors.contact_email ? 'editForm__invalid-input' : ''}`}
                   name='contact_email'
                   type='email'
                   placeholder='Email'
                   value={warehouseDetails.contact_email}
                   onChange={handleInputChange}
                 />
+                {errors.contact_email && <span className='error'>{errors.contact_email}</span>}
               </div>
             </div>
           </form>
@@ -325,39 +319,6 @@ const EditWarehouse = ({ baseURL }) => {
           Save
         </button>
       </div>
-      {submit === 'true' && (
-        <div>
-          <div className='message'>
-            <>
-              <p className='message__text'>
-                Congratulations! You've edited the{' '}
-                {warehouseDetails.warehouse_name} warehouse.
-              </p>
-              <Link to='/'>
-                <button className='btn--confirmation'>OK</button>
-              </Link>
-            </>
-          </div>
-        </div>
-      )}
-      {submit !== 'true' && (emailError || phoneError || emptyError) && (
-        <div className='message--error'>
-          <>
-            <p className='message__text--error'>{emailError}</p>
-            <p className='message__text--error'>{phoneError}</p>
-            <p className='message__text--error'>{emptyError}</p>
-            <button
-              className='btn--confirmation'
-              onClick={() => {
-                setEmailError('');
-                setPhoneError('');
-                setEmptyError('');
-              }}>
-              OK
-            </button>
-          </>
-        </div>
-      )}
     </div>
   );
 };

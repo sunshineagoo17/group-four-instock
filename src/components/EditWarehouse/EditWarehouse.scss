@@ -158,33 +158,6 @@
   }
 }
 
-.message {
-  display: block;
-  text-align: center;
-  background-color: $bg-grey;
-  border: solid 1px $pri-indigo;
-  border-radius: 4px;
-
-  &--error {
-    @extend .message;
-    font-family: $defaultFont;
-    background-color: $bg-grey;
-    border: solid 1px $sec-red;
-    border-radius: 4px;
-    padding: 0.1rem;
-  }
-
-  &__text {
-    width: 100%;
-    font-family: $defaultFont;
-    color: $pri-indigo;
-
-    &--error {
-      color: $sec-red;
-    }
-  }
-}
-
 a {
   justify-content: center;
 }
