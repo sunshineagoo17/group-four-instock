@@ -35,8 +35,7 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
                 inventory.status.toLowerCase() === 'in stock'
                   ? 'instock'
                   : 'outstock'
-              }`}
-            >
+              }`}>
               {inventory.status}
             </button>
           </div>
@@ -72,11 +71,7 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
             alt='delete button'
             onClick={() => onDeleteClick(inventory)}
           />
-          <img
-            className='item__cell_btn'
-            src={editIcon}
-            alt='edit button'
-          />
+          <img className='item__cell_btn' src={editIcon} alt='edit button' />
         </div>
       </div>
     </>

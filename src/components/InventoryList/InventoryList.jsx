@@ -17,7 +17,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
   const [sortBy, setSortBy] = useState('item_name');
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
-  
+
   // Fetching inventory from API whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
@@ -97,8 +97,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
         />
         <Link
           className='inventory-list-header__add-btn btn txt-section'
-          to={'/inventory/add-inventory'}
-        >
+          to={'/inventory/add-inventory'}>
           <button className='inventory-list-header__add-btn btn txt-section'>
             + Add New Item
           </button>

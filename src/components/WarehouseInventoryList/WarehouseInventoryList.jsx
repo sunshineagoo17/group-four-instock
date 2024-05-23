@@ -21,7 +21,9 @@ const WarehouseInventoryList = ({ baseURL }) => {
         `${baseURL}/warehouses/${warehouseId}/inventories?sort_by=${sortBy}&order_by=${orderBy}`
       );
       setWarehouseInventoryList(response.data);
-      const detailsResponse = await axios.get(`${baseURL}/warehouses/${warehouseId}`);
+      const detailsResponse = await axios.get(
+        `${baseURL}/warehouses/${warehouseId}`
+      );
       setWarehouseDetails(detailsResponse.data);
     } catch (error) {
       console.error('Error fetching inventory or warehouse details:', error);
@@ -72,7 +74,8 @@ const WarehouseInventoryList = ({ baseURL }) => {
             CONTACT NAME:
           </div>
           <div className='warehouseDetails__cell_desc warehouseDetails__cell_desc--title txt-m txt-regular txt-black'>
-            {warehouseDetails.contact_name} <br /> {warehouseDetails.contact_position}
+            {warehouseDetails.contact_name} <br />{' '}
+            {warehouseDetails.contact_position}
           </div>
         </div>
         <div className='warehouseDetails__cell warehouseDetails__cell--half'>

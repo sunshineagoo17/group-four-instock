@@ -26,7 +26,8 @@ const InventoryDeleteModal = ({ show, onClose, onDelete, itemName }) => {
             Delete {itemName} inventory item?
           </h1>
           <p id='modal-description' className='inventory-modal__txt'>
-            Please confirm that you’d like to delete {itemName} from the inventory list. You won’t be able to undo this action.            
+            Please confirm that you’d like to delete {itemName} from the
+            inventory list. You won’t be able to undo this action.
           </p>
           <div className='inventory-modal__buttons-container'>
             <button

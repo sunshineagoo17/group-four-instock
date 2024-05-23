@@ -60,9 +60,10 @@ const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
           <div className='warehouseInventory__cell_desc'>
             <button
               className={`txt-table txt-bold warehouseInventory__cell_desc--btn ${
-                inventory.status.toLowerCase() === 'in stock' ? 'instock' : 'outstock'
-              }`}
-            >
+                inventory.status.toLowerCase() === 'in stock'
+                  ? 'instock'
+                  : 'outstock'
+              }`}>
               {inventory.status}
             </button>
           </div>
