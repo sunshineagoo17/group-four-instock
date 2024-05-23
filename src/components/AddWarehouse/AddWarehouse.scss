@@ -104,7 +104,6 @@
 
   &__invalid-input {
     border-color: $sec-red;
-    background-color: rgba($sec-red, 0.05);
   }
 
   &__buttonContainer {
@@ -147,46 +146,13 @@
     }
   }
 
-  &--confirmation {
-    margin: 0.5rem;
-    color: $pri-white;
-    border: solid 1px $pri-indigo;
-    background-color: $pri-indigo;
-    border-radius: 20px;
-    width: 3.5rem;
-    height: 1.5rem;
-    font-family: $defaultFont;
-    cursor: pointer;
+  a {
+    justify-content: center;
   }
 }
 
-.message {
-  display: block;
-  text-align: center;
-  background-color: $bg-grey;
-  border: solid 1px $pri-indigo;
-  border-radius: 4px;
-
-  &--error {
-    @extend .message;
-    font-family: $defaultFont;
-    background-color: $bg-grey;
-    border: solid 1px $sec-red;
-    border-radius: 4px;
-    padding: 0.1rem;
-  }
-
-  &__text {
-    width: 100%;
-    font-family: $defaultFont;
-    color: $pri-indigo;
-
-    &--error {
-      color: $sec-red;
-    }
-  }
-}
-
-a {
-  justify-content: center;
+.error {
+  font-size: 13px;
+  font-family: $defaultFont;
+  color: $sec-red;
 }
