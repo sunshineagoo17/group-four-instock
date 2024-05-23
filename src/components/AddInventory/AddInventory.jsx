@@ -249,11 +249,13 @@ function AddInventory({ baseURL }) {
           <button
             className='inventory-add-button inventory-add-button__one'
             type='button'
+            aria-label='Cancel'
             onClick={handleCancel}>
             Cancel
           </button>
           <button
             type='submit'
+            aria-label='Submit'
             className='inventory-add-button inventory-add-button__two'>
             + Add Item
           </button>
