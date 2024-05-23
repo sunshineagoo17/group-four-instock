@@ -2,7 +2,6 @@ import './WarehouseListRow.scss';
 import deleteIcon from '../../assets/images/delete_outline-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
-
 import { Link } from 'react-router-dom';
 
 const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {

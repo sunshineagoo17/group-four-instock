@@ -1,0 +1,182 @@
+@use '../../styles/partials/index' as *;
+
+.warehouseForm {
+  background-color: $pri-white;
+  border-radius: sizeIncrement(1);
+  flex-wrap: wrap;
+
+  &__back-btn {
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: sizeIncrement(8);
+    padding-bottom: sizeIncrement(6);
+
+    &_title {
+      display: flex;
+      align-items: center;
+      gap: sizeIncrement(1);
+    }
+  }
+}
+
+.list-padding-side {
+  @include padding(side, sizeIncrement(6));
+
+  @include for-desktop {
+    @include padding(side, sizeIncrement(10));
+  }
+}
+
+.form-padding-side {
+  @include padding(side, sizeIncrement(6));
+
+  @include for-tablet {
+    width: 100%;
+  }
+}
+
+.form-padding-topbottom {
+  @include padding(topbottom, sizeIncrement(5));
+
+  &--contact {
+    @extend .form-padding-topbottom;
+    border-top: solid 1px $sec-cloud;
+
+    @include for-tablet {
+      border-top: none;
+      border-left: solid 1px $sec-cloud;
+    }
+    @include for-tablet {
+      @include padding(topbottom, sizeIncrement(0));
+    }
+  }
+}
+
+.subheader_spacing {
+  @include padding(bottom, sizeIncrement(6));
+}
+
+.editForm {
+  @include for-tablet {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__warehouse {
+    @include padding(bottom, sizeIncrement(3));
+  }
+
+  &__inputLabelWrapper {
+    @include padding(topbottom, sizeIncrement(2));
+  }
+
+  &__input {
+    font-family: $defaultFont;
+    color: $pri-black;
+    height: $input-height-mobile;
+    width: 100%;
+    border-radius: $input-radius;
+    outline: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: solid $sec-cloud;
+    margin-top: 4px;
+
+    @mixin for-tablet {
+      height: $input-height-tablet;
+      width: fit-content;
+    }
+  }
+
+  &__invalid-input {
+    border-color: $sec-red;
+    background-color: rgba($sec-red, 0.05);
+  }
+
+  &__buttonContainer {
+    background-color: $bg-grey;
+    justify-content: space-between;
+    display: flex;
+    padding: 16px 24px;
+
+    @include for-tablet {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.btn {
+  &--cancel {
+    background-color: $pri-white;
+    border: solid 1px $sec-cloud;
+    color: $sec-slate;
+    width: 50%;
+    margin-right: 16px;
+    cursor: pointer;
+
+    @include for-tablet {
+      width: 4.5rem;
+    }
+  }
+
+  &--save {
+    color: $pri-white;
+    border: solid 1px $pri-indigo;
+    background-color: $pri-indigo;
+    width: 50%;
+    cursor: pointer;
+
+    @include for-tablet {
+      width: 3.8rem;
+    }
+  }
+
+  &--confirmation {
+    margin: 0.5rem;
+    color: $pri-white;
+    border: solid 1px $pri-indigo;
+    background-color: $pri-indigo;
+    border-radius: 20px;
+    width: 3.5rem;
+    height: 1.5rem;
+    font-family: $defaultFont;
+    cursor: pointer;
+  }
+}
+
+.message {
+  display: block;
+  text-align: center;
+  background-color: $bg-grey;
+  border: solid 1px $pri-indigo;
+  border-radius: 4px;
+
+  &--error {
+    @extend .message;
+    font-family: $defaultFont;
+    background-color: $bg-grey;
+    border: solid 1px $sec-red;
+    border-radius: 4px;
+    padding: 0.1rem;
+  }
+
+  &__text {
+    width: 100%;
+    font-family: $defaultFont;
+    color: $pri-indigo;
+
+    &--error {
+      color: $sec-red;
+    }
+  }
+}
+
+a {
+  justify-content: center;
+}

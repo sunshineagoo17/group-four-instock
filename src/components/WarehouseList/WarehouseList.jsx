@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
 import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
 import './WarehouseList.scss';
@@ -159,9 +159,11 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           value={searchTerm}
           onChange={handleSearch}
         />
-        <button className='warehouse-list-header__add-btn btn txt-section'>
-          + Add New Warehouse
-        </button>
+        <Link to='/warehouse/add-warehouse' title='Add a new warehouse'>
+          <button className='warehouse-list-header__add-btn btn txt-section'>
+            + Add New Warehouse
+          </button>
+        </Link>
       </div>
       <div className='divider hide-tablet'></div>
       <div className='warehouse-list__filter list-padding-side'>
