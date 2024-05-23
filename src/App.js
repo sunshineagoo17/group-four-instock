@@ -35,7 +35,7 @@ const App = () => (
         />
         <Route
           path='/warehouse/:warehouseId'
-          element={<WarehouseInventoryList fetchFn={fetchData} />}
+          element={<WarehouseInventoryList fetchFn={fetchData} baseURL={URL} />}
         />
         <Route
           path='/edit-warehouse/:id'
@@ -43,11 +43,11 @@ const App = () => (
         />
         <Route
           path='/inventory'
-          element={<InventoryList fetchFn={fetchData} />}
+          element={<InventoryList fetchFn={fetchData} baseURL={URL} />}
         />
         <Route
           path='/inventory/:inventoryId'
-          element={<InventoryItemDetails fetchFn={fetchData} />}
+          element={<InventoryItemDetails fetchFn={fetchData} baseURL={URL} />}
         />
         <Route
           path='/inventory/add-inventory'

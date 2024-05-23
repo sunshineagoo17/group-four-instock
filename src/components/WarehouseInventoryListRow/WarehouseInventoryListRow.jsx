@@ -1,13 +1,41 @@
+import axios from 'axios';
+import { useState } from 'react';
 import './WarehouseInventoryListRow.scss';
 import deleteIcon from '../../assets/images/delete_outline-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
+import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
 import { Link } from 'react-router-dom';
 
-const WarehouseInventoryListRow = ({ inventory, index }) => {
+const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState(null);
+
+  // Opens the delete confirmation modal
+  const handleDeleteClick = (inventory) => {
+    setSelectedInventory(inventory);
+    setShowModal(true);
+  };
+
+  // Closes the delete confirmation modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedInventory(null);
+  };
+
+  // Confirms and deletes the item
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`${baseURL}/inventories/${selectedInventory.id}`);
+      fetchFn(); // Re-fetch the data to update the list
+      handleCloseModal();
+    } catch (error) {
+      console.error(`Error deleting inventory item: ${error.message}`);
+    }
+  };
+
   return (
     <>
-      {/* conditional rendering based on index of map */}
       <div className={`${index === 0 ? '' : 'divider'}`}></div>
       <div className='warehouseInventory list-padding-side'>
         <div className='warehouseInventory__cell'>
@@ -16,7 +44,7 @@ const WarehouseInventoryListRow = ({ inventory, index }) => {
           </div>
           <div className='warehouseInventory__cell_desc warehouseInventory__cell_desc--title txt-m txt-bold txt-indigo'>
             <Link to={`/inventory/${inventory.id}`} className='txt-indigo'>
-              {inventory.item_name}{' '}
+              {inventory.item_name}
               <img
                 className='right-arrow'
                 src={rightIcon}
@@ -25,23 +53,21 @@ const WarehouseInventoryListRow = ({ inventory, index }) => {
             </Link>
           </div>
         </div>
-        <div className='warehouseInventory__cell warehouseInventory__cell'>
+        <div className='warehouseInventory__cell'>
           <div className='warehouseInventory__cell_header txt-slate txt-table txt-bold'>
             STATUS
           </div>
-          {/* conditionally add class (instock || outstock) */}
           <div className='warehouseInventory__cell_desc'>
             <button
               className={`txt-table txt-bold warehouseInventory__cell_desc--btn ${
-                inventory.status.toLowerCase() === 'in stock'
-                  ? 'instock'
-                  : 'outstock'
-              }`}>
+                inventory.status.toLowerCase() === 'in stock' ? 'instock' : 'outstock'
+              }`}
+            >
               {inventory.status}
             </button>
           </div>
         </div>
-        <div className='warehouseInventory__cell warehouseInventory__cell'>
+        <div className='warehouseInventory__cell'>
           <div className='warehouseInventory__cell_header txt-slate txt-table txt-bold'>
             CATEGORY
           </div>
@@ -62,6 +88,7 @@ const WarehouseInventoryListRow = ({ inventory, index }) => {
             className='warehouseInventory__cell_btn'
             src={deleteIcon}
             alt='delete button'
+            onClick={() => handleDeleteClick(inventory)}
           />
           <img
             className='warehouseInventory__cell_btn'
@@ -70,6 +97,14 @@ const WarehouseInventoryListRow = ({ inventory, index }) => {
           />
         </div>
       </div>
+      {selectedInventory && (
+        <InventoryDeleteModal
+          show={showModal}
+          onClose={handleCloseModal}
+          onDelete={handleDeleteConfirm}
+          itemName={selectedInventory.item_name}
+        />
+      )}
     </>
   );
 };

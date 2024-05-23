@@ -1,8 +1,8 @@
 import axios from 'axios';
-import InventoryListRow from '../InventoryListRow/InventoryListRow';
-import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import InventoryListRow from '../InventoryListRow/InventoryListRow';
+import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
 import './InventoryList.scss';
 import sortIcon from '../../assets/images/sort-24px.svg';
 
@@ -12,17 +12,16 @@ const InventoryList = ({ fetchFn, baseURL }) => {
   const params = new URLSearchParams(location.search);
 
   const [inventoryList, setInventoryList] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedInventory, setSelectedInventory] = useState(null);
   const [sortBy, setSortBy] = useState('item_name');
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
-  const [showModal, setShowModal] = useState(false);
-  const [selectedInventory, setSelectedInventory] = useState(null);
-
-  // Fetching Data from API whenever sortBy, orderBy, or searchTerm changes
+  
+  // Fetching inventory from API whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch inventory data from the API with sorting and search parameters
         const response = await fetchFn(
           `/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
         );
@@ -46,7 +45,33 @@ const InventoryList = ({ fetchFn, baseURL }) => {
     setSearchTerm(e.target.value);
   };
 
-  // Update sorting criteria
+  // Opens the delete confirmation modal
+  const handleDeleteClick = (inventory) => {
+    setSelectedInventory(inventory);
+    setShowModal(true);
+  };
+
+  // Closes the delete confirmation modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedInventory(null);
+  };
+
+  // Confirms and deletes the item
+  const handleDeleteConfirm = async () => {
+    try {
+      await axios.delete(`${baseURL}/inventories/${selectedInventory.id}`);
+      // Update the inventory list by removing the deleted item
+      setInventoryList(
+        inventoryList.filter((item) => item.id !== selectedInventory.id)
+      );
+      handleCloseModal();
+    } catch (error) {
+      console.error(`Error deleting inventory item: ${error.message}`);
+    }
+  };
+
+  // Updates sorting criteria
   const handleSort = (column) => {
     if (sortBy === column) {
       // Toggle between ascending and descending order
@@ -55,28 +80,6 @@ const InventoryList = ({ fetchFn, baseURL }) => {
       // Set new sorting column and default to ascending order
       setSortBy(column);
       setOrderBy('asc');
-    }
-  };
-
-  const handleDeleteClick = (inventory) => {
-    setSelectedInventory(inventory);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedInventory(null);
-  };
-
-  const handleDeleteConfirm = async () => {
-    try {
-      await axios.delete(`${baseURL}/inventories/${selectedInventory.id}`);
-      setInventoryList(
-        inventoryList.filter((item) => item.id !== selectedInventory.id)
-      );
-      handleCloseModal();
-    } catch (error) {
-      console.error(`Error deleting inventory item: ${error.message}`);
     }
   };
 
@@ -94,7 +97,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
         />
         <Link
           className='inventory-list-header__add-btn btn txt-section'
-          to={'/add-inventory'}
+          to={'/inventory/add-inventory'}
         >
           <button className='inventory-list-header__add-btn btn txt-section'>
             + Add New Item
