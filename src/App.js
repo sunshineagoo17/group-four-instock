@@ -8,7 +8,7 @@ import WarehouseList from './components/WarehouseList/WarehouseList.jsx';
 import InventoryList from './components/InventoryList/InventoryList.jsx';
 import InventoryItemDetails from './components/InventoryItemDetails/InventoryItemDetails.jsx';
 import WarehouseInventoryList from './components/WarehouseInventoryList/WarehouseInventoryList.jsx';
-import AddInventory from './components/AddInventory/AddInventory.jsx';
+import AddInventoryItem from './components/AddInventoryItem/AddInventoryItem.jsx';
 import EditWarehouse from './components/EditWarehouse/EditWarehouse.jsx';
 import AddWarehouse from './components/AddWarehouse/AddWarehouse.jsx';
 import EditInventory from './components/EditInventoryItem/EditInventoryItem.jsx';
@@ -57,7 +57,7 @@ const App = () => (
         />
         <Route
           path='/inventory/add-inventory'
-          element={<AddInventory baseURL={URL} />}
+          element={<AddInventoryItem baseURL={URL} />}
         />
         <Route
           path='/inventory/edit-inventory/:inventoryId'
