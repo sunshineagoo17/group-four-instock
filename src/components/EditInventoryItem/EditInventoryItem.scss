@@ -5,6 +5,10 @@
   border-radius: 4px;
   @include padding(top, sizeIncrement(8));
   font-family: $defaultFont;
+
+  &__back-btn {
+    cursor: pointer;
+  }
 }
 
 .inventory-edit-header {

@@ -1,11 +1,12 @@
 import './InventoryItemDetails.scss';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import { useEffect, useState } from 'react';
 
 const InventoryItemDetails = ({ fetchFn }) => {
   const { inventoryId } = useParams();
+  const navigate = useNavigate();
   const [inventoryDetails, setInventoryDetails] = useState({});
 
   // Fetching Data from API
@@ -23,13 +24,16 @@ const InventoryItemDetails = ({ fetchFn }) => {
       ? 'instock'
       : 'outstock');
 
+  // Handles back navigation
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
+
   return (
     <div className='inventoryItemDetails'>
       <div className='inventoryItemDetails__header list-padding-side'>
         <div className='inventoryItemDetails__header_title txt-header txt-bold txt-black'>
-          <Link to='/inventory'>
-            <img src={backIcon} alt='go back to inventory' />
-          </Link>
+            <img src={backIcon} alt='go back to previous page' className='inventoryItemDetails__back-icon' onClick={handleBackClick} />
           {inventoryDetails.item_name}
         </div>
         <Link to={`/inventory/edit-inventory/${inventoryId}`} className='edit-btn'>

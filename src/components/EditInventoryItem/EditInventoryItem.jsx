@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './EditInventoryItem.scss';
 import ArrowBack from '../../assets/images/arrow_back-24px.svg';
 import errorIcon from '../../assets/images/error-24px.svg';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function findWarehouseId(warehouseName, warehouseList) {
@@ -11,24 +11,23 @@ function findWarehouseId(warehouseName, warehouseList) {
       return warehouse.id;
     }
   }
-  // If the warehouse name is not found in the list, return an appropriate value (e.g., null or -1).
   return null;
 }
+
 function EditInventory({ baseURL }) {
   const navigate = useNavigate();
+  const { inventoryId } = useParams();
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setQuantity] = useState('');
   const [warehouse, setWarehouse] = useState('');
-  const [dataCopy, setDataCopy] = useState({})
+  const [dataCopy, setDataCopy] = useState({});
   const [status, setStatus] = useState('');
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
   const [warehouses, setWarehouses] = useState([]);
-
   const [isInputFocused, setInputFocused] = useState(false);
-  const { inventoryId } = useParams();
 
   useEffect(() => {
     axios
@@ -41,9 +40,9 @@ function EditInventory({ baseURL }) {
         setQuantity(data.quantity);
         setWarehouse(data.warehouse_name);
         setStatus(data.status);
-        setDataCopy(data)
+        setDataCopy(data);
       });
-    // Fetch categories and warehouses from the API
+
     axios
       .get(`${baseURL}/categories`)
       .then((response) => setCategories(response.data))
@@ -89,7 +88,6 @@ function EditInventory({ baseURL }) {
     try {
       await axios.put(`${baseURL}/inventories/${inventoryId}`, newItem);
       alert('Item updated successfully 😎');
-      
       navigate('/inventory');
     } catch (error) {
       console.error('Error adding item:', error);
@@ -107,12 +105,15 @@ function EditInventory({ baseURL }) {
     setStatus(dataCopy.status);
   };
 
+  // Function to handle back navigation
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
+
   return (
     <div className='inventory-edit box-shadow'>
       <div className='inventory-edit-header list-padding-side'>
-        <Link to='/inventory'>
-          <img src={ArrowBack} alt='back' />
-        </Link>
+        <img src={ArrowBack} alt='back' onClick={handleBackClick} className='inventory-edit__back-btn' />
         <h1 className='inventory-edit-header__title txt-header txt-black'>
           Edit Inventory Item
         </h1>
@@ -122,7 +123,6 @@ function EditInventory({ baseURL }) {
         <div className='inventory-edit-form__container '>
           <div className='inventory-edit-form__one inventory-edit-form list-padding-side'>
             <h2 className='inventory-edit-title'>Item Details</h2>
-
 
             <label className='inventory-edit-label'>
               <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Item Name</span>

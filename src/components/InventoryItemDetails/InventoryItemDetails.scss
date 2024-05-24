@@ -6,6 +6,10 @@
   border-radius: sizeIncrement(1);
   flex-wrap: wrap;
 
+  &__back-icon {
+    cursor: pointer;
+  }
+
   &__header {
     display: flex;
     width: 100%;

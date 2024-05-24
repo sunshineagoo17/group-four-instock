@@ -156,6 +156,11 @@ const EditWarehouse = ({ baseURL }) => {
     }
   };
 
+  // Handles back navigation
+  const handleBackClick = () => {
+    navigate(-1); 
+  };
+
   return (
     <div className='warehouseForm box-shadow'>
       <div className='warehouseForm__header list-padding-side'>
@@ -163,8 +168,8 @@ const EditWarehouse = ({ baseURL }) => {
           <img
             className='warehouseForm__back-btn'
             src={backIcon}
-            alt='go back to list of warehouses'
-            onClick={() => navigate('/')}
+            alt='go back to the previous page'
+            onClick={handleBackClick}
           />
           Edit {warehouseDetails.warehouse_name}
         </div>
