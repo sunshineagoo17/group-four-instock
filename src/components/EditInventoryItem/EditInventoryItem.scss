@@ -116,7 +116,7 @@
   resize: none;
   flex-basis: 100%;
 
-  &:active , &:focus{
+  &:active, &:focus{
     border: 2px solid $pri-indigo;
   }
 }
@@ -216,9 +216,4 @@
     background-color: $pri-indigo;
     color: $pri-white;
   }
-}
-
-::placeholder {
-  font-family: $defaultFont;
-  color: $sec-slate;
 }

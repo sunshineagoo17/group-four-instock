@@ -136,7 +136,7 @@ function AddInventoryItem({ baseURL }) {
             <label className='inventory-add-label'>
               <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Description</span>
               <textarea
-                className={`inventory-add-textarea input txt-m txt-black ${errors.description ? 'input-error' : ''}`}
+                className={`inventory-add-textarea txt-m txt-black ${errors.description ? 'input-error' : ''}`}
                 onChange={handleInputChange(setDescription, 'description')}
                 value={description}
                 placeholder='Please enter a brief item description...'></textarea>
@@ -228,7 +228,7 @@ function AddInventoryItem({ baseURL }) {
         </div>
         <div className='inventory-add-button__container list-padding-side'>
           <button
-            className='inventory-add-button inventory-add-button--cancel btn txt-label txt-bold'
+            className='inventory-add-button inventory-add-button--cancel txt-label txt-bold'
             type='button'
             onClick={handleCancel}>
             Cancel

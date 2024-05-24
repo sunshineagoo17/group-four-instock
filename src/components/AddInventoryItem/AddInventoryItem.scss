@@ -110,14 +110,21 @@
 }
 
 .inventory-add-textarea {
-  height: 120px;
+  @include padding(side, sizeIncrement(4));
   @include padding(topbottom, sizeIncrement(2));
-  font-family: $defaultFont;
-  resize: none;
+  height: 120px;
+  width: 100%;
+  border-radius: $input-radius;
+  outline: none;
+  border: 1px solid $sec-cloud;
   flex-basis: 100%;
 
+  @include for-tablet {
+    width: fit-content;
+  }
+
   &:active, &:focus {
-    border-color: $pri-indigo;
+    border: 2px solid $pri-indigo;
   }
 }
 
@@ -211,9 +218,19 @@
 }
 
 .inventory-add-button {
+  @include padding(side, sizeIncrement(4));
+  border-radius: $btn-radius;
   height: $btn-height-mobile;
+  width: 100%;
+  outline: none;
   cursor: pointer;
   font-family: $defaultFont;
+
+  @include for-tablet {
+    height: $btn-height-tablet;
+    width: fit-content;
+    @include padding(side, sizeIncrement(4));
+  }
 
   &--cancel {
     background-color: $pri-white;
@@ -225,9 +242,4 @@
     background-color: $pri-indigo;
     color: $pri-white;
   }
-}
-
-::placeholder {
-  font-family: $defaultFont;
-  color: $sec-slate;
 }
