@@ -256,11 +256,13 @@ function EditInventory({ baseURL }) {
           <button
             className='inventory-edit-button inventory-edit-button--cancel btn txt-label txt-bold'
             type='button'
+            aria-label='Cancel Changes'
             onClick={handleCancel}>
             Cancel
           </button>
           <button
             type='submit'
+            aria-label='Submit'
             className='inventory-edit-button inventory-edit-button--save btn txt-label txt-bold'>
             Save
           </button>

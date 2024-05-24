@@ -21,20 +21,31 @@ const EditWarehouse = ({ baseURL }) => {
     contact_email: '',
   });
 
+  // State to store original warehouse details
+  const [originalDetails, setOriginalDetails] = useState({
+    warehouse_name: '',
+    address: '',
+    city: '',
+    country: '',
+    contact_name: '',
+    contact_position: '',
+    contact_phone: '',
+    contact_email: '',
+  });
+
   const [errors, setErrors] = useState({});
   const [alert, setAlert] = useState({ message: '', type: '' });
 
-  // Updated regex for validation
   const phoneRegex = /^(\+?\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?\d{3}[\s-]?\d{4}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const nameRegex = /^[a-zA-Z.\s-]*$/; // Regex for contact name validation
 
-  // Fetch warehouse details on component mount
   useEffect(() => {
     const fetchWarehouseDetails = async () => {
       try {
         const response = await axios.get(`${baseURL}/warehouses/${id}`);
         setWarehouseDetails(response.data);
+        setOriginalDetails(response.data); // Store the original details
       } catch (error) {
         console.error('Error fetching warehouse details:', error);
       }
@@ -42,7 +53,6 @@ const EditWarehouse = ({ baseURL }) => {
     fetchWarehouseDetails();
   }, [id, baseURL]);
 
-  // Function to format the phone number
   const formatPhoneNumber = (number) => {
     const cleaned = ('' + number).replace(/\D/g, '');
     if (cleaned.length < 11) {
@@ -55,11 +65,9 @@ const EditWarehouse = ({ baseURL }) => {
     return number;
   };
 
-  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Validate phone number input
     if (name === 'contact_phone') {
       const cleanedValue = value.replace(/[^\d\s-()+]/g, '');
       setWarehouseDetails((prevDetails) => ({
@@ -68,7 +76,6 @@ const EditWarehouse = ({ baseURL }) => {
       }));
       setErrors((prevErrors) => ({ ...prevErrors, contact_phone: '' }));
     } else if (name === 'contact_name') {
-      // Validate contact name input
       if (nameRegex.test(value)) {
         setWarehouseDetails((prevDetails) => ({
           ...prevDetails,
@@ -90,12 +97,10 @@ const EditWarehouse = ({ baseURL }) => {
     setAlert({ message: '', type: '' }); // Clear alert when user starts typing
   };
 
-  // Form reset following the clicking of the cancellation button or the 'OK' button for errors.
   const formCancellation = () => {
-    navigate('/warehouse');
+    setWarehouseDetails(originalDetails); // Reset to original details
   };
 
-  // Function used upon submission of form
   const formSubmit = (event) => {
     event.preventDefault();
     setAlert({ message: '', type: '' });
@@ -111,10 +116,8 @@ const EditWarehouse = ({ baseURL }) => {
       contact_email,
     } = warehouseDetails;
 
-    // Reset error states
     setErrors({});
 
-    // Form validation
     let hasError = false;
     const newErrors = {};
     if (!warehouse_name) newErrors.warehouse_name = 'Warehouse name is required';
@@ -156,7 +159,6 @@ const EditWarehouse = ({ baseURL }) => {
     }
   };
 
-  // Handles back navigation
   const handleBackClick = () => {
     navigate(-1); 
   };
@@ -324,7 +326,7 @@ const EditWarehouse = ({ baseURL }) => {
         </div>
       </div>
       <div className='editForm__buttonContainer'>
-        <button className='txt-bold btn--cancel' aria-label='Cancel' onClick={formCancellation}>
+        <button className='txt-bold btn--cancel' aria-label='Cancel Changes' onClick={formCancellation}>
           Cancel
         </button>
         <button
