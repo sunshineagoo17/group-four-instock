@@ -63,14 +63,14 @@ function AddInventoryItem({ baseURL }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setAlert({ message: 'Please correct the errors in the form. 😔', type: 'error' });
       return;
     }
-
+  
     const newItem = {
       warehouse_id: parseInt(warehouse, 10),
       item_name: itemName,
@@ -79,9 +79,10 @@ function AddInventoryItem({ baseURL }) {
       status,
       quantity: status === 'In Stock' ? parseInt(quantity, 10) : 0,
     };
-
+  
     try {
-      await axios.post(`${baseURL}/inventories`, newItem);
+      const response = await axios.post(`${baseURL}/inventories`, newItem);
+      const newItemId = response.data.id;
       setAlert({ message: 'Item added successfully 😎', type: 'success' });
       setItemName('');
       setDescription('');
@@ -91,13 +92,13 @@ function AddInventoryItem({ baseURL }) {
       setStatus('In Stock');
       setErrors({});
       setTimeout(() => {
-        navigate('/inventory');
+        navigate(`/inventory/${newItemId}`); // Navigate to the newly created inventory item details page
       }, 3000);
     } catch (error) {
       console.error('Error adding item:', error);
       setAlert({ message: 'Failed to add item 😔', type: 'error' });
     }
-  };
+  };  
 
   const handleCancel = (event) => {
     event.preventDefault();

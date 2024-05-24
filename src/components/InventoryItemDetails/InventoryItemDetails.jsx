@@ -7,11 +7,10 @@ import { useEffect, useState } from 'react';
 const InventoryItemDetails = ({ fetchFn }) => {
   const { inventoryId } = useParams();
   const navigate = useNavigate();
-  const [inventoryDetails, setInventoryDetails] = useState({});
+  const [inventoryDetails, setInventoryDetails] = useState(null);
 
   // Fetching Data from API
   useEffect(() => {
-    // Fetch inventory details
     fetchFn(`/inventories/${inventoryId}`).then((res) =>
       setInventoryDetails(res)
     );
@@ -19,7 +18,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
 
   // Conditionally set the class based on the status
   const statusClass =
-    inventoryDetails.status &&
+    inventoryDetails?.status &&
     (inventoryDetails.status.toLowerCase() === 'in stock'
       ? 'instock'
       : 'outstock');
@@ -34,7 +33,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
       <div className='inventoryItemDetails__header list-padding-side'>
         <div className='inventoryItemDetails__header_title txt-header txt-bold txt-black'>
             <img src={backIcon} alt='go back to previous page' className='inventoryItemDetails__back-icon' onClick={handleBackClick} />
-          {inventoryDetails.item_name}
+          {inventoryDetails?.item_name}
         </div>
         <Link to={`/inventory/edit-inventory/${inventoryId}`} className='edit-btn'>
           <img className='edit-icon' src={editIcon} alt='edit Item' />
@@ -48,7 +47,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
             ITEM DESCRIPTION:
           </div>
           <div className='detail__cell_desc detail__cell_desc--title txt-m txt-regular txt-black'>
-            {inventoryDetails.description}
+            {inventoryDetails?.description}
           </div>
         </div>
         <div className='detail__cell detail__cell--full-width'>
@@ -56,7 +55,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
             CATEGORY:
           </div>
           <div className='detail__cell_desc detail__cell_desc--generic txt-m txt-black txt-regular'>
-            {inventoryDetails.category}
+            {inventoryDetails?.category}
           </div>
         </div>
         <div className='detail__cell detail__cell--half'>
@@ -66,7 +65,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
           <div className='detail__cell_desc'>
             <button
               className={`txt-table txt-bold detail__cell_desc--btn ${statusClass}`}>
-              {inventoryDetails.status}
+              {inventoryDetails?.status}
             </button>
           </div>
         </div>
@@ -75,7 +74,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
             QUANTITY:
           </div>
           <div className='detail__cell_desc detail__cell_desc--generic txt-m txt-black txt-regular'>
-            {inventoryDetails.quantity}
+            {inventoryDetails?.quantity}
           </div>
         </div>
         <div className='detail__cell detail__cell--full-width detail__cell--half'>
@@ -83,7 +82,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
             WAREHOUSE:
           </div>
           <div className='detail__cell_desc detail__cell_desc--generic txt-m txt-black txt-regular'>
-            {inventoryDetails.warehouse_name}
+            {inventoryDetails?.warehouse_name}
           </div>
         </div>
       </div>
