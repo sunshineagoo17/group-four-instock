@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import './AddInventoryItem.scss';
-import ArrowBack from '../../assets/images/arrow_back-24px.svg';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import ArrowBack from '../../assets/images/arrow_back-24px.svg';
+import errorIcon from '../../assets/images/error-24px.svg';
 import Alert from '../Alert/Alert';
+import './AddInventoryItem.scss';
 
 function AddInventoryItem({ baseURL }) {
   const navigate = useNavigate();
@@ -129,7 +130,7 @@ function AddInventoryItem({ baseURL }) {
                 value={itemName}
                 placeholder='Item Name'
               />
-              {errors.itemName && <span className='error-text'>{errors.itemName}</span>}
+              {errors.itemName && <span className='error error-text'><img src={errorIcon} className='error-icon' alt='Error Alert' />{errors.itemName}</span>}
             </div>
             <div className='editForm__inputLabelWrapper'>
               <label className='inventory-add-label'>Description</label>
@@ -138,7 +139,7 @@ function AddInventoryItem({ baseURL }) {
                 onChange={handleInputChange(setDescription, 'description')}
                 value={description}
                 placeholder='Please enter a brief item description...'></textarea>
-              {errors.description && <span className='error-text'>{errors.description}</span>}
+              {errors.description && <span className='error error-text'><img src={errorIcon} className='error-icon' alt='Error Alert' />{errors.description}</span>}
             </div>
             <div className='editForm__inputLabelWrapper'>
               <label className='inventory-add-label'>Category</label>
@@ -155,7 +156,7 @@ function AddInventoryItem({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.category && <span className='error-text'>{errors.category}</span>}
+              {errors.category && <span className='error error-text'><img src={errorIcon} className='error-icon' alt='Error Alert' />{errors.category}</span>}
             </div>
           </div>
 
@@ -198,7 +199,7 @@ function AddInventoryItem({ baseURL }) {
                   value={quantity}
                   placeholder='0'
                 />
-                {errors.quantity && <span className='error-text'>{errors.quantity}</span>}
+                {errors.quantity && <span className='error error-text'><img src={errorIcon} className='error-icon' alt='Error Alert' />{errors.quantity}</span>}
               </div>
             )}
             <div className='editForm__inputLabelWrapper'>
@@ -216,7 +217,7 @@ function AddInventoryItem({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.warehouse && <span className='error-text'>{errors.warehouse}</span>}
+              {errors.warehouse && <span className='error error-text'><img src={errorIcon} className='error-icon' alt='Error Alert' />{errors.warehouse}</span>}
             </div>
           </div>
         </div>

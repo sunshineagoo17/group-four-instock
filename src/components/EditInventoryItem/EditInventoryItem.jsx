@@ -137,7 +137,7 @@ function EditInventory({ baseURL }) {
               />
               {errors.itemName && !isInputFocused && itemName.length === 0 && (
                 <span className='error txt-label'>
-                  <img src={errorIcon} alt='' />
+                  <img src={errorIcon} alt='Error Alert' />
                   {errors.itemName}
                 </span>
               )}

@@ -40,11 +40,11 @@
     margin-left: 1.25rem;
     width: 250px;
     @include for-tablet {
-      width: auto;
-      padding-left: 20px;
+      width: auto;  
     }
     @include for-desktop {
-      padding-left: 30px;
+      margin-left: 0;
+      padding-left: 20px;
     }
   }
 }
@@ -238,13 +238,16 @@
   font-size: 13px;
 }
 
+.error-icon {
+  height: 16px;
+}
+
 .error-text-description {
   margin-top: -8rem; 
 }
 
 .input-error {
   border: 1px solid $sec-red; 
-  background-color: rgba($sec-red, 0.05);
 }
 
 .inventory-add-button__container {
