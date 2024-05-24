@@ -148,7 +148,7 @@ const EditWarehouse = ({ baseURL }) => {
           setAlert({ message: 'Warehouse updated successfully. 🎉🥂', type: 'success' });
           setTimeout(() => {
             if (!alert.message) {
-              navigate('/warehouse');
+              navigate(`/warehouse/${id}`); // Navigate to the updated warehouse details page
             }
           }, 3000);
         })
