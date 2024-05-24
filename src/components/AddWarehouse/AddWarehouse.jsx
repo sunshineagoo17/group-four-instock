@@ -121,8 +121,8 @@ const AddWarehouse = ({ baseURL }) => {
       };
       axios
         .post(`${baseURL}/warehouses`, newWarehouse)
-        .then((data) => {
-          console.log(data);
+        .then((response) => {
+          const newWarehouseId = response.data.id; // Get the new warehouse ID
           setAlert({ message: 'Warehouse added successfully. 🎉🥂', type: 'success' });
           setFormData({
             warehouse_name: '',
@@ -134,7 +134,7 @@ const AddWarehouse = ({ baseURL }) => {
             contact_phone: '',
             contact_email: '',
           });
-          setTimeout(() => navigate('/warehouse'), 3000);
+          setTimeout(() => navigate(`/warehouse/${newWarehouseId}`), 3000); // Navigate to the new warehouse's detail page
         })
         .catch((error) => {
           console.log(error);

@@ -87,14 +87,14 @@ function EditInventory({ baseURL }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setAlert({ message: 'Please correct the errors in the form. 😔', type: 'error' });
       return;
     }
-
+  
     const updatedItem = {
       warehouse_id: findWarehouseId(warehouse, warehouses),
       item_name: itemName,
@@ -103,18 +103,18 @@ function EditInventory({ baseURL }) {
       status,
       quantity: status === 'In Stock' ? parseInt(quantity, 10) : 0,
     };
-
+  
     try {
       await axios.put(`${baseURL}/inventories/${inventoryId}`, updatedItem);
       setAlert({ message: 'Item updated successfully 😎', type: 'success' });
       setTimeout(() => {
-        navigate('/inventory');
+        navigate(`/inventory/${inventoryId}`); // Navigate to the edited inventory item's details
       }, 3000);
     } catch (error) {
       console.error('Error updating item:', error);
       setAlert({ message: 'Failed to update item 😔', type: 'error' });
     }
-  };
+  };  
 
   const handleCancel = (event) => {
     event.preventDefault();
