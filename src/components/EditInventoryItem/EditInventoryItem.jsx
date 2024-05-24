@@ -125,8 +125,12 @@ function EditInventory({ baseURL }) {
     setWarehouse(dataCopy.warehouse_name);
     setStatus(dataCopy.status);
     setErrors({});
-    setAlert({ message: '', type: '' });
-  };
+    setAlert({ message: 'Here are your OG details 🧐', type: 'info' });
+
+    setTimeout(() => {
+      setAlert({ message: '', type: '' });
+    }, 5000);
+  };  
 
   const handleBackClick = () => {
     navigate(-1); 
