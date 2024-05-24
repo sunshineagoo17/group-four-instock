@@ -9,13 +9,71 @@
     cursor: pointer;
   }
 
+  &__btn {
+    &--cancel,
+    &--save {
+      width: 48%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $btn-radius;
+      font-family: $defaultFont;
+
+      @include for-tablet {
+        width: toRem(138);
+        font-size: .813rem;
+      }
+
+      @media (max-width: 374px) {
+        width: toRem(140);
+        height: 36px;
+        font-size: .813rem;
+      }
+    }
+
+    &--save {
+      color: $pri-white;
+      border: solid 1px $pri-indigo;
+      background-color: $pri-indigo;
+      padding: 0.5rem;
+
+      .short-text {
+        display: none;
+      }
+
+      .full-text {
+        display: inline;
+      }
+
+      @media (max-width: 374px) {
+        .short-text {
+          display: inline;
+        }
+
+        .full-text {
+          display: none;
+        }
+      }
+    }
+
+    &--cancel {
+      background-color: $pri-white;
+      border: solid 1px $sec-cloud;
+      color: $sec-slate;
+    }
+
+    a {
+      justify-content: center;
+    }
+  }
+
   &__header {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding-top: sizeIncrement(8);
-    padding-bottom: sizeIncrement(6);
+    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4) sizeIncrement(6);
 
     &_title {
       display: flex;
@@ -34,7 +92,7 @@
 }
 
 .form-padding-side {
-  @include padding(side, sizeIncrement(6));
+  @include padding(side, sizeIncrement(4));
 
   @include for-tablet {
     width: 100%;
@@ -42,7 +100,7 @@
 }
 
 .form-padding-topbottom {
-  @include padding(topbottom, sizeIncrement(5));
+  @include padding(topbottom, sizeIncrement(4));
 
   &--contact {
     @extend .form-padding-topbottom;
@@ -89,7 +147,7 @@
     margin-top: 4px;
 
     &:focus {
-      border: 2px solid $pri-indigo; 
+      border: 2px solid $pri-indigo;
     }
 
     @mixin for-tablet {
@@ -108,47 +166,20 @@
 
   &__buttonContainer {
     background-color: $bg-grey;
-    justify-content: space-between;
     display: flex;
-    padding: 1rem 2.938rem;
+    justify-content: space-between;
+    padding: 1rem 2rem;
 
     @include for-tablet {
       justify-content: flex-end;
+      gap: 1rem;
+      padding: 1rem 2rem;
     }
-  }
-}
 
-.btn {
-  &--cancel {
-    background-color: $pri-white;
-    border: solid 1px $sec-cloud;
-    font-family: $defaultFont;
-    border-radius: $btn-radius;
-    color: $sec-slate;
-    width: 50%;
-    margin-right: 16px;
-    cursor: pointer;
-
-    @include for-tablet {
-      width: 4.5rem;
+    @media (max-width: 375px) {
+      justify-content: space-between;
+      gap: 1rem;
     }
-  }
-
-  &--save {
-    color: $pri-white;
-    font-family: $defaultFont;
-    border: solid 1px $pri-indigo;
-    background-color: $pri-indigo;
-    width: 50%;
-    cursor: pointer;
-
-    @include for-tablet {
-      width: toRem(138);
-    }
-  }
-
-  a {
-    justify-content: center;
   }
 }
 
@@ -156,4 +187,13 @@
   font-size: 13px;
   font-family: $defaultFont;
   color: $sec-red;
+}
+
+.divider {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 1px;
+  background-color: $sec-cloud;
+  width: 100%;
 }

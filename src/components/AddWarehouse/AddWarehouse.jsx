@@ -4,7 +4,7 @@ import errorIcon from '../../assets/images/error-24px.svg'; // Import the error 
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Alert from '../Alert/Alert'; 
+import Alert from '../Alert/Alert';
 
 const AddWarehouse = ({ baseURL }) => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const AddWarehouse = ({ baseURL }) => {
   // Regex functions for validation
   const phoneRegex = /^(\+?\d{1,4})?[\s-]?(\(?\d{3}\)?)[\s-]?\d{3}[\s-]?\d{4}$/;
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const nameRegex = /^[a-zA-Z.\s-]*$/; 
+  const nameRegex = /^[a-zA-Z.\s-]*$/;
 
   // Handle input change
   const handleInputChange = (e) => {
@@ -146,7 +146,7 @@ const AddWarehouse = ({ baseURL }) => {
 
   return (
     <div className='warehouseForm box-shadow'>
-      <div className='warehouseForm__header list-padding-side'>
+      <div className='warehouseForm__header'>
         <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
           <img
             className='warehouseForm__back-btn'
@@ -308,17 +308,18 @@ const AddWarehouse = ({ baseURL }) => {
       </div>
       <div className='editForm__buttonContainer'>
         <button
-          className='btn--cancel txt-bold'
+          className='warehouseForm__btn warehouseForm__btn--cancel txt-bold'
           aria-label='Cancel'
           onClick={() => navigate('/warehouse')}>
           Cancel
         </button>
         <button
-          className='btn btn--save txt-bold'
+          className='warehouseForm__btn warehouseForm__btn--save txt-bold'
           type='submit'
           aria-label='Submit'
           form='addWarehouseForm'>
-          + Add Warehouse
+          <span className="short-text">+ Add</span>
+          <span className="full-text">+ Add Warehouse</span>
         </button>
       </div>
     </div>
