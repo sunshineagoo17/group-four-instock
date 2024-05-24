@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArrowBack from '../../assets/images/arrow_back-24px.svg';
 import errorIcon from '../../assets/images/error-24px.svg';
@@ -30,6 +30,28 @@ function AddInventoryItem({ baseURL }) {
       .then((response) => setWarehouses(response.data))
       .catch((error) => console.error('Error fetching warehouses:', error));
   }, [baseURL]);
+
+  // Changes color of placeholder text in dropdowns
+  useEffect(() => {
+    const selects = document.querySelectorAll('.inventory-add-select');
+
+    selects.forEach(select => {
+      const placeholderOption = select.querySelector('option[disabled]');
+      if (placeholderOption && !select.value) {
+        select.classList.add('placeholder-color');
+      } else {
+        select.classList.remove('placeholder-color');
+      }
+
+      select.addEventListener('change', () => {
+        if (!select.value) {
+          select.classList.add('placeholder-color');
+        } else {
+          select.classList.remove('placeholder-color');
+        }
+      });
+    });
+  }, []);
 
   const clearError = (field) => {
     setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
@@ -147,7 +169,7 @@ function AddInventoryItem({ baseURL }) {
             <label className='inventory-add-label'>
               <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Category</span>
               <select
-                className={`inventory-add-select inventory-add-input custom-select-arrow input txt-m txt-black ${errors.category ? 'input-error' : ''} option-placeholder`}
+                className={`inventory-add-select inventory-add-input custom-select-arrow input txt-m txt-black ${errors.category ? 'input-error' : ''}`}
                 onChange={handleInputChange(setCategory, 'category')}
                 value={category}>
                 <option value='' disabled>

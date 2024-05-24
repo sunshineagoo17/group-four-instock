@@ -1,10 +1,10 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Alert from '../Alert/Alert';
 import './EditInventoryItem.scss';
 import ArrowBack from '../../assets/images/arrow_back-24px.svg';
 import errorIcon from '../../assets/images/error-24px.svg';
-import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
-import Alert from '../Alert/Alert';
 
 function findWarehouseId(warehouseName, warehouseList) {
   for (const warehouse of warehouseList) {

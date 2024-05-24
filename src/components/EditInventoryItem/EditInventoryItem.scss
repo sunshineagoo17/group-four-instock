@@ -168,8 +168,6 @@
   font-family: $defaultFont;
   color: $pri-black;
   appearance: none;
-  @include for-tablet {
-  }
 }
 
 .custom-select-arrow {

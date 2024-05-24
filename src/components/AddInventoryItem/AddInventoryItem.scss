@@ -118,6 +118,7 @@
   outline: none;
   border: 1px solid $sec-cloud;
   flex-basis: 100%;
+  resize: none;
 
   @include for-tablet {
     width: fit-content;
@@ -179,11 +180,11 @@
   appearance: none;
   cursor: pointer;
 
-  & .option {
+  &.placeholder-color {
     color: $sec-slate;
   }
-
-  @include for-tablet {
+  &:not(.placeholder-color) {
+    color: $pri-black;
   }
 }
 
