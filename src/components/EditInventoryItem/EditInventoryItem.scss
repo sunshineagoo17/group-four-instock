@@ -106,7 +106,7 @@
 }
 
 .input-error {
-  border: 2px solid $sec-red;
+  border: 1px solid $sec-red;
 }
 
 .inventory-edit-textarea {
@@ -117,7 +117,7 @@
   flex-basis: 100%;
 
   &:active , &:focus{
-    border-color: $pri-indigo;
+    border: 2px solid $pri-indigo;
   }
 }
 

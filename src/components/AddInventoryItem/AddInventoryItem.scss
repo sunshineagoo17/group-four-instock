@@ -6,29 +6,19 @@
   box-shadow: 0px 2px 5px 0px #13182c1a;
   @include padding(top, sizeIncrement(8));
   font-family: $defaultFont;
+
+  &__back-btn {
+    cursor: pointer;
+  }
 }
 
 .inventory-add-header {
   background-color: $pri-white;
-  position: relative;
-  padding-left: 30px;
-  font-size: 32px;
-  border-bottom: 1px solid $sec-cloud;
-  gap: sizeIncrement(4);
-  @include padding(bottom, sizeIncrement(5.5));
-
-  img {
-    position: absolute;
-    left: 10px;
-    margin-top: 8px;
-    cursor: pointer;
-    @include for-tablet {
-      margin-left: 10px;
-    }
-    @include for-desktop {
-      margin-left: 20px;
-    }
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: sizeIncrement(2);
+  align-items: center;
+  @include padding(bottom, sizeIncrement(6));
 
   @include for-tablet {
     flex-wrap: nowrap;
@@ -37,24 +27,18 @@
 
   &__title {
     flex-grow: 1;
-    margin-left: 1.25rem;
-    width: 250px;
-    @include for-tablet {
-      width: auto;  
-    }
-    @include for-desktop {
-      margin-left: 0;
-      padding-left: 20px;
-    }
+  }
+
+  img {
+    height: 24px;
   }
 }
 
 .inventory-add-form {
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-bottom: 20px;
+  padding-top: 16px;
+  padding-bottom: 24px;
   color: $pri-black;
-  font-weight: 600;
+  font-family: $defaultFont;
 
   @include for-tablet {
     width: 100%;
@@ -64,143 +48,113 @@
   }
 
   &__one {
+    display: flex;
+    flex-wrap: wrap;
+    gap: sizeIncrement(4);
+
     @include for-tablet {
-      :last-child {
-        margin-bottom: 2px;
-      }
+      border-right: 1px solid $sec-cloud;
     }
   }
 
   &__two {
-    border-top: 1px solid $sec-cloud;
-    @include for-tablet {
-      border-top: none;
-      border-left: 1px solid $sec-cloud;
-
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: sizeIncrement(4);
   }
 
   &__container {
     @include for-tablet {
       display: flex;
-      width: 100%;
+      align-items: flex-start;
     }
   }
 }
 
 .inventory-add-title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 0px;
-  @include for-tablet {
-    font-size: 24px;
-  }
+  flex-basis: 100%;
 }
 
 .inventory-add-label {
-  font-size: 13px;
-  @include for-tablet {
-    font-size: 14px;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: sizeIncrement(1);
+
+  &-txt {
+    flex-grow: 1;
+    flex-basis: 100%;
   }
 }
 
 .inventory-add-input {
-  width: 100%;
-  height: 36px;
-  border-radius: 20px;
-  border: 1px solid $sec-cloud;
-  margin-bottom: 0px;
-  margin-top: 5px;
-  padding-left: 10px;
+  flex-basis: 100%;
   font-family: $defaultFont;
-  @include for-tablet {
-    margin-bottom: 0px;
-    margin-top: 5px;
-    height: 38px;
+  cursor: pointer;
+
+  &:active, &:focus {
+    border: 2px solid $pri-indigo; 
   }
 
-  &:focus {
-    border: 2px solid $pri-indigo; 
+  &--qty {
+    @include for-desktop {
+      max-width: 122px;
+      cursor: default;
+    }
   }
 }
 
+.input-error {
+  border: 2px solid $sec-red;
+}
+
 .inventory-add-textarea {
-  width: 100%;
   height: 120px;
-  margin-bottom: -.5rem;
-  padding-bottom: 0;
-  border-radius: 20px;
-  border: 1px solid $sec-cloud;
-  padding-left: 10px;
-  padding-top: 10px;
+  @include padding(topbottom, sizeIncrement(2));
   font-family: $defaultFont;
   resize: none;
-  @include for-tablet {
-    margin-top: 5px;
-  }
+  flex-basis: 100%;
 
-  &:focus {
-    border: 2px solid $pri-indigo;
+  &:active, &:focus {
+    border-color: $pri-indigo;
   }
 }
 
 .status-inventory-add {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0px;
-  @include for-tablet {
-    margin-bottom: 0px;
-    margin-top: 0px;
-  }
-  @include for-desktop {
-    width: 250px;
-  }
 
   &__title {
-    padding-top: 25px;
-    font-size: 13px;
-    @include for-tablet {
-      font-size: 14px;
-    }
+    flex-basis: 100%;
   }
 }
 
 .inventory-add-status {
-  font-weight: 400;
   color: $sec-slate;
-  margin-right: 30px;
-  width: 100px;
-  margin: 0;
-  @include for-tablet {
-    width: 130px;
-  }
 }
 
 .inventory-oval-container {
   display: flex;
-  border-radius: 20px;
-  padding: 5px;
+  flex-basis: 49%;
+  gap: sizeIncrement(1);
+
+  @include for-tablet {
+    flex-basis: 49%;
+  }
 
   &.selected {
     border-color: #000;
   }
 
-  &.input-error {
-    border: 2px solid $sec-red;
-  }
-
   @include for-desktop {
     width: 130px;
+
     &.selected {
       width: 130px;
       margin-right: 0;
     }
   }
-}
-
-.inventory-oval-input {
-  cursor: pointer;
 }
 
 .oval {
@@ -218,16 +172,12 @@
   appearance: none;
   cursor: pointer;
 
+  & .option {
+    color: $sec-slate;
+  }
+
   @include for-tablet {
   }
-
-  &:focus {
-    border: 2px solid $pri-indigo;
-  }
-}
-
-.option {
-  color: $sec-slate;
 }
 
 .custom-select-arrow {
@@ -236,33 +186,24 @@
   background-position: calc(100% - 10px) center;
 }
 
-.error-text,
-.error-text-description {
+.error {
   color: $sec-red;
-  font-weight: normal;
-  font-size: 13px;
-}
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
-.error-icon {
-  height: 16px;
-}
-
-.error-text-description {
-  margin-top: -8rem; 
-}
-
-.input-error {
-  border: 1px solid $sec-red; 
+  img {
+    height: 16px;
+  }
 }
 
 .inventory-add-button__container {
+  @include padding(topbottom, sizeIncrement(4));
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: sizeIncrement(4);
   align-items: center;
-  width: 100%;
-  height: 68px;
-  padding-left: 24px;
-  padding-right: 24px;
+
   background-color: $bg-grey;
   @include for-tablet {
     justify-content: flex-end;
@@ -270,30 +211,19 @@
 }
 
 .inventory-add-button {
-  width: 46%;
-  height: 36px;
-  border-radius: 20px;
-  border: 1px;
-  font-family: $defaultFont;
-  font-weight: 600;
+  height: $btn-height-mobile;
   cursor: pointer;
+  font-family: $defaultFont;
 
-  &__one {
+  &--cancel {
     background-color: $pri-white;
+    border: solid 1px $sec-cloud;
     color: $sec-slate;
-    border: 1px solid $sec-cloud;
-    @include for-tablet {
-      width: 72px;
-      margin-right: 20px;
-    }
   }
 
-  &__two {
+  &--save {
     background-color: $pri-indigo;
     color: $pri-white;
-    @include for-tablet {
-      width: 98px;
-    }
   }
 }
 
