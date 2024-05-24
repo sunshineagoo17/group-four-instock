@@ -198,13 +198,14 @@
 }
 
 .inventory-edit-button {
-  
   height: $btn-height-mobile;
   cursor: pointer;
   font-family: $defaultFont;
 
   &--cancel {
     background-color: $pri-white;
+    border: solid 1px $sec-cloud;
+    color: $sec-slate;
   }
 
   &--save {
