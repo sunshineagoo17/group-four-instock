@@ -4,6 +4,7 @@ import ArrowBack from '../../assets/images/arrow_back-24px.svg';
 import errorIcon from '../../assets/images/error-24px.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Alert from '../Alert/Alert';
 
 function findWarehouseId(warehouseName, warehouseList) {
   for (const warehouse of warehouseList) {
@@ -27,7 +28,7 @@ function EditInventory({ baseURL }) {
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
   const [warehouses, setWarehouses] = useState([]);
-  const [isInputFocused, setInputFocused] = useState(false);
+  const [alert, setAlert] = useState({ message: '', type: '' });
 
   useEffect(() => {
     axios
@@ -54,44 +55,64 @@ function EditInventory({ baseURL }) {
       .catch((error) => console.error('Error fetching warehouses:', error));
   }, [baseURL, inventoryId]);
 
-  const handleInputChange = (setter) => (event) => setter(event.target.value);
-  const handleStatusChange = (event) => setStatus(event.target.value);
+  const clearError = (field) => {
+    setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
+    setAlert({ message: '', type: '' });
+  };
+
+  const handleInputChange = (setter, field) => (event) => {
+    setter(event.target.value);
+    clearError(field);
+  };
+
+  const handleStatusChange = (event) => {
+    setStatus(event.target.value);
+    clearError('status');
+    if (event.target.value === 'Out of Stock') {
+      clearError('quantity');
+    }
+  };
 
   const validateFields = () => {
     const errors = {};
-    if (!itemName) errors.itemName = 'Item name is required';
-    if (!description) errors.description = 'Description is required';
+    if (!itemName.trim()) errors.itemName = 'Item name is required';
+    if (!description.trim()) errors.description = 'Description is required';
     if (!category) errors.category = 'Category is required';
     if (!warehouse) errors.warehouse = 'Warehouse is required';
-    if (status === 'In Stock' && !quantity)
-      errors.quantity = 'Quantity is required';
+    if (status === 'In Stock' && (!quantity || quantity <= 0)) {
+      errors.quantity = 'Quantity is required and must be greater than 0';
+    }
     return errors;
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setAlert({ message: 'Please correct the errors in the form. 😔', type: 'error' });
       return;
     }
 
-    const newItem = {
+    const updatedItem = {
       warehouse_id: findWarehouseId(warehouse, warehouses),
       item_name: itemName,
       description,
       category,
       status,
-      quantity: status === 'In Stock' ? quantity : 0,
+      quantity: status === 'In Stock' ? parseInt(quantity, 10) : 0,
     };
 
     try {
-      await axios.put(`${baseURL}/inventories/${inventoryId}`, newItem);
-      alert('Item updated successfully 😎');
-      navigate('/inventory');
+      await axios.put(`${baseURL}/inventories/${inventoryId}`, updatedItem);
+      setAlert({ message: 'Item updated successfully 😎', type: 'success' });
+      setTimeout(() => {
+        navigate('/inventory');
+      }, 3000);
     } catch (error) {
-      console.error('Error adding item:', error);
-      alert('Failed to update item 😔');
+      console.error('Error updating item:', error);
+      setAlert({ message: 'Failed to update item 😔', type: 'error' });
     }
   };
 
@@ -103,9 +124,10 @@ function EditInventory({ baseURL }) {
     setQuantity(dataCopy.quantity);
     setWarehouse(dataCopy.warehouse_name);
     setStatus(dataCopy.status);
+    setErrors({});
+    setAlert({ message: '', type: '' });
   };
 
-  // Function to handle back navigation
   const handleBackClick = () => {
     navigate(-1); 
   };
@@ -118,6 +140,7 @@ function EditInventory({ baseURL }) {
           Edit Inventory Item
         </h1>
       </div>
+      {alert.message && <Alert message={alert.message} type={alert.type} />}
       <div className='divider'></div>
       <form onSubmit={handleSubmit}>
         <div className='inventory-edit-form__container '>
@@ -127,45 +150,30 @@ function EditInventory({ baseURL }) {
             <label className='inventory-edit-label'>
               <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Item Name</span>
               <input
-                className='inventory-edit-input input txt-m txt-black'
+                className={`inventory-edit-input input txt-m txt-black ${errors.itemName ? 'input-error' : ''}`}
                 type='text'
-                onChange={handleInputChange(setItemName)}
+                onChange={handleInputChange(setItemName, 'itemName')}
                 value={itemName}
                 placeholder='Item Name'
-                onFocus={() => setInputFocused(true)}
-                onBlur={() => setInputFocused(false)}
               />
-              {errors.itemName && !isInputFocused && itemName.length === 0 && (
-                <span className='error txt-label'>
-                  <img src={errorIcon} alt='Error Alert' />
-                  {errors.itemName}
-                </span>
-              )}
+              {errors.itemName && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.itemName}</span>}
             </label>
 
             <label className='inventory-edit-label'>
               <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Description</span>
               <textarea
-                className='inventory-edit-textarea input txt-m txt-black'
-                autoFocus
-                onChange={handleInputChange(setDescription)}
-                onFocus={() => setInputFocused(true)}
-                onBlur={() => setInputFocused(false)}
+                className={`inventory-edit-textarea input txt-m txt-black ${errors.description ? 'input-error' : ''}`}
+                onChange={handleInputChange(setDescription, 'description')}
                 value={description}
                 placeholder='Please enter a brief item description...'></textarea>
-              {errors.description && !isInputFocused && description.length === 0 && (
-                <span className='error txt-label'>
-                  <img src={errorIcon} alt='' />
-                  {errors.description}
-                </span>
-              )}
+              {errors.description && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.description}</span>}
             </label>
 
             <label className='inventory-edit-label'>
               <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Category</span>
               <select
-                className='inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black'
-                onChange={handleInputChange(setCategory)}
+                className={`inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black ${errors.category ? 'input-error' : ''}`}
+                onChange={handleInputChange(setCategory, 'category')}
                 value={category}>
                 <option value='' disabled>
                   Please select
@@ -176,12 +184,7 @@ function EditInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.category && (
-                <span className='error txt-label'>
-                  <img src={errorIcon} alt='' />
-                  {errors.category}
-                </span>
-              )}
+              {errors.category && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.category}</span>}
             </label>
           </div>
           <div className='divider hide--tablet'></div>
@@ -192,8 +195,7 @@ function EditInventory({ baseURL }) {
             <div className='status-inventory-edit__title inventory-edit-label'>
               <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Status</span>
               <label
-                className={`inventory-oval-container ${status === 'In Stock' ? 'selected' : ''
-                  }`}>
+                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'In Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -205,8 +207,7 @@ function EditInventory({ baseURL }) {
                 <div className='inventory-edit-status'>In stock</div>
               </label>
               <label
-                className={`inventory-oval-container ${status === 'Out of Stock' ? 'selected' : ''
-                  }`}>
+                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'Out of Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -220,25 +221,23 @@ function EditInventory({ baseURL }) {
             </div>
             {status === 'In Stock' && (
               <label className='inventory-edit-label'>
-                <span className='inventory-edit-label-txt'>Quantity</span>
+                <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Quantity</span>
                 <input
-                  className='inventory-edit-input inventory-edit-input--qty input txt-m txt-black'
+                  className={`inventory-edit-input inventory-edit-input--qty input txt-m txt-black ${errors.quantity ? 'input-error' : ''}`}
                   type='number'
-                  onChange={handleInputChange(setQuantity)}
+                  onChange={handleInputChange(setQuantity, 'quantity')}
                   value={quantity}
                   placeholder='0'
                 />
-                {errors.quantity && (
-                  <span className='error'>{errors.quantity}</span>
-                )}
+                {errors.quantity && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.quantity}</span>}
               </label>
             )}
 
             <label className='inventory-edit-label'>
               <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Warehouse</span>
               <select
-                className='inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black'
-                onChange={handleInputChange(setWarehouse)}
+                className={`inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black ${errors.warehouse ? 'input-error' : ''}`}
+                onChange={handleInputChange(setWarehouse, 'warehouse')}
                 value={warehouse}>
                 <option value='' disabled>
                   Please select
@@ -249,9 +248,7 @@ function EditInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.warehouse && (
-                <span className='error'>{errors.warehouse}</span>
-              )}
+              {errors.warehouse && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.warehouse}</span>}
             </label>
           </div>
         </div>

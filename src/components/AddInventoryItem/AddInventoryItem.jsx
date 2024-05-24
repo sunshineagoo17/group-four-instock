@@ -147,7 +147,7 @@ function AddInventoryItem({ baseURL }) {
                 className={`inventory-add-select ${errors.category ? 'input-error' : ''} inventory-add-input custom-select-arrow`}
                 onChange={handleInputChange(setCategory, 'category')}
                 value={category}>
-                <option value='' disabled>
+                <option value='' disabled className='option'>
                   Please select
                 </option>
                 {categories.map((cat) => (
@@ -193,7 +193,7 @@ function AddInventoryItem({ baseURL }) {
               <div className='editForm__inputLabelWrapper'>
                 <label className='inventory-add-label'>Quantity</label>
                 <input
-                  className={`inventory-add-input ${errors.quantity ? 'input-error' : ''}`}
+                  className={`inventory-add-input inventory-add-input__qty ${errors.quantity ? 'input-error' : ''}`}
                   type='number'
                   onChange={handleInputChange(setQuantity, 'quantity')}
                   value={quantity}
@@ -208,7 +208,7 @@ function AddInventoryItem({ baseURL }) {
                 className={`inventory-add-select ${errors.warehouse ? 'input-error' : ''} inventory-add-input custom-select-arrow`}
                 onChange={handleInputChange(setWarehouse, 'warehouse')}
                 value={warehouse}>
-                <option value='' disabled>
+                <option value='' disabled className='option'>
                   Please select
                 </option>
                 {warehouses.map((wh) => (

@@ -214,15 +214,20 @@
 
 .inventory-add-select {
   font-family: $defaultFont;
-  color: $sec-slate;
+  color: $pri-black;
   appearance: none;
   cursor: pointer;
+
   @include for-tablet {
   }
 
   &:focus {
     border: 2px solid $pri-indigo;
   }
+}
+
+.option {
+  color: $sec-slate;
 }
 
 .custom-select-arrow {

@@ -94,15 +94,19 @@
   cursor: pointer;
 
   &:active , &:focus{
-    border-color: $pri-indigo;
+    border: 2px solid $pri-indigo; 
   }
     
-  
   &--qty{
     @include for-desktop{
       max-width: 122px;
+      cursor: default;
     }
   }
+}
+
+.input-error {
+  border: 2px solid $sec-red;
 }
 
 .inventory-edit-textarea {
@@ -162,7 +166,7 @@
 
 .inventory-edit-select {
   font-family: $defaultFont;
-  color: $sec-slate;
+  color: $pri-black;
   appearance: none;
   @include for-tablet {
   }
