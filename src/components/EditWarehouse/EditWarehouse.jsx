@@ -99,7 +99,9 @@ const EditWarehouse = ({ baseURL }) => {
 
   const formCancellation = () => {
     setWarehouseDetails(originalDetails); // Reset to original details
-  };
+    setErrors({}); // Clear all error messages
+    setAlert({ message: '', type: '' }); // Clear the alert
+  };  
 
   const formSubmit = (event) => {
     event.preventDefault();
