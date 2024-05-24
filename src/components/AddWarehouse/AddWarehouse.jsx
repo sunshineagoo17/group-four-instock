@@ -1,5 +1,6 @@
 import './AddWarehouse.scss';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
+import errorIcon from '../../assets/images/error-24px.svg'; // Import the error icon
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -182,7 +183,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.warehouse_name}
                   onChange={handleInputChange}
                 />
-                {errors.warehouse_name && <span className='error'>{errors.warehouse_name}</span>}
+                {errors.warehouse_name && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.warehouse_name}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -198,7 +199,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.address}
                   onChange={handleInputChange}
                 />
-                {errors.address && <span className='error'>{errors.address}</span>}
+                {errors.address && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.address}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -214,7 +215,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.city}
                   onChange={handleInputChange}
                 />
-                {errors.city && <span className='error'>{errors.city}</span>}
+                {errors.city && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.city}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -230,7 +231,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.country}
                   onChange={handleInputChange}
                 />
-                {errors.country && <span className='error'>{errors.country}</span>}
+                {errors.country && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.country}</span>}
               </div>
             </div>
             <div className='form-padding-topbottom--contact form-padding-side'>
@@ -251,7 +252,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.contact_name}
                   onChange={handleInputChange}
                 />
-                {errors.contact_name && <span className='error'>{errors.contact_name}</span>}
+                {errors.contact_name && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_name}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -267,7 +268,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.contact_position}
                   onChange={handleInputChange}
                 />
-                {errors.contact_position && <span className='error'>{errors.contact_position}</span>}
+                {errors.contact_position && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_position}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -283,7 +284,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.contact_phone}
                   onChange={handleInputChange}
                 />
-                {errors.contact_phone && <span className='error'>{errors.contact_phone}</span>}
+                {errors.contact_phone && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_phone}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -299,7 +300,7 @@ const AddWarehouse = ({ baseURL }) => {
                   value={formData.contact_email}
                   onChange={handleInputChange}
                 />
-                {errors.contact_email && <span className='error'>{errors.contact_email}</span>}
+                {errors.contact_email && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_email}</span>}
               </div>
             </div>
           </form>

@@ -1,9 +1,10 @@
-import './EditWarehouse.scss';
-import backIcon from '../../assets/images/arrow_back-24px.svg';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Alert from '../Alert/Alert';
+import './EditWarehouse.scss';
+import errorIcon from '../../assets/images/error-24px.svg';
+import backIcon from '../../assets/images/arrow_back-24px.svg';
 
 const EditWarehouse = ({ baseURL }) => {
   const { id } = useParams();
@@ -105,7 +106,7 @@ const EditWarehouse = ({ baseURL }) => {
     setTimeout(() => {
       setAlert({ message: '', type: '' });
     }, 5000);
-  }; 
+  };
 
   const formSubmit = (event) => {
     event.preventDefault();
@@ -166,7 +167,7 @@ const EditWarehouse = ({ baseURL }) => {
   };
 
   const handleBackClick = () => {
-    navigate(-1); 
+    navigate(-1);
   };
 
   return (
@@ -208,7 +209,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.warehouse_name}
                   onChange={handleInputChange}
                 />
-                {errors.warehouse_name && <span className='error'>{errors.warehouse_name}</span>}
+                {errors.warehouse_name && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.warehouse_name}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -224,7 +225,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.address}
                   onChange={handleInputChange}
                 />
-                {errors.address && <span className='error'>{errors.address}</span>}
+                {errors.address && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.address}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -240,7 +241,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.city}
                   onChange={handleInputChange}
                 />
-                {errors.city && <span className='error'>{errors.city}</span>}
+                {errors.city && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.city}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -256,7 +257,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.country}
                   onChange={handleInputChange}
                 />
-                {errors.country && <span className='error'>{errors.country}</span>}
+                {errors.country && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.country}</span>}
               </div>
             </div>
             <div className='form-padding-topbottom--contact form-padding-side'>
@@ -277,7 +278,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.contact_name}
                   onChange={handleInputChange}
                 />
-                {errors.contact_name && <span className='error'>{errors.contact_name}</span>}
+                {errors.contact_name && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_name}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -293,7 +294,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.contact_position}
                   onChange={handleInputChange}
                 />
-                {errors.contact_position && <span className='error'>{errors.contact_position}</span>}
+                {errors.contact_position && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_position}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -309,7 +310,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.contact_phone}
                   onChange={handleInputChange}
                 />
-                {errors.contact_phone && <span className='error'>{errors.contact_phone}</span>}
+                {errors.contact_phone && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_phone}</span>}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -325,7 +326,7 @@ const EditWarehouse = ({ baseURL }) => {
                   value={warehouseDetails.contact_email}
                   onChange={handleInputChange}
                 />
-                {errors.contact_email && <span className='error'>{errors.contact_email}</span>}
+                {errors.contact_email && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_email}</span>}
               </div>
             </div>
           </form>
