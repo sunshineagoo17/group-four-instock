@@ -32,10 +32,10 @@ const InventoryItemDetails = ({ fetchFn }) => {
           </Link>
           {inventoryDetails.item_name}
         </div>
-        <button className='edit-btn'>
+        <Link to={`/inventory/edit-inventory/${inventoryId}`} className='edit-btn'>
           <img className='edit-icon' src={editIcon} alt='edit Item' />
           <p className='edit-text txt-btn txt-bold'>Edit</p>
-        </button>
+        </Link>
       </div>
       <div className='divider'></div>
       <div className='detail list-padding-side'>
