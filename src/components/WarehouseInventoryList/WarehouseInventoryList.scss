@@ -21,6 +21,8 @@
     }
 
     .edit-btn {
+      display: flex;
+      align-items: center;
       height: sizeIncrement(9);
       width: sizeIncrement(9);
       background-color: $pri-indigo;
