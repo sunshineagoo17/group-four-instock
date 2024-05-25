@@ -31,7 +31,6 @@
       }
 
       @include for-tablet {
-        width: toRem(138);
         font-size: .813rem;
       }
 
@@ -71,6 +70,12 @@
       background-color: $pri-white;
       border: solid 1px $sec-cloud;
       color: $sec-slate;
+    }
+
+    @include for-tablet {
+      height: $btn-height-tablet;
+      width: fit-content;
+      @include padding(side, sizeIncrement(4));
     }
 
     a {
