@@ -45,7 +45,7 @@ const WarehouseInventoryList = ({ baseURL }) => {
   };
 
   return (
-    <div className='warehouseInventoryList'>
+    <div className='warehouseInventoryList box-shadow'>
       <div className='warehouseInventoryList__header warehouseDetails__list-padding-side'>
         <div className='warehouseInventoryList__header_title txt-header txt-bold txt-black'>
           <Link to='/'>
@@ -140,19 +140,17 @@ const WarehouseInventoryList = ({ baseURL }) => {
           </div>
         </div>
       )}
-     {warehouseInventoryList.map((item, index) => (
-      <div key={item.id} className="warehouseInventory-list-row-wrapper">
-        <WarehouseInventoryListRow
-          inventory={item}
-          index={index}
-          baseURL={baseURL}
-          fetchFn={fetchFn}
-        />
-        {index !== warehouseInventoryList.length - 1 && (
-          <div className="divider"></div>
-        )}
-      </div>
-    ))}
+      {warehouseInventoryList.map((item, index) => (
+        <div key={item.id} className="warehouseInventory-list-row-wrapper">
+          <WarehouseInventoryListRow
+            inventory={item}
+            index={index}
+            isLast={index === warehouseInventoryList.length - 1} 
+            baseURL={baseURL}
+            fetchFn={fetchFn}
+          />
+        </div>
+      ))}
     </div>
   );
 };

@@ -7,7 +7,7 @@ import deleteIcon from '../../assets/images/delete_outline-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
 
-const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
+const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
 
@@ -36,8 +36,8 @@ const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
 
   return (
     <>
-      {/* Adds a divider except for the first item */}
-      <div className={`${index === 0 ? '' : 'divider'}`}></div>
+      {/* Adds a divider except for the first item and the last item */}
+      {index !== 0 && !isLast && <div className='divider'></div>}
       <div className='warehouseInventory list-padding-side'>
         <div className='warehouseInventory__cell'>
           <div className='warehouseInventory__cell_header txt-slate txt-table txt-bold'>
