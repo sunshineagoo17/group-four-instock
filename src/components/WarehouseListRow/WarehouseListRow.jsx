@@ -1,13 +1,13 @@
+import { Link } from 'react-router-dom';
 import './WarehouseListRow.scss';
 import deleteIcon from '../../assets/images/delete_outline-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
-import { Link } from 'react-router-dom';
 
 const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
   return (
     <>
-      {/* conditional rendering based on index of map */}
+      {/* Conditional rendering based on index of map */}
       <div className={`${index === 0 ? '' : 'divider'}`}></div>
       <div className='warehouse list-padding-side'>
         <div className='warehouse__cell'>

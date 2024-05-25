@@ -19,6 +19,7 @@ function AddInventoryItem({ baseURL }) {
   const [warehouses, setWarehouses] = useState([]);
   const [alert, setAlert] = useState({ message: '', type: '' });
 
+  // Fetch categories and warehouses data when the component mounts
   useEffect(() => {
     axios
       .get(`${baseURL}/categories`)
@@ -53,6 +54,7 @@ function AddInventoryItem({ baseURL }) {
     });
   }, []);
 
+  // Clear specific field error and alert
   const clearError = (field) => {
     setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
     setAlert({ message: '', type: '' });
@@ -71,6 +73,7 @@ function AddInventoryItem({ baseURL }) {
     }
   };
 
+  // Validate form fields
   const validateFields = () => {
     const errors = {};
     if (!itemName.trim()) errors.itemName = 'Item name is required';
@@ -113,8 +116,9 @@ function AddInventoryItem({ baseURL }) {
       setWarehouse('');
       setStatus('In Stock');
       setErrors({});
+      // Navigate to the new item page after 3 seconds
       setTimeout(() => {
-        navigate(`/inventory/${newItemId}`); // Navigate to the newly created inventory item details page
+        navigate(`/inventory/${newItemId}`); 
       }, 3000);
     } catch (error) {
       console.error('Error adding item:', error);

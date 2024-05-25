@@ -1,10 +1,10 @@
-import './AddWarehouse.scss';
-import backIcon from '../../assets/images/arrow_back-24px.svg';
-import errorIcon from '../../assets/images/error-24px.svg'; // Import the error icon
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Alert from '../Alert/Alert';
+import './AddWarehouse.scss';
+import backIcon from '../../assets/images/arrow_back-24px.svg';
+import errorIcon from '../../assets/images/error-24px.svg'; 
 
 const AddWarehouse = ({ baseURL }) => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const AddWarehouse = ({ baseURL }) => {
     setAlert({ message: '', type: '' }); // Clear alert when user starts typing
   };
 
-  // Function to format the phone number
+  // Formats the phone number to a standard format
   const formatPhoneNumber = (number) => {
     const cleaned = ('' + number).replace(/\D/g, '');
     if (cleaned.length < 11) {

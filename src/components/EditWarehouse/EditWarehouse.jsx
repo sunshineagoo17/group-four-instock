@@ -55,6 +55,7 @@ const EditWarehouse = ({ baseURL }) => {
   }, [id, baseURL]);
 
   const formatPhoneNumber = (number) => {
+    // Formats the phone number to a standard format
     const cleaned = ('' + number).replace(/\D/g, '');
     if (cleaned.length < 11) {
       return number;
@@ -70,6 +71,7 @@ const EditWarehouse = ({ baseURL }) => {
     const { name, value } = e.target;
 
     if (name === 'contact_phone') {
+      // Validates and cleans phone number input
       const cleanedValue = value.replace(/[^\d\s-()+]/g, '');
       setWarehouseDetails((prevDetails) => ({
         ...prevDetails,
@@ -77,6 +79,7 @@ const EditWarehouse = ({ baseURL }) => {
       }));
       setErrors((prevErrors) => ({ ...prevErrors, contact_phone: '' }));
     } else if (name === 'contact_name') {
+      // Validates the contact name input
       if (nameRegex.test(value)) {
         setWarehouseDetails((prevDetails) => ({
           ...prevDetails,
@@ -95,14 +98,16 @@ const EditWarehouse = ({ baseURL }) => {
       }
     }
 
-    setAlert({ message: '', type: '' }); // Clear alert when user starts typing
+    setAlert({ message: '', type: '' }); // Clears alert when user starts typing
   };
 
   const formCancellation = () => {
-    setWarehouseDetails(originalDetails); // Reset to original details
-    setErrors({}); // Clear all error messages
+    // Resets form to original details
+    setWarehouseDetails(originalDetails); 
+    setErrors({}); // Clears all error messages
     setAlert({ message: 'Here are your OG details 🧐', type: 'info' });
 
+    // Clears alert after 5 seconds
     setTimeout(() => {
       setAlert({ message: '', type: '' });
     }, 5000);
@@ -155,7 +160,7 @@ const EditWarehouse = ({ baseURL }) => {
           setAlert({ message: 'Warehouse updated successfully. 🎉🥂', type: 'success' });
           setTimeout(() => {
             if (!alert.message) {
-              navigate(`/warehouse/${id}`); // Navigate to the updated warehouse details page
+              navigate(`/warehouse/${id}`); // Navigates to the updated warehouse details page after 3 seconds
             }
           }, 3000);
         })
@@ -166,6 +171,7 @@ const EditWarehouse = ({ baseURL }) => {
     }
   };
 
+  // Navigates to the previous page
   const handleBackClick = () => {
     navigate(-1);
   };

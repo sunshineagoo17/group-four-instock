@@ -18,6 +18,8 @@ function findWarehouseId(warehouseName, warehouseList) {
 function EditInventory({ baseURL }) {
   const navigate = useNavigate();
   const { inventoryId } = useParams();
+
+  // State variables for form data and UI state
   const [itemName, setItemName] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -44,6 +46,7 @@ function EditInventory({ baseURL }) {
         setDataCopy(data);
       });
 
+    // Fetch categories list
     axios
       .get(`${baseURL}/categories`)
       .then((response) => setCategories(response.data))
@@ -55,6 +58,7 @@ function EditInventory({ baseURL }) {
       .catch((error) => console.error('Error fetching warehouses:', error));
   }, [baseURL, inventoryId]);
 
+  // Function to clear error for a specific field
   const clearError = (field) => {
     setErrors((prevErrors) => ({ ...prevErrors, [field]: undefined }));
     setAlert({ message: '', type: '' });
@@ -73,6 +77,7 @@ function EditInventory({ baseURL }) {
     }
   };
 
+  // Function to validate form fields
   const validateFields = () => {
     const errors = {};
     if (!itemName.trim()) errors.itemName = 'Item name is required';
@@ -85,6 +90,7 @@ function EditInventory({ baseURL }) {
     return errors;
   };
 
+  // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -108,7 +114,7 @@ function EditInventory({ baseURL }) {
       await axios.put(`${baseURL}/inventories/${inventoryId}`, updatedItem);
       setAlert({ message: 'Item updated successfully 😎', type: 'success' });
       setTimeout(() => {
-        navigate(`/inventory/${inventoryId}`); // Navigate to the edited inventory item's details
+        navigate(`/inventory/${inventoryId}`); // Navigate to the edited inventory item's details after 3 seconds
       }, 3000);
     } catch (error) {
       console.error('Error updating item:', error);
@@ -116,6 +122,7 @@ function EditInventory({ baseURL }) {
     }
   };  
 
+  // Function to handle cancel action
   const handleCancel = (event) => {
     event.preventDefault();
     setItemName(dataCopy.item_name);
@@ -127,11 +134,13 @@ function EditInventory({ baseURL }) {
     setErrors({});
     setAlert({ message: 'Here are your OG details 🧐', type: 'info' });
 
+    // Clears alert after 5 seconds
     setTimeout(() => {
       setAlert({ message: '', type: '' });
     }, 5000);
   };  
 
+  // Function to handle back button click
   const handleBackClick = () => {
     navigate(-1); 
   };

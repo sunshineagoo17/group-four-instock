@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../../assets/images/InStock-Logo_2x.png';
-import './Header.scss';
 import { NavLink, Link, useLocation } from 'react-router-dom';
+import './Header.scss';
+import logo from '../../assets/images/InStock-Logo_2x.png';
 
 function Header() {
   // Get the current location to determine the active link
@@ -15,6 +15,7 @@ function Header() {
         location.pathname.startsWith('/edit-warehouse')
       );
     }
+    // Checks if the current path starts with the given path
     return location.pathname.startsWith(path);
   };
 
