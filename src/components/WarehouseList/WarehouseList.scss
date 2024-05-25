@@ -45,10 +45,19 @@
     font-family: $defaultFont;
     font-weight: bold;
     cursor: pointer;
+    width: 100%;
 
     &:active {
       transform: scale(0.98);
     }
+  }
+}
+
+.add-btn {
+  width: 100%;
+
+  @include for-tablet {
+    width: auto;
   }
 }
 

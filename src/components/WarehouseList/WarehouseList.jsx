@@ -159,7 +159,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           value={searchTerm}
           onChange={handleSearch}
         />
-        <Link to='/warehouse/add-warehouse' title='Add a new warehouse'>
+        <Link to='/warehouse/add-warehouse' className='add-btn' title='Add a new warehouse'>
           <button className='warehouse-list-header__add-btn btn txt-section'>
             + Add New Warehouse
           </button>
