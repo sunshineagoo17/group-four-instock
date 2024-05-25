@@ -172,7 +172,7 @@ const EditWarehouse = ({ baseURL }) => {
 
   return (
     <div className='warehouseForm box-shadow'>
-      <div className='warehouseForm__header list-padding-side'>
+      <div className='warehouseForm__header'>
         <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
           <img
             className='warehouseForm__back-btn'

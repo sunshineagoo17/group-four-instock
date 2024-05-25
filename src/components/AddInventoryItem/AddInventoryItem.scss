@@ -7,9 +7,16 @@
   @include padding(top, sizeIncrement(8));
   font-family: $defaultFont;
 
-  &__back-btn {
+  &__arrow-back {
     cursor: pointer;
+    transform: none;    
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateX(-4px);
+    }
   }
+
 }
 
 .inventory-add-header {
@@ -230,6 +237,11 @@
   outline: none;
   cursor: pointer;
   font-family: $defaultFont;
+  
+  &:active {
+    transform: scale(.98);
+    box-shadow: inset 0 0 5px rgba($pri-black, .2);
+  }
 
   @include for-tablet {
     height: $btn-height-tablet;

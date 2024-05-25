@@ -61,6 +61,10 @@
     cursor: pointer;
     width: 1.5rem;
     height: 1.5rem;
+
+    &:active {
+      transform: scale(0.75);
+    }
   }
 
   &__btn-close-icon {
@@ -119,6 +123,11 @@
     font-family: $defaultFont;
     font-size: toRem(14);
 
+    &:active {
+      transform: scale(.98);
+      box-shadow: inset 0 0 5px rgba($pri-black, .2);
+    }
+
     @include for-tablet {
       width: 4.5rem;
       height: 2.375rem;
@@ -128,7 +137,7 @@
       @extend .btn;
       background-color: $pri-white;
       color: $sec-slate;
-      border: 0.063rem solid $sec-cloud;
+      border: .063rem solid $sec-cloud;
     }
 
     &--delete {

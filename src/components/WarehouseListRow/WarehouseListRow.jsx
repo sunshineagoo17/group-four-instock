@@ -52,18 +52,22 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
           </div>
         </div>
         <div className='warehouse__cell warehouse__cell--full-width'>
-          <img
-            className='warehouse__cell_btn'
-            src={deleteIcon}
-            alt='delete button'
-            onClick={() => onDeleteClick(warehouse)}
-          />
-          <Link to={`/warehouse/edit-warehouse/${warehouse.id}`}>
+          <div className='btn-animate'>
             <img
               className='warehouse__cell_btn'
-              src={editIcon}
-              alt='edit button'
+              src={deleteIcon}
+              alt='delete button'
+              onClick={() => onDeleteClick(warehouse)}
             />
+          </div>
+          <Link to={`/warehouse/edit-warehouse/${warehouse.id}`}>
+            <div className='btn-animate'>
+              <img
+                className='warehouse__cell_btn'
+                src={editIcon}
+                alt='edit button'
+              />
+            </div>
           </Link>
         </div>
       </div>

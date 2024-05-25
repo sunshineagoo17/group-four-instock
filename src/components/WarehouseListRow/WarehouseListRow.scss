@@ -18,7 +18,7 @@
       color: $sec-red;
     }
   }
-
+  
   &__cell {
     display: flex;
     flex-wrap: wrap;
@@ -65,6 +65,7 @@
       }
 
       &:hover .right-arrow {
+        transform: none;
         transform: translateX(4px);
       }
     }
@@ -98,6 +99,12 @@
 .outstock {
   background-color: rgba($color: $sec-red, $alpha: 7%);
   color: $sec-red;
+}
+
+.btn-animate {
+  &:active {
+    transform: scale(0.75);
+  }
 }
 
 // Order and width for tablet

@@ -46,17 +46,21 @@ const WarehouseInventoryList = ({ baseURL }) => {
 
   return (
     <div className='warehouseInventoryList'>
-      <div className='warehouseInventoryList__header list-padding-side'>
+      <div className='warehouseInventoryList__header warehouseDetails__list-padding-side'>
         <div className='warehouseInventoryList__header_title txt-header txt-bold txt-black'>
           <Link to='/'>
-            <img src={backIcon} alt='go back to warehouselist' />
+            <div className='back-icon'>
+              <img src={backIcon} alt='go back to warehouselist' />
+            </div>
           </Link>
           {warehouseDetails.warehouse_name}
         </div>
-        <Link to={`/warehouse/edit-warehouse/${warehouseId}`} className='edit-btn'>
-          <img className='edit-icon' src={editIcon} alt='edit warehouse' />
-          <p className='edit-text txt-btn txt-bold'>Edit</p>
-        </Link>
+        <div className='btn-animate-edit'>
+          <Link to={`/warehouse/edit-warehouse/${warehouseId}`} className='edit-btn'>
+            <img className='edit-icon' src={editIcon} alt='edit warehouse' />
+            <p className='edit-text txt-btn txt-bold'>Edit</p>
+          </Link>
+        </div>
       </div>
       <div className='divider'></div>
       <div className='warehouseDetails list-padding-side'>

@@ -85,18 +85,22 @@ const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
           </div>
         </div>
         <div className='warehouseInventory__cell warehouseInventory__cell--full-width warehouseInventory__cell--flex-space-between'>
-          <img
-            className='warehouseInventory__cell_btn'
-            src={deleteIcon}
-            alt='delete button'
-            onClick={() => handleDeleteClick(inventory)}
-          />
-          <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
+          <div className='btn-animate'>
             <img
               className='warehouseInventory__cell_btn'
-              src={editIcon}
-              alt='edit button'
+              src={deleteIcon}
+              alt='delete button'
+              onClick={() => handleDeleteClick(inventory)}
             />
+          </div>
+          <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
+            <div className='btn-animate'>
+              <img
+                className='warehouseInventory__cell_btn'
+                src={editIcon}
+                alt='edit button'
+              />
+            </div>
           </Link>
         </div>
       </div>

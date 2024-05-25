@@ -7,6 +7,11 @@
 
   &__back-btn {
     cursor: pointer;
+    transition: transform .3s ease;
+
+    &:hover {
+      transform: translateX(-4px);
+    }
   }
 
   &__btn {
@@ -19,6 +24,11 @@
       align-items: center;
       border-radius: $btn-radius;
       font-family: $defaultFont;
+
+      &:active {
+        transform: scale(.98);
+        box-shadow: inset 0 0 5px rgba($pri-black, .2);
+      }
 
       @include for-tablet {
         width: toRem(138);

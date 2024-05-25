@@ -65,15 +65,19 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
           </div>
         </div>
         <div className='item__cell item__cell--full-width item__cell--flex-space-between'>
-          <img
-            className='item__cell_btn'
-            src={deleteIcon}
-            alt='delete button'
-            onClick={() => onDeleteClick(inventory)}
-          />
-          <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
-            <img className='item__cell_btn' src={editIcon} alt='edit button' />
-          </Link>
+          <div className='btn-animate'>
+            <img
+              className='item__cell_btn'
+              src={deleteIcon}
+              alt='delete button'
+              onClick={() => onDeleteClick(inventory)}
+            />
+          </div>
+          <div className='btn-animate'>
+            <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
+              <img className='item__cell_btn' src={editIcon} alt='edit button' />
+            </Link>
+          </div>
         </div>
       </div>
     </>

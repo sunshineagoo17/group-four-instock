@@ -32,13 +32,15 @@ const InventoryItemDetails = ({ fetchFn }) => {
     <div className='inventoryItemDetails'>
       <div className='inventoryItemDetails__header list-padding-side'>
         <div className='inventoryItemDetails__header_title txt-header txt-bold txt-black'>
-            <img src={backIcon} alt='go back to previous page' className='inventoryItemDetails__back-icon' onClick={handleBackClick} />
+          <img src={backIcon} alt='go back to previous page' className='inventoryItemDetails__back-icon' onClick={handleBackClick} />
           {inventoryDetails?.item_name}
         </div>
-        <Link to={`/inventory/edit-inventory/${inventoryId}`} className='edit-btn'>
-          <img className='edit-icon' src={editIcon} alt='edit Item' />
-          <p className='edit-text txt-btn txt-bold'>Edit</p>
-        </Link>
+        <div className='btn-animate-edit'>
+          <Link to={`/inventory/edit-inventory/${inventoryId}`} className='edit-btn'>
+            <img className='edit-icon' src={editIcon} alt='edit Item' />
+            <p className='edit-text txt-btn txt-bold'>Edit</p>
+          </Link>
+        </div>
       </div>
       <div className='divider'></div>
       <div className='detail list-padding-side'>

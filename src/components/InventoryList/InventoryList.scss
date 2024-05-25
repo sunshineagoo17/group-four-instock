@@ -42,6 +42,10 @@
     font-family: $defaultFont;
     font-weight: bold;
     cursor: pointer;
+
+    &:active {
+      transform: scale(0.98);
+    }
   }
 }
 
@@ -87,6 +91,10 @@
   .icon {
     height: sizeIncrement(4);
     cursor: pointer;
+
+    &:active {
+      transform: scale(0.8);
+    }
   }
 }
 

@@ -131,7 +131,7 @@ function AddInventoryItem({ baseURL }) {
     <div className='inventory-add box-shadow'>
       <div className='inventory-add-header list-padding-side'>
         <Link to='/inventory'>
-          <img src={ArrowBack} alt='back' />
+          <img src={ArrowBack} alt='back' className='inventory-add__arrow-back' />
         </Link>
         <h1 className='inventory-add-header__title txt-header txt-black'>
           Add New Inventory Item

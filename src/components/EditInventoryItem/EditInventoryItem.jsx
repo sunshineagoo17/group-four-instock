@@ -138,8 +138,8 @@ function EditInventory({ baseURL }) {
 
   return (
     <div className='inventory-edit box-shadow'>
-      <div className='inventory-edit-header list-padding-side'>
-        <img src={ArrowBack} alt='back' onClick={handleBackClick} className='inventory-edit__back-btn' />
+      <div className='inventory-edit-header inventory-edit-header__list-padding-side'>
+        <img src={ArrowBack} className='inventory-edit__back-btn' alt='back' onClick={handleBackClick} />
         <h1 className='inventory-edit-header__title txt-header txt-black'>
           Edit Inventory Item
         </h1>

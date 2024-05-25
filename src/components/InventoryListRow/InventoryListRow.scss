@@ -63,6 +63,7 @@
       flex-wrap: wrap;
 
       &:hover .right-arrow {
+        transform: none;
         transform: translateX(4px);
       }
     }
@@ -79,6 +80,12 @@
       height: sizeIncrement(6);
       cursor: pointer;
     }
+  }
+}
+
+.btn-animate {
+  &:active {
+    transform: scale(0.75);
   }
 }
 

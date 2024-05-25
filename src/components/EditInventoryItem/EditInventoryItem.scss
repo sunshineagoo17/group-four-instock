@@ -8,6 +8,12 @@
 
   &__back-btn {
     cursor: pointer;
+    transform: none;
+    transition: transform .3s ease;
+
+    &:hover {
+      transform: translateX(-4px);
+    }
   }
 }
 
@@ -26,6 +32,19 @@
 
   &__title {
     flex-grow: 1;
+  }
+
+  &__list-padding-side {
+    padding-left: sizeIncrement(5);
+    padding-right: sizeIncrement(3);
+
+    @include for-tablet {
+      padding-left: sizeIncrement(7.5);
+    }
+
+    @include for-desktop {
+      padding-left: sizeIncrement(9);
+    }
   }
 
   img {
@@ -207,6 +226,11 @@
   height: $btn-height-mobile;
   cursor: pointer;
   font-family: $defaultFont;
+
+  &:active {
+    transform: scale(.98);
+    box-shadow: inset 0 0 5px rgba($pri-black, .2);
+  }
 
   &--cancel {
     background-color: $pri-white;

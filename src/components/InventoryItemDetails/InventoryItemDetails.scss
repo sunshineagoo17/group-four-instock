@@ -8,6 +8,12 @@
 
   &__back-icon {
     cursor: pointer;
+    transform: none;
+    transition: transform .3s ease;
+
+    &:hover {
+      transform: translateX(-4px);
+    }
   }
 
   &__header {
@@ -60,6 +66,12 @@
         }
       }
     }
+  }
+}
+
+.btn-animate-edit {
+  &:active {
+    transform: scale(0.75);
   }
 }
 

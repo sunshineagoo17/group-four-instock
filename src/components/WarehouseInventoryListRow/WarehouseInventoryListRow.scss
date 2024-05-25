@@ -87,6 +87,7 @@
 .right-arrow {
   vertical-align: middle;
   height: 20px;
+  transform: none;
   transition: transform 0.3s ease;
 }
 
@@ -98,6 +99,12 @@
 .outstock {
   background-color: rgba($color: $sec-red, $alpha: 7%);
   color: $sec-red;
+}
+
+.btn-animate {
+  &:active {
+    transform: scale(0.75);
+  }
 }
 
 // Order and width for tablet

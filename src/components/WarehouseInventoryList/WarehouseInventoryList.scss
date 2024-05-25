@@ -59,6 +59,21 @@
   }
 }
 
+.back-icon {
+  transform: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateX(-4px);
+  }
+}
+
+.btn-animate-edit {
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
 .warehouseDetails {
   display: flex;
   flex-wrap: wrap;
@@ -73,6 +88,21 @@
     justify-content: space-between;
     row-gap: 0;
     padding-top: sizeIncrement(6);
+  }
+
+  &__list-padding-side {
+    padding-left: sizeIncrement(5);
+    padding-right: sizeIncrement(7);
+    
+    @include for-tablet {
+      padding-left: sizeIncrement(7);
+      padding-right: sizeIncrement(8.5);
+    }
+
+    @include for-desktop {
+      padding-left: sizeIncrement(9.15);
+      padding-right: sizeIncrement(10.5);
+    }
   }
 
   &__cell {
@@ -209,5 +239,9 @@
   .icon {
     height: sizeIncrement(4);
     cursor: pointer;
+
+    &:active {
+      transform: scale(0.8);
+    }
   }
 }

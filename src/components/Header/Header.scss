@@ -28,6 +28,10 @@ header {
     max-height: toRem(28);
     width: 100%;
 
+    &:active {
+      transform: scale(0.98);
+    }
+
     @include for-tablet {
       flex-grow: 1;
     }
@@ -53,6 +57,10 @@ header {
     align-items: center;
     color: $sec-cloud;
     font-family: $defaultFont;
+
+    &:active {
+      transform: scale(0.98);
+    }
 
     &:hover {
       text-decoration: underline;
