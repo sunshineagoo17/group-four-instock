@@ -64,6 +64,10 @@
     &:active {
       transform: scale(0.98);
     }
+
+    &:hover {
+      background-color: $bg-graphite;
+    }
   }
 }
 

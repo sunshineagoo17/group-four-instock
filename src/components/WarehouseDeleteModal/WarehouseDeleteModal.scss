@@ -138,12 +138,21 @@
       background-color: $pri-white;
       color: $sec-slate;
       border: 0.063rem solid $sec-cloud;
+
+      &:hover {
+        color: $pri-indigo;
+        border: 0.063rem solid $pri-indigo;
+      }
     }
 
     &--delete {
       @extend .btn;
       background-color: $sec-red;
       color: $pri-white;
+
+      &:hover {
+        background-color: $bg-graphite;
+      }
     }
   }
 }
