@@ -15,7 +15,7 @@ const WarehouseListRow = ({ warehouse, index, onDeleteClick }) => {
             WAREHOUSE
           </div>
           <div className='warehouse__cell_desc warehouse__cell_desc--title txt-m txt-bold txt-indigo'>
-            <Link to={`${warehouse.id}`} className='txt-indigo'>
+            <Link to={`${warehouse.id}`} className='txt-indigo warehouse__name'>
               {warehouse.warehouse_name}{' '}
               <img
                 className='right-arrow'

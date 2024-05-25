@@ -43,7 +43,7 @@ const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn 
             INVENTORY ITEM
           </div>
           <div className='warehouseInventory__cell_desc warehouseInventory__cell_desc--title txt-m txt-bold txt-indigo'>
-            <Link to={`/inventory/${inventory.id}`} className='txt-indigo'>
+            <Link to={`/inventory/${inventory.id}`} className='txt-indigo warehouseInventory__name'>
               {inventory.item_name}
               <img
                 className='right-arrow'

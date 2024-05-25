@@ -15,7 +15,7 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
             INVENTORY ITEM
           </div>
           <div className='item__cell_desc item__cell_desc--title txt-m txt-bold txt-indigo'>
-            <Link to={`/inventory/${inventory.id}`} className='txt-indigo'>
+            <Link to={`/inventory/${inventory.id}`} className='txt-indigo item__name'>
               {inventory.item_name}
               <img
                 className='right-arrow'

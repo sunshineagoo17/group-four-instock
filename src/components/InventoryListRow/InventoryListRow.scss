@@ -18,6 +18,10 @@
     }
   }
 
+  &__name:hover {
+    text-decoration: underline;
+  }
+
   &__cell {
     display: flex;
     flex-wrap: wrap;

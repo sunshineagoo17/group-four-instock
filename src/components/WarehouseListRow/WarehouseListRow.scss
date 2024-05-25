@@ -18,6 +18,10 @@
       color: $sec-red;
     }
   }
+
+  &__name:hover {
+    text-decoration: underline;
+  }
   
   &__cell {
     display: flex;
