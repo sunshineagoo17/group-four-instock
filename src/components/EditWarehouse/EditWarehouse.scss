@@ -133,6 +133,11 @@
       transform: scale(.98);
     }
 
+    &:hover {
+      color: $pri-indigo;
+      border: 0.063rem solid $pri-indigo;
+    }
+
     @include for-tablet {
       height: $btn-height-tablet;
       width: fit-content;
@@ -151,6 +156,10 @@
 
     &:active {
       transform: scale(.98);
+    }
+
+    &:hover {
+      background-color: $bg-graphite;
     }
   }
 }

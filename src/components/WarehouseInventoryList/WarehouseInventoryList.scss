@@ -31,6 +31,10 @@
     border: none;
     outline: none;
 
+    &:hover {
+      background-color: $bg-graphite;
+    }
+
     @include for-tablet {
       height: $btn-height-tablet;
       width: fit-content;

@@ -39,6 +39,10 @@
       border: none;
       outline: none;
 
+      &:hover {
+        background-color: $bg-graphite;
+      }
+
       @include for-tablet {
         display: flex;
         align-items: center;

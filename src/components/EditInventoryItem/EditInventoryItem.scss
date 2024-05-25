@@ -234,10 +234,19 @@
     background-color: $pri-white;
     border: solid 1px $sec-cloud;
     color: $sec-slate;
+
+    &:hover {
+      color: $pri-indigo;
+      border: 0.063rem solid $pri-indigo;
+    }
   }
 
   &--save {
     background-color: $pri-indigo;
     color: $pri-white;
+
+    &:hover {
+      background-color: $bg-graphite;
+    }
   }
 }
