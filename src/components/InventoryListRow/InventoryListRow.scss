@@ -12,9 +12,11 @@
     align-items: center;
     justify-content: space-between;
 
-    &:hover {
-      background-color: rgba($color: $pri-indigo, $alpha: 7%);
-      color: $sec-red;
+    @include for-desktop {
+      &:hover {
+        background-color: rgba($color: $pri-indigo, $alpha: 7%);
+        color: $sec-red;
+      }
     }
   }
 

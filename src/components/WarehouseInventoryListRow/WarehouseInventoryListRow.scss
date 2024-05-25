@@ -14,9 +14,11 @@
     justify-content: space-between;
     flex-grow: 1;
 
-    &:hover {
-      background-color: rgba($color: $pri-indigo, $alpha: 7%);
-      color: $sec-red;
+    @include for-desktop {
+      &:hover {
+        background-color: rgba($color: $pri-indigo, $alpha: 7%);
+        color: $sec-red;
+      }
     }
   }
 
