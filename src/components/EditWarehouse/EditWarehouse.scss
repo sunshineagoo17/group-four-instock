@@ -109,10 +109,12 @@
     background-color: $bg-grey;
     justify-content: space-between;
     display: flex;
+    gap: 1.06rem;
     padding: 1rem 2.938rem 1rem 1rem;
 
     @include for-tablet {
       justify-content: flex-end;
+      gap: 0;
     }
   }
 }
