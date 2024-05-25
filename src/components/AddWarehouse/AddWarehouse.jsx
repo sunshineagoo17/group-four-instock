@@ -157,8 +157,8 @@ const AddWarehouse = ({ baseURL }) => {
           Add New Warehouse
         </div>
       </div>
-      <div className='divider'></div>
       {alert.message && <Alert message={alert.message} type={alert.type} />}
+      <div className='divider'></div>
       <div className='formWrapper'>
         <div className='form-padding-side form-padding-topbottom'>
           <form
