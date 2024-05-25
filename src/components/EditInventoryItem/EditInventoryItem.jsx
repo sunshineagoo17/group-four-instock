@@ -120,7 +120,7 @@ function EditInventory({ baseURL }) {
       console.error('Error updating item:', error);
       setAlert({ message: 'Failed to update item 😔', type: 'error' });
     }
-  };  
+  };
 
   // Function to handle cancel action
   const handleCancel = (event) => {
@@ -142,7 +142,12 @@ function EditInventory({ baseURL }) {
 
   // Function to handle back button click
   const handleBackClick = () => {
-    navigate(-1); 
+    if (dataCopy.warehouse_id) {
+      navigate(`/warehouse/${dataCopy.warehouse_id}`);
+    } else {
+      console.error('Warehouse ID is undefined, navigating back to inventory list');
+      navigate('/inventory');
+    }
   };
 
   return (

@@ -26,14 +26,9 @@ const InventoryItemDetails = ({ fetchFn }) => {
       ? 'instock'
       : 'outstock');
 
-  // Handles back navigation
+  // Function to handle back button click
   const handleBackClick = () => {
-    if (inventoryDetails?.warehouse_id) {
-      navigate(`/warehouse/${inventoryDetails.warehouse_id}`);
-    } else {
-      console.error('Warehouse ID is undefined, navigating back to inventory list');
-      navigate('/inventory');
-    }
+    navigate(-1); 
   };
 
   return (
