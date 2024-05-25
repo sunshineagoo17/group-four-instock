@@ -107,10 +107,10 @@ const EditWarehouse = ({ baseURL }) => {
     setErrors({}); // Clears all error messages
     setAlert({ message: 'Here are your OG details 🧐', type: 'info' });
 
-    // Clears alert after 5 seconds
+    // Clears alert after 4 seconds
     setTimeout(() => {
       setAlert({ message: '', type: '' });
-    }, 5000);
+    }, 4000);
   };
 
   const formSubmit = (event) => {

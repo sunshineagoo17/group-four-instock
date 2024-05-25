@@ -25,14 +25,19 @@ const InventoryItemDetails = ({ fetchFn }) => {
 
   // Handles back navigation
   const handleBackClick = () => {
-    navigate(-1); 
+    navigate('/inventory');
   };
 
   return (
     <div className='inventoryItemDetails'>
       <div className='inventoryItemDetails__header list-padding-side'>
         <div className='inventoryItemDetails__header_title txt-header txt-bold txt-black'>
-          <img src={backIcon} alt='go back to previous page' className='inventoryItemDetails__back-icon' onClick={handleBackClick} />
+          <img 
+            src={backIcon} 
+            alt='go back to previous page' 
+            className='inventoryItemDetails__back-icon' 
+            onClick={handleBackClick} 
+          />
           {inventoryDetails?.item_name}
         </div>
         <div className='btn-animate-edit'>
