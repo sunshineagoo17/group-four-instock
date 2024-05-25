@@ -1,8 +1,8 @@
 import './InventoryItemDetails.scss';
+import { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
-import { useEffect, useState } from 'react';
 
 const InventoryItemDetails = ({ fetchFn }) => {
   const { inventoryId } = useParams();

@@ -14,7 +14,7 @@ const WarehouseInventoryList = ({ baseURL }) => {
   const [sortBy, setSortBy] = useState('item_name');
   const [orderBy, setOrderBy] = useState('asc');
 
-  // Fetching Data from API
+  // Fetching data from API
   const fetchFn = useCallback(async () => {
     try {
       const response = await axios.get(

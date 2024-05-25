@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
 import './WarehouseInventoryListRow.scss';
 import deleteIcon from '../../assets/images/delete_outline-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
-import InventoryDeleteModal from '../InventoryDeleteModal/InventoryDeleteModal';
-import { Link } from 'react-router-dom';
 
 const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +36,7 @@ const WarehouseInventoryListRow = ({ inventory, index, baseURL, fetchFn }) => {
 
   return (
     <>
+      {/* Adds a divider except for the first item */}
       <div className={`${index === 0 ? '' : 'divider'}`}></div>
       <div className='warehouseInventory list-padding-side'>
         <div className='warehouseInventory__cell'>

@@ -57,11 +57,11 @@ const InventoryList = ({ fetchFn, baseURL }) => {
     setSelectedInventory(null);
   };
 
-  // Confirms and deletes the item
+  // Confirms and deletes the selected item
   const handleDeleteConfirm = async () => {
     try {
       await axios.delete(`${baseURL}/inventories/${selectedInventory.id}`);
-      // Update the inventory list by removing the deleted item
+      // Updates the inventory list by removing the deleted item
       setInventoryList(
         inventoryList.filter((item) => item.id !== selectedInventory.id)
       );

@@ -38,13 +38,13 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   useEffect(() => {
     const cleanSearchTermForURL = (term) => {
       if (/^\+?\d.*$/.test(term)) {
-        // Format phone number
+        // Formats phone number for URL
         return term
           .replace(/[^\d\s-]/g, '')
           .replace('+', '')
           .replace(/\s+/g, '-');
       } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(term) || /@/.test(term)) {
-        // Format email address
+        // Formats email address for URL
         return term.replace('@', ' ');
       }
       return term;
