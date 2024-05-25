@@ -36,8 +36,7 @@ const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn 
 
   return (
     <>
-      {/* Adds a divider except for the first item and the last item */}
-      {index !== 0 && !isLast && <div className='divider'></div>}
+      {/* Adds a divider except for the last item */}
       <div className='warehouseInventory list-padding-side'>
         <div className='warehouseInventory__cell'>
           <div className='warehouseInventory__cell_header txt-slate txt-table txt-bold'>
@@ -105,6 +104,7 @@ const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn 
           </Link>
         </div>
       </div>
+      {!isLast && <div className='divider'></div>}
       {selectedInventory && (
         <InventoryDeleteModal
           show={showModal}
