@@ -119,12 +119,12 @@
 
 .btn {
   &--cancel {
+    font-family: $defaultFont;
     background-color: $pri-white;
     border: solid 1px $sec-cloud;
     color: $sec-slate;
     border-radius: $btn-radius;
-    width: 50%;
-    margin-right: 16px;
+    width: 100%;
     cursor: pointer;
 
     &:active {
@@ -133,37 +133,26 @@
     }
 
     @include for-tablet {
-      width: 4.5rem;
+      margin-right: .5rem;
+      height: $btn-height-tablet;
+      width: fit-content;
+      border: solid 1px $sec-cloud;
+      @include padding(side, sizeIncrement(4));
     }
   }
 
   &--save {
+    font-family: $defaultFont;
     color: $pri-white;
-    border: solid 1px $pri-indigo;
     background-color: $pri-indigo;
-    width: 50%;
+    border: solid 1px $pri-indigo;
+    width: 100%;
     cursor: pointer;
 
     &:active {
       transform: scale(.98);
       box-shadow: inset 0 0 5px rgba($pri-black, .2);
     }
-
-    @include for-tablet {
-      width: 8.625rem;
-    }
-  }
-
-  &--confirmation {
-    margin: 0.5rem;
-    color: $pri-white;
-    border: solid 1px $pri-indigo;
-    background-color: $pri-indigo;
-    border-radius: 20px;
-    width: 3.5rem;
-    height: 1.5rem;
-    font-family: $defaultFont;
-    cursor: pointer;
   }
 }
 
