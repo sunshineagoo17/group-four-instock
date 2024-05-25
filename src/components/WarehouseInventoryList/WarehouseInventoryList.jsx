@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import WarehouseInventoryListRow from '../WarehouseInventoryListRow/WarehouseInventoryListRow';
 import './WarehouseInventoryList.scss';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import sortIcon from '../../assets/images/sort-24px.svg';
-import WarehouseInventoryListRow from '../WarehouseInventoryListRow/WarehouseInventoryListRow';
 
 const WarehouseInventoryList = ({ baseURL }) => {
   const { warehouseId } = useParams();
@@ -56,7 +56,9 @@ const WarehouseInventoryList = ({ baseURL }) => {
           {warehouseDetails.warehouse_name}
         </div>
         <div className='btn-animate-edit'>
-          <Link to={`/warehouse/edit-warehouse/${warehouseId}`} className='edit-btn'>
+          <Link
+            to={`/warehouse/edit-warehouse/${warehouseId}`}
+            className='edit-btn'>
             <img className='edit-icon' src={editIcon} alt='edit warehouse' />
             <p className='edit-text txt-btn txt-bold'>Edit</p>
           </Link>
@@ -94,47 +96,50 @@ const WarehouseInventoryList = ({ baseURL }) => {
         </div>
       </div>
       <div className='divider hide--tablet'></div>
-      <div className='warehouseInventory-list__filter list-padding-side'>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          INVENTORY ITEM
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort items'
-            onClick={() => handleSort('item_name')}
-          />
+      {warehouseInventoryList.length > 0 && (
+        // Render Inventory headers only if there are inventory items
+        <div className='warehouseInventory-list__filter list-padding-side'>
+          <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+            INVENTORY ITEM
+            <img
+              className='icon'
+              src={sortIcon}
+              alt='sort items'
+              onClick={() => handleSort('item_name')}
+            />
+          </div>
+          <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+            CATEGORY
+            <img
+              className='icon'
+              src={sortIcon}
+              alt='sort categories'
+              onClick={() => handleSort('category')}
+            />
+          </div>
+          <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+            STATUS
+            <img
+              className='icon'
+              src={sortIcon}
+              alt='sort statuses'
+              onClick={() => handleSort('status')}
+            />
+          </div>
+          <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+            QUANTITY
+            <img
+              className='icon'
+              src={sortIcon}
+              alt='sort quantities'
+              onClick={() => handleSort('quantity')}
+            />
+          </div>
+          <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
+            ACTIONS
+          </div>
         </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          CATEGORY
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort categories'
-            onClick={() => handleSort('category')}
-          />
-        </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          STATUS
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort statuses'
-            onClick={() => handleSort('status')}
-          />
-        </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          QUANTITY
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort quantities'
-            onClick={() => handleSort('quantity')}
-          />
-        </div>
-        <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
-          ACTIONS
-        </div>
-      </div>
+      )}
       {warehouseInventoryList.map((item, index) => (
         <WarehouseInventoryListRow
           key={item.id}
