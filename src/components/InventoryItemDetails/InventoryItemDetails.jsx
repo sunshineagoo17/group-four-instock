@@ -11,9 +11,12 @@ const InventoryItemDetails = ({ fetchFn }) => {
 
   // Fetching Data from API
   useEffect(() => {
-    fetchFn(`/inventories/${inventoryId}`).then((res) =>
-      setInventoryDetails(res)
-    );
+    const fetchInventoryDetails = async () => {
+      const res = await fetchFn(`/inventories/${inventoryId}`);
+      setInventoryDetails(res);
+    };
+
+    fetchInventoryDetails();
   }, [fetchFn, inventoryId]);
 
   // Conditionally set the class based on the status
@@ -25,7 +28,12 @@ const InventoryItemDetails = ({ fetchFn }) => {
 
   // Handles back navigation
   const handleBackClick = () => {
-    navigate('/inventory');
+    if (inventoryDetails?.warehouse_id) {
+      navigate(`/warehouse/${inventoryDetails.warehouse_id}`);
+    } else {
+      console.error('Warehouse ID is undefined, navigating back to inventory list');
+      navigate('/inventory');
+    }
   };
 
   return (
