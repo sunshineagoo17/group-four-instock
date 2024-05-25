@@ -22,7 +22,6 @@
 .inventory-add-header {
   background-color: $pri-white;
   display: flex;
-  flex-wrap: wrap;
   gap: sizeIncrement(2);
   align-items: center;
   @include padding(bottom, sizeIncrement(6));
