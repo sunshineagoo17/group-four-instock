@@ -4,6 +4,20 @@
   background-color: $pri-white;
   border-radius: 4px;
   @include padding(top, sizeIncrement(8));
+
+  .warehouse-list-row {
+    background-color: $pri-white;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: ($pri-indigo, 0.7);
+    }
+  }
+
+  .divider {
+    height: 1px;
+    background-color: $sec-cloud;
+  }
 }
 
 .warehouse-list-header {

@@ -208,12 +208,18 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
         </div>
       </div>
       {sortedWarehouseList.map((item, index) => (
-        <WarehouseListRow
-          warehouse={item}
-          key={index}
-          index={index}
-          onDeleteClick={handleDeleteClick}
-        />
+        <div key={index}>
+          <div className="warehouse-list-row">
+            <WarehouseListRow
+              warehouse={item}
+              index={index}
+              onDeleteClick={handleDeleteClick}
+            />
+          </div>
+          {index !== sortedWarehouseList.length - 1 && (
+            <div className="divider"></div>
+          )}
+        </div>
       ))}
       <WarehouseDeleteModal
         show={showModal}
