@@ -103,11 +103,7 @@
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: $bg-grey;
-  }
-
-  &:hover + .divider {
-    background-color: transparent;
+    background-color: ($pri-indigo, 0.7);
   }
 
   .divider {
