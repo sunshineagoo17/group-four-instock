@@ -2,60 +2,58 @@
 
 .warehouseInventoryList {
   display: flex;
+  flex-direction: column;
   background-color: $pri-white;
   border-radius: sizeIncrement(1);
-  flex-wrap: wrap;
+}
 
-  &__header {
+.warehouseInventoryList__header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: sizeIncrement(8);
+  padding-bottom: sizeIncrement(6);
+
+  &_title {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
     align-items: center;
-    padding-top: sizeIncrement(8);
-    padding-bottom: sizeIncrement(6);
+    gap: sizeIncrement(1);
+  }
 
-    &_title {
-      display: flex;
-      align-items: center;
+  .edit-btn {
+    display: flex;
+    align-items: center;
+    height: sizeIncrement(9);
+    width: sizeIncrement(9);
+    background-color: $pri-indigo;
+    border-radius: $btn-radius;
+    border: none;
+    outline: none;
+
+    @include for-tablet {
+      height: $btn-height-tablet;
+      width: fit-content;
+      @include padding(side, sizeIncrement(4));
       gap: sizeIncrement(1);
     }
 
-    .edit-btn {
-      display: flex;
-      align-items: center;
-      height: sizeIncrement(9);
-      width: sizeIncrement(9);
-      background-color: $pri-indigo;
-      border-radius: $btn-radius;
-      border: none;
-      outline: none;
+    .edit-icon {
+      height: sizeIncrement(6);
+      filter: brightness(0) invert(1);
+
+      @include for-tablet {
+        height: sizeIncrement(5);
+      }
+    }
+
+    .edit-text {
+      display: none;
+      color: $pri-white;
+      font-family: $defaultFont;
 
       @include for-tablet {
         display: flex;
-        align-items: center;
-        height: $btn-height-tablet;
-        width: fit-content;
-        @include padding(side, sizeIncrement(4));
-        gap: sizeIncrement(1);
-      }
-
-      .edit-icon {
-        height: sizeIncrement(6);
-        filter: brightness(0) invert(1);
-
-        @include for-tablet {
-          height: sizeIncrement(5);
-        }
-      }
-
-      .edit-text {
-        display: none;
-        color: $pri-white;
-        font-family: $defaultFont;
-
-        @include for-tablet {
-          display: flex;
-        }
       }
     }
   }
@@ -245,5 +243,21 @@
     &:active {
       transform: scale(0.8);
     }
+  }
+}
+
+.warehouseInventory-list-row-wrapper {
+  width: 100%;
+  transition: background-color 0.3s;
+  position: relative;  
+
+  &:hover {
+    background-color: ($pri-indigo, 0.7);
+  }
+
+  .divider {
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
   }
 }

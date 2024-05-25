@@ -140,15 +140,19 @@ const WarehouseInventoryList = ({ baseURL }) => {
           </div>
         </div>
       )}
-      {warehouseInventoryList.map((item, index) => (
+     {warehouseInventoryList.map((item, index) => (
+      <div key={item.id} className="warehouseInventory-list-row-wrapper">
         <WarehouseInventoryListRow
-          key={item.id}
           inventory={item}
           index={index}
           baseURL={baseURL}
           fetchFn={fetchFn}
         />
-      ))}
+        {index !== warehouseInventoryList.length - 1 && (
+          <div className="divider"></div>
+        )}
+      </div>
+    ))}
     </div>
   );
 };
