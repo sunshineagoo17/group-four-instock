@@ -85,10 +85,10 @@
     padding-left: 1rem;
     padding-right: 1rem;
     border: solid $sec-cloud;
-    margin-top: 4px;
+    margin-top: .25rem;
 
     &:focus {
-      border: 2px solid $pri-indigo; 
+      border: 1px solid $pri-indigo; 
     }
 
     @mixin for-tablet {
@@ -131,7 +131,6 @@
 
     &:active {
       transform: scale(.98);
-      box-shadow: inset 0 0 5px rgba($pri-black, .2);
     }
 
     @include for-tablet {
@@ -152,7 +151,6 @@
 
     &:active {
       transform: scale(.98);
-      box-shadow: inset 0 0 5px rgba($pri-black, .2);
     }
   }
 }

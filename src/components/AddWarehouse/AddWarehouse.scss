@@ -27,7 +27,6 @@
 
       &:active {
         transform: scale(.98);
-        box-shadow: inset 0 0 5px rgba($pri-black, .2);
       }
 
       @include for-tablet {
@@ -36,7 +35,7 @@
 
       @media (max-width: 374px) {
         width: toRem(140);
-        height: 36px;
+        height: 2.25rem;
         font-size: .813rem;
       }
     }
@@ -159,10 +158,10 @@
     padding-left: 1rem;
     padding-right: 1rem;
     border: solid $sec-cloud;
-    margin-top: 4px;
+    margin-top: .25rem;
 
     &:focus {
-      border: 2px solid $pri-indigo;
+      border: 1px solid $pri-indigo;
     }
 
     @mixin for-tablet {
@@ -199,7 +198,7 @@
 }
 
 .error {
-  font-size: 13px;
+  font-size: .813rem;
   font-family: $defaultFont;
   color: $sec-red;
 }
@@ -208,7 +207,7 @@
   margin: 0;
   padding: 0;
   border: none;
-  height: 1px;
+  height: .063rem;
   background-color: $sec-cloud;
   width: 100%;
 }

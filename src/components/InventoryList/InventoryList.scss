@@ -2,7 +2,7 @@
 
 .inventory-list {
   background-color: $pri-white;
-  border-radius: 4px;
+  border-radius: .25rem;
   @include padding(top, sizeIncrement(8));
   font-family: $defaultFont;
 }
@@ -54,7 +54,7 @@
 
   @include for-tablet {
     display: flex;
-    height: 40px;
+    height: 2.5rem;
     background-color: $bg-grey;
     align-items: center;
     flex-wrap: nowrap;
