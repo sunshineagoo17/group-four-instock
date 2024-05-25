@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import ArrowBack from '../../assets/images/arrow_back-24px.svg';
-import errorIcon from '../../assets/images/error-24px.svg';
 import Alert from '../Alert/Alert';
 import './AddInventoryItem.scss';
+import ArrowBack from '../../assets/images/arrow_back-24px.svg';
+import errorIcon from '../../assets/images/error-24px.svg';
 
 function AddInventoryItem({ baseURL }) {
   const navigate = useNavigate();

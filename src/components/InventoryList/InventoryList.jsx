@@ -155,12 +155,17 @@ const InventoryList = ({ fetchFn, baseURL }) => {
         </div>
       </div>
       {inventoryList.map((item, index) => (
-        <InventoryListRow
-          inventory={item}
-          key={index}
-          index={index}
-          onDeleteClick={handleDeleteClick}
-        />
+        <div key={index} className="inventory-list-row-wrapper">
+          <InventoryListRow
+            inventory={item}
+            index={index}
+            onDeleteClick={handleDeleteClick}
+          />
+          {/* Conditionally render the divider for all items except the last one */}
+          {index !== inventoryList.length - 1 && (
+            <div className="divider"></div>
+          )}
+        </div>
       ))}
       <InventoryDeleteModal
         show={showModal}

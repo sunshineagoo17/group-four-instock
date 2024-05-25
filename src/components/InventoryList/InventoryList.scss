@@ -98,6 +98,26 @@
   }
 }
 
+.inventory-list-row-wrapper {
+  position: relative;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $bg-grey;
+  }
+
+  &:hover + .divider {
+    background-color: transparent;
+  }
+
+  .divider {
+    margin: 0;
+    &:last-of-type {
+      display: none;
+    }
+  }
+}
+
 @include for-tablet {
   .hide-tablet {
     display: none;

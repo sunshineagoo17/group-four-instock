@@ -216,6 +216,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
               onDeleteClick={handleDeleteClick}
             />
           </div>
+          {/* Render the divider for all rows except the last one */}
           {index !== sortedWarehouseList.length - 1 && (
             <div className="divider"></div>
           )}
