@@ -177,11 +177,11 @@ const EditWarehouse = ({ baseURL }) => {
   };
 
   return (
-    <div className='warehouseForm box-shadow'>
-      <div className='warehouseForm__header'>
-        <div className='warehouseForm__header_title txt-header txt-bold txt-black'>
+    <div className='editWarehouseForm box-shadow'>
+      <div className='editWarehouseForm__header'>
+        <div className='editWarehouseForm__header_title txt-header txt-bold txt-black'>
           <img
-            className='warehouseForm__back-btn'
+            className='editWarehouseForm__back-btn'
             src={backIcon}
             alt='go back to the previous page'
             onClick={handleBackClick}
@@ -190,28 +190,29 @@ const EditWarehouse = ({ baseURL }) => {
         </div>
       </div>
       {alert.message && <Alert message={alert.message} type={alert.type} />}
-      <div className='divider'></div>
+      <div className='editWarehouseForm__divider'></div>
       <div className='formWrapper'>
-        <div className='form-padding-side form-padding-topbottom'>
-          <form
-            className='editForm'
-            id='editWarehouseInfo'
-            onSubmit={formSubmit}>
-            <div className='editForm__warehouse form-padding-side'>
+        <form
+          className='editForm'
+          id='editWarehouseForm'
+          onSubmit={formSubmit}
+        >
+          <div className='formWrapper__warehouse-details editForm__warehouse'>
+            <div className='form-padding-side'>
               <div className='txt-subheader txt-bold txt-black subheader_spacing'>
                 Warehouse Details
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='warehouse_name'>
                   Warehouse Name
                 </label>
                 <input
                   className={`editForm__input ${errors.warehouse_name ? 'editForm__invalid-input' : ''}`}
                   name='warehouse_name'
-                  placeholder='Warehouse Name'
                   type='text'
+                  placeholder='Warehouse Name'
                   value={warehouseDetails.warehouse_name}
                   onChange={handleInputChange}
                 />
@@ -219,7 +220,7 @@ const EditWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='address'>
                   Street Address
                 </label>
@@ -235,7 +236,7 @@ const EditWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='city'>
                   City
                 </label>
@@ -251,7 +252,7 @@ const EditWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='country'>
                   Country
                 </label>
@@ -265,14 +266,18 @@ const EditWarehouse = ({ baseURL }) => {
                 />
                 {errors.country && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.country}</span>}
               </div>
-            </div>
-            <div className='form-padding-topbottom--contact form-padding-side'>
+            </div> 
+          </div>
+          <div className='editWarehouseForm__divider editWarehouseForm__divider--horizontal'></div>
+          <div className='editWarehouseForm__divider editWarehouseForm__divider--vertical'></div>
+          <div className='formWrapper__contact-details editForm__contact'>
+            <div className='form-padding-side'>
               <div className='txt-subheader txt-bold txt-black subheader_spacing'>
                 Contact Details
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_name'>
                   Contact Name
                 </label>
@@ -288,7 +293,7 @@ const EditWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_position'>
                   Position
                 </label>
@@ -304,7 +309,7 @@ const EditWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_phone'>
                   Phone Number
                 </label>
@@ -320,7 +325,7 @@ const EditWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_email'>
                   Email
                 </label>
@@ -335,23 +340,26 @@ const EditWarehouse = ({ baseURL }) => {
                 {errors.contact_email && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_email}</span>}
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
       <div className='editForm__buttonContainer'>
-        <button className='txt-bold btn--cancel' aria-label='Cancel Changes' onClick={formCancellation}>
+        <button
+          className='editWarehouseForm__btn editWarehouseForm__btn--cancel txt-bold'
+          aria-label='Cancel Changes'
+          onClick={formCancellation}>
           Cancel
         </button>
         <button
-          className='btn txt-bold btn--save'
+          className='editWarehouseForm__btn editWarehouseForm__btn--save txt-bold'
           aria-label='Submit'
           type='submit'
-          form='editWarehouseInfo'>
+          form='editWarehouseForm'>
           Save
         </button>
       </div>
     </div>
-  );
+  );  
 };
 
 export default EditWarehouse;

@@ -13,7 +13,7 @@
     &--horizontal {
       display: block;
       width: 100%;
-      margin-top: .5rem;
+      margin-top: 1rem;
       margin-bottom: 1rem;
   
       @include for-tablet {
@@ -124,11 +124,11 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4) sizeIncrement(5);
+    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4) sizeIncrement(6.5);
 
     @include for-tablet {
       margin-bottom: .2rem;
-      padding: sizeIncrement(8.5) sizeIncrement(6) sizeIncrement(4) sizeIncrement(5.5);
+      padding: sizeIncrement(8.5) sizeIncrement(6) sizeIncrement(4) sizeIncrement(6.5);
     }
 
     &_title {
@@ -248,7 +248,7 @@
     background-color: $bg-grey;
     display: flex;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 1rem 1.9rem;
 
     @include for-tablet {
       justify-content: flex-end;
