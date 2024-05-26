@@ -106,8 +106,10 @@
   position: relative;
   transition: background-color 0.3s;
 
-  &:hover {
-    background-color: ($pri-indigo, 0.7);
+  @include for-desktop {
+    &:hover {
+      background-color: rgba($pri-indigo, -.7);
+    } 
   }
 
   .divider {

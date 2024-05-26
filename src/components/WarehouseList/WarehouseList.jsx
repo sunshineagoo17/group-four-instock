@@ -4,7 +4,6 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
 import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
 import './WarehouseList.scss';
-import sortIcon from '../../assets/images/sort-24px.svg';
 
 const WarehouseList = ({ fetchFn, baseURL }) => {
   const location = useLocation();
@@ -169,39 +168,51 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       <div className='warehouse-list__filter list-padding-side'>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           WAREHOUSE
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort warehouses'
+          <svg
+            className={`icon ${sortBy === 'warehouse_name' ? 'active' : ''}`}
             onClick={() => handleSort('warehouse_name')}
-          />
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+          </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT NAME
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort names'
+          <svg
+            className={`icon ${sortBy === 'contact_name' ? 'active' : ''}`}
             onClick={() => handleSort('contact_name')}
-          />
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+          </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           ADDRESS
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort addresses'
+          <svg
+            className={`icon ${sortBy === 'address' ? 'active' : ''}`}
             onClick={() => handleSort('address')}
-          />
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+          </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT INFORMATION
-          <img
-            className='icon'
-            src={sortIcon}
-            alt='sort contact info'
+          <svg
+            className={`icon ${sortBy === 'contact_information' ? 'active' : ''}`}
             onClick={() => handleSort('contact_information')}
-          />
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+          </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           ACTIONS
@@ -216,10 +227,6 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
               onDeleteClick={handleDeleteClick}
             />
           </div>
-          {/* Render the divider for all rows except the last one */}
-          {index !== sortedWarehouseList.length - 1 && (
-            <div className="divider"></div>
-          )}
         </div>
       ))}
       <WarehouseDeleteModal

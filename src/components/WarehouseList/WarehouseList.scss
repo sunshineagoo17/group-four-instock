@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/partials/index' as *;
 
 .warehouse-list {
@@ -9,8 +10,10 @@
     background-color: $pri-white;
     transition: background-color 0.3s;
 
-    &:hover {
-      background-color: ($pri-indigo, 0.7);
+    @include for-desktop {
+      &:hover {
+        background-color: rgba($pri-indigo, -.7);
+      }
     }
   }
 
@@ -128,13 +131,16 @@
       order: 5;
     }
   }
+}
 
-  .icon {
-    height: sizeIncrement(4);
-    cursor: pointer;
+.icon {
+  height: 1.5rem;
+  width: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s, fill 0.15s;
 
-    &:active {
-      transform: scale(0.8);
-    }
+  &:active {
+    transform: scale(.9);
+    fill: $pri-indigo;
   }
 }
