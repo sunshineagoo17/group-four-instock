@@ -92,7 +92,8 @@ const EditWarehouse = ({ baseURL }) => {
         ...prevDetails,
         [name]: value,
       }));
-      if (name === 'contact_email') setErrors((prevErrors) => ({ ...prevErrors, contact_email: '' }));
+      if (name === 'contact_email')
+        setErrors((prevErrors) => ({ ...prevErrors, contact_email: '' }));
       if (name !== 'contact_phone' && name !== 'contact_email') {
         setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
       }
@@ -103,7 +104,7 @@ const EditWarehouse = ({ baseURL }) => {
 
   const formCancellation = () => {
     // Resets form to original details
-    setWarehouseDetails(originalDetails); 
+    setWarehouseDetails(originalDetails);
     setErrors({}); // Clears all error messages
     setAlert({ message: 'Here are your OG details 🧐', type: 'info' });
 
@@ -132,18 +133,30 @@ const EditWarehouse = ({ baseURL }) => {
 
     let hasError = false;
     const newErrors = {};
-    if (!warehouse_name) newErrors.warehouse_name = 'Warehouse name is required';
+    if (!warehouse_name)
+      newErrors.warehouse_name = 'Warehouse name is required';
     if (!address) newErrors.address = 'Address is required';
     if (!city) newErrors.city = 'City is required';
     if (!country) newErrors.country = 'Country is required';
-    if (!contact_name) newErrors.contact_name = 'Contact name is required and must only contain letters, ".", and "-"';
-    if (!contact_position) newErrors.contact_position = 'Contact position is required';
-    if (!phoneRegex.test(contact_phone) || warehouseDetails.contact_phone.replace(/\D/g, '').length < 11) newErrors.contact_phone = 'The phone number entered is incorrect';
-    if (!emailRegex.test(contact_email)) newErrors.contact_email = 'The email you entered is incorrect';
+    if (!contact_name)
+      newErrors.contact_name =
+        'Contact name is required and must only contain letters, ".", and "-"';
+    if (!contact_position)
+      newErrors.contact_position = 'Contact position is required';
+    if (
+      !phoneRegex.test(contact_phone) ||
+      warehouseDetails.contact_phone.replace(/\D/g, '').length < 11
+    )
+      newErrors.contact_phone = 'The phone number entered is incorrect';
+    if (!emailRegex.test(contact_email))
+      newErrors.contact_email = 'The email you entered is incorrect';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      setAlert({ message: 'Please correct the errors in the form. 💁‍♂️', type: 'error' });
+      setAlert({
+        message: 'Please correct the errors in the form. 💁‍♂️',
+        type: 'error',
+      });
       hasError = true;
     }
 
@@ -157,7 +170,10 @@ const EditWarehouse = ({ baseURL }) => {
         .put(`${baseURL}/warehouses/${id}`, updatedDetails)
         .then((data) => {
           console.log(data);
-          setAlert({ message: 'Warehouse updated successfully. 🎉🥂', type: 'success' });
+          setAlert({
+            message: 'Warehouse updated successfully. 🎉🥂',
+            type: 'success',
+          });
           setTimeout(() => {
             if (!alert.message) {
               navigate(`/warehouse/${id}`); // Navigates to the updated warehouse details page after 3 seconds
@@ -166,7 +182,10 @@ const EditWarehouse = ({ baseURL }) => {
         })
         .catch((error) => {
           console.log(error);
-          setAlert({ message: 'Failed to update warehouse. 🤦', type: 'error' });
+          setAlert({
+            message: 'Failed to update warehouse. 🤦',
+            type: 'error',
+          });
         });
     }
   };
@@ -192,11 +211,7 @@ const EditWarehouse = ({ baseURL }) => {
       {alert.message && <Alert message={alert.message} type={alert.type} />}
       <div className='editWarehouseForm__divider'></div>
       <div className='formWrapper'>
-        <form
-          className='editForm'
-          id='editWarehouseForm'
-          onSubmit={formSubmit}
-        >
+        <form className='editForm' id='editWarehouseForm' onSubmit={formSubmit}>
           <div className='formWrapper__warehouse-details editForm__warehouse'>
             <div className='form-padding-side'>
               <div className='txt-subheader txt-bold txt-black subheader_spacing'>
@@ -209,14 +224,21 @@ const EditWarehouse = ({ baseURL }) => {
                   Warehouse Name
                 </label>
                 <input
-                  className={`editForm__input ${errors.warehouse_name ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.warehouse_name ? 'editForm__invalid-input' : ''
+                  }`}
                   name='warehouse_name'
                   type='text'
                   placeholder='Warehouse Name'
                   value={warehouseDetails.warehouse_name}
                   onChange={handleInputChange}
                 />
-                {errors.warehouse_name && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.warehouse_name}</span>}
+                {errors.warehouse_name && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.warehouse_name}
+                  </span>
+                )}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -225,14 +247,21 @@ const EditWarehouse = ({ baseURL }) => {
                   Street Address
                 </label>
                 <input
-                  className={`editForm__input ${errors.address ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.address ? 'editForm__invalid-input' : ''
+                  }`}
                   name='address'
                   type='text'
                   placeholder='Street Address'
                   value={warehouseDetails.address}
                   onChange={handleInputChange}
                 />
-                {errors.address && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.address}</span>}
+                {errors.address && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.address}
+                  </span>
+                )}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -241,14 +270,21 @@ const EditWarehouse = ({ baseURL }) => {
                   City
                 </label>
                 <input
-                  className={`editForm__input ${errors.city ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.city ? 'editForm__invalid-input' : ''
+                  }`}
                   name='city'
                   type='text'
                   placeholder='City'
                   value={warehouseDetails.city}
                   onChange={handleInputChange}
                 />
-                {errors.city && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.city}</span>}
+                {errors.city && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.city}
+                  </span>
+                )}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -257,16 +293,23 @@ const EditWarehouse = ({ baseURL }) => {
                   Country
                 </label>
                 <input
-                  className={`editForm__input ${errors.country ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.country ? 'editForm__invalid-input' : ''
+                  }`}
                   name='country'
                   type='text'
                   placeholder='Country'
                   value={warehouseDetails.country}
                   onChange={handleInputChange}
                 />
-                {errors.country && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.country}</span>}
+                {errors.country && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.country}
+                  </span>
+                )}
               </div>
-            </div> 
+            </div>
           </div>
           <div className='editWarehouseForm__divider editWarehouseForm__divider--horizontal'></div>
           <div className='editWarehouseForm__divider editWarehouseForm__divider--vertical'></div>
@@ -282,14 +325,21 @@ const EditWarehouse = ({ baseURL }) => {
                   Contact Name
                 </label>
                 <input
-                  className={`editForm__input ${errors.contact_name ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.contact_name ? 'editForm__invalid-input' : ''
+                  }`}
                   name='contact_name'
                   type='text'
                   placeholder='Contact Name'
                   value={warehouseDetails.contact_name}
                   onChange={handleInputChange}
                 />
-                {errors.contact_name && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_name}</span>}
+                {errors.contact_name && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.contact_name}
+                  </span>
+                )}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -298,14 +348,21 @@ const EditWarehouse = ({ baseURL }) => {
                   Position
                 </label>
                 <input
-                  className={`editForm__input ${errors.contact_position ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.contact_position ? 'editForm__invalid-input' : ''
+                  }`}
                   name='contact_position'
                   type='text'
                   placeholder='Position'
                   value={warehouseDetails.contact_position}
                   onChange={handleInputChange}
                 />
-                {errors.contact_position && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_position}</span>}
+                {errors.contact_position && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.contact_position}
+                  </span>
+                )}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -314,14 +371,21 @@ const EditWarehouse = ({ baseURL }) => {
                   Phone Number
                 </label>
                 <input
-                  className={`editForm__input ${errors.contact_phone ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.contact_phone ? 'editForm__invalid-input' : ''
+                  }`}
                   name='contact_phone'
                   type='tel'
                   placeholder='Phone Number'
                   value={warehouseDetails.contact_phone}
                   onChange={handleInputChange}
                 />
-                {errors.contact_phone && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_phone}</span>}
+                {errors.contact_phone && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.contact_phone}
+                  </span>
+                )}
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
@@ -330,14 +394,21 @@ const EditWarehouse = ({ baseURL }) => {
                   Email
                 </label>
                 <input
-                  className={`editForm__input ${errors.contact_email ? 'editForm__invalid-input' : ''}`}
+                  className={`editForm__input ${
+                    errors.contact_email ? 'editForm__invalid-input' : ''
+                  }`}
                   name='contact_email'
                   type='email'
                   placeholder='Email'
                   value={warehouseDetails.contact_email}
                   onChange={handleInputChange}
                 />
-                {errors.contact_email && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_email}</span>}
+                {errors.contact_email && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.contact_email}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -359,7 +430,7 @@ const EditWarehouse = ({ baseURL }) => {
         </button>
       </div>
     </div>
-  );  
+  );
 };
 
 export default EditWarehouse;

@@ -36,7 +36,7 @@ function AddInventoryItem({ baseURL }) {
   useEffect(() => {
     const selects = document.querySelectorAll('.inventory-add-select');
 
-    selects.forEach(select => {
+    selects.forEach((select) => {
       const placeholderOption = select.querySelector('option[disabled]');
       if (placeholderOption && !select.value) {
         select.classList.add('placeholder-color');
@@ -88,14 +88,17 @@ function AddInventoryItem({ baseURL }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setAlert({ message: 'Please correct the errors in the form. 😔', type: 'error' });
+      setAlert({
+        message: 'Please correct the errors in the form. 😔',
+        type: 'error',
+      });
       return;
     }
-  
+
     const newItem = {
       warehouse_id: parseInt(warehouse, 10),
       item_name: itemName,
@@ -104,7 +107,7 @@ function AddInventoryItem({ baseURL }) {
       status,
       quantity: status === 'In Stock' ? parseInt(quantity, 10) : 0,
     };
-  
+
     try {
       const response = await axios.post(`${baseURL}/inventories`, newItem);
       const newItemId = response.data.id;
@@ -118,13 +121,13 @@ function AddInventoryItem({ baseURL }) {
       setErrors({});
       // Navigate to the new item page after 3 seconds
       setTimeout(() => {
-        navigate(`/inventory/${newItemId}`); 
+        navigate(`/inventory/${newItemId}`);
       }, 3000);
     } catch (error) {
       console.error('Error adding item:', error);
       setAlert({ message: 'Failed to add item 😔', type: 'error' });
     }
-  };  
+  };
 
   const handleCancel = (event) => {
     event.preventDefault();
@@ -135,7 +138,11 @@ function AddInventoryItem({ baseURL }) {
     <div className='inventory-add box-shadow'>
       <div className='inventory-add-header list-padding-side'>
         <Link to='/inventory'>
-          <img src={ArrowBack} alt='back' className='inventory-add__arrow-back' />
+          <img
+            src={ArrowBack}
+            alt='back'
+            className='inventory-add__arrow-back'
+          />
         </Link>
         <h1 className='inventory-add-header__title txt-header txt-black'>
           Add New Inventory Item
@@ -149,31 +156,53 @@ function AddInventoryItem({ baseURL }) {
             <h2 className='inventory-add-title'>Item Details</h2>
 
             <label className='inventory-add-label'>
-              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Item Name</span>
+              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>
+                Item Name
+              </span>
               <input
-                className={`inventory-add-input input txt-m txt-black ${errors.itemName ? 'input-error' : ''}`}
+                className={`inventory-add-input input txt-m txt-black ${
+                  errors.itemName ? 'input-error' : ''
+                }`}
                 type='text'
                 onChange={handleInputChange(setItemName, 'itemName')}
                 value={itemName}
                 placeholder='Item Name'
               />
-              {errors.itemName && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.itemName}</span>}
+              {errors.itemName && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.itemName}
+                </span>
+              )}
             </label>
 
             <label className='inventory-add-label'>
-              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Description</span>
+              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>
+                Description
+              </span>
               <textarea
-                className={`inventory-add-textarea txt-m txt-black ${errors.description ? 'input-error' : ''}`}
+                className={`inventory-add-textarea txt-m txt-black ${
+                  errors.description ? 'input-error' : ''
+                }`}
                 onChange={handleInputChange(setDescription, 'description')}
                 value={description}
                 placeholder='Please enter a brief item description...'></textarea>
-              {errors.description && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.description}</span>}
+              {errors.description && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.description}
+                </span>
+              )}
             </label>
 
             <label className='inventory-add-label'>
-              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Category</span>
+              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>
+                Category
+              </span>
               <select
-                className={`inventory-add-select inventory-add-input custom-select-arrow input txt-m txt-black ${errors.category ? 'input-error' : ''}`}
+                className={`inventory-add-select inventory-add-input custom-select-arrow input txt-m txt-black ${
+                  errors.category ? 'input-error' : ''
+                }`}
                 onChange={handleInputChange(setCategory, 'category')}
                 value={category}>
                 <option value='' disabled>
@@ -185,7 +214,12 @@ function AddInventoryItem({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.category && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.category}</span>}
+              {errors.category && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.category}
+                </span>
+              )}
             </label>
           </div>
           <div className='divider hide--tablet'></div>
@@ -194,9 +228,13 @@ function AddInventoryItem({ baseURL }) {
             <h2 className='inventory-add-title'>Item Availability</h2>
 
             <div className='status-inventory-add__title inventory-add-label'>
-              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Status</span>
+              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>
+                Status
+              </span>
               <label
-                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'In Stock' ? 'selected' : ''}`}>
+                className={`inventory-oval-container ${
+                  errors.status ? 'input-error' : ''
+                } ${status === 'In Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -208,7 +246,9 @@ function AddInventoryItem({ baseURL }) {
                 <div className='inventory-add-status'>In stock</div>
               </label>
               <label
-                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'Out of Stock' ? 'selected' : ''}`}>
+                className={`inventory-oval-container ${
+                  errors.status ? 'input-error' : ''
+                } ${status === 'Out of Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -222,22 +262,35 @@ function AddInventoryItem({ baseURL }) {
             </div>
             {status === 'In Stock' && (
               <label className='inventory-add-label'>
-                <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Quantity</span>
+                <span className='inventory-add-label-txt txt-label txt-bold txt-black'>
+                  Quantity
+                </span>
                 <input
-                  className={`inventory-add-input inventory-add-input--qty input txt-m txt-black ${errors.quantity ? 'input-error' : ''}`}
+                  className={`inventory-add-input inventory-add-input--qty input txt-m txt-black ${
+                    errors.quantity ? 'input-error' : ''
+                  }`}
                   type='number'
                   onChange={handleInputChange(setQuantity, 'quantity')}
                   value={quantity}
                   placeholder='0'
                 />
-                {errors.quantity && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.quantity}</span>}
+                {errors.quantity && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.quantity}
+                  </span>
+                )}
               </label>
             )}
 
             <label className='inventory-add-label'>
-              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>Warehouse</span>
+              <span className='inventory-add-label-txt txt-label txt-bold txt-black'>
+                Warehouse
+              </span>
               <select
-                className={`inventory-add-select inventory-add-input custom-select-arrow input txt-m txt-black ${errors.warehouse ? 'input-error' : ''}`}
+                className={`inventory-add-select inventory-add-input custom-select-arrow input txt-m txt-black ${
+                  errors.warehouse ? 'input-error' : ''
+                }`}
                 onChange={handleInputChange(setWarehouse, 'warehouse')}
                 value={warehouse}>
                 <option value='' disabled>
@@ -249,7 +302,12 @@ function AddInventoryItem({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.warehouse && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.warehouse}</span>}
+              {errors.warehouse && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.warehouse}
+                </span>
+              )}
             </label>
           </div>
         </div>

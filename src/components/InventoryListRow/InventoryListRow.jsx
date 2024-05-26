@@ -15,7 +15,9 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
             INVENTORY ITEM
           </div>
           <div className='item__cell_desc item__cell_desc--title txt-m txt-bold txt-indigo'>
-            <Link to={`/inventory/${inventory.id}`} className='txt-indigo item__name'>
+            <Link
+              to={`/inventory/${inventory.id}`}
+              className='txt-indigo item__name'>
               {inventory.item_name}
               <img
                 className='right-arrow'
@@ -74,8 +76,14 @@ const InventoryListRow = ({ inventory, index, onDeleteClick }) => {
             />
           </div>
           <div className='btn-animate'>
-            <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
-              <img className='item__cell_btn' src={editIcon} alt='edit button' />
+            <Link
+              to={`/inventory/edit-inventory/${inventory.id}`}
+              className='edit-btn'>
+              <img
+                className='item__cell_btn'
+                src={editIcon}
+                alt='edit button'
+              />
             </Link>
           </div>
         </div>

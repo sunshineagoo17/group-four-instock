@@ -93,14 +93,17 @@ function EditInventory({ baseURL }) {
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const validationErrors = validateFields();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      setAlert({ message: 'Please correct the errors in the form. 😔', type: 'error' });
+      setAlert({
+        message: 'Please correct the errors in the form. 😔',
+        type: 'error',
+      });
       return;
     }
-  
+
     const updatedItem = {
       warehouse_id: findWarehouseId(warehouse, warehouses),
       item_name: itemName,
@@ -109,7 +112,7 @@ function EditInventory({ baseURL }) {
       status,
       quantity: status === 'In Stock' ? parseInt(quantity, 10) : 0,
     };
-  
+
     try {
       await axios.put(`${baseURL}/inventories/${inventoryId}`, updatedItem);
       setAlert({ message: 'Item updated successfully 😎', type: 'success' });
@@ -138,14 +141,16 @@ function EditInventory({ baseURL }) {
     setTimeout(() => {
       setAlert({ message: '', type: '' });
     }, 4000);
-  };  
+  };
 
   // Function to handle back button click
   const handleBackClick = () => {
     if (dataCopy.warehouse_id) {
       navigate(`/warehouse/${dataCopy.warehouse_id}`);
     } else {
-      console.error('Warehouse ID is undefined, navigating back to inventory list');
+      console.error(
+        'Warehouse ID is undefined, navigating back to inventory list'
+      );
       navigate('/inventory');
     }
   };
@@ -153,7 +158,12 @@ function EditInventory({ baseURL }) {
   return (
     <div className='inventory-edit box-shadow'>
       <div className='inventory-edit-header inventory-edit-header__list-padding-side'>
-        <img src={ArrowBack} className='inventory-edit__back-btn' alt='back' onClick={handleBackClick} />
+        <img
+          src={ArrowBack}
+          className='inventory-edit__back-btn'
+          alt='back'
+          onClick={handleBackClick}
+        />
         <h1 className='inventory-edit-header__title txt-header txt-black'>
           Edit Inventory Item
         </h1>
@@ -166,31 +176,53 @@ function EditInventory({ baseURL }) {
             <h2 className='inventory-edit-title'>Item Details</h2>
 
             <label className='inventory-edit-label'>
-              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Item Name</span>
+              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>
+                Item Name
+              </span>
               <input
-                className={`inventory-edit-input input txt-m txt-black ${errors.itemName ? 'input-error' : ''}`}
+                className={`inventory-edit-input input txt-m txt-black ${
+                  errors.itemName ? 'input-error' : ''
+                }`}
                 type='text'
                 onChange={handleInputChange(setItemName, 'itemName')}
                 value={itemName}
                 placeholder='Item Name'
               />
-              {errors.itemName && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.itemName}</span>}
+              {errors.itemName && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.itemName}
+                </span>
+              )}
             </label>
 
             <label className='inventory-edit-label'>
-              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Description</span>
+              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>
+                Description
+              </span>
               <textarea
-                className={`inventory-edit-textarea input txt-m txt-black ${errors.description ? 'input-error' : ''}`}
+                className={`inventory-edit-textarea input txt-m txt-black ${
+                  errors.description ? 'input-error' : ''
+                }`}
                 onChange={handleInputChange(setDescription, 'description')}
                 value={description}
                 placeholder='Please enter a brief item description...'></textarea>
-              {errors.description && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.description}</span>}
+              {errors.description && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.description}
+                </span>
+              )}
             </label>
 
             <label className='inventory-edit-label'>
-              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Category</span>
+              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>
+                Category
+              </span>
               <select
-                className={`inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black ${errors.category ? 'input-error' : ''}`}
+                className={`inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black ${
+                  errors.category ? 'input-error' : ''
+                }`}
                 onChange={handleInputChange(setCategory, 'category')}
                 value={category}>
                 <option value='' disabled>
@@ -202,7 +234,12 @@ function EditInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.category && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.category}</span>}
+              {errors.category && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.category}
+                </span>
+              )}
             </label>
           </div>
           <div className='divider hide--tablet'></div>
@@ -211,9 +248,13 @@ function EditInventory({ baseURL }) {
             <h2 className='inventory-edit-title'>Item Availability</h2>
 
             <div className='status-inventory-edit__title inventory-edit-label'>
-              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Status</span>
+              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>
+                Status
+              </span>
               <label
-                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'In Stock' ? 'selected' : ''}`}>
+                className={`inventory-oval-container ${
+                  errors.status ? 'input-error' : ''
+                } ${status === 'In Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -225,7 +266,9 @@ function EditInventory({ baseURL }) {
                 <div className='inventory-edit-status'>In stock</div>
               </label>
               <label
-                className={`inventory-oval-container ${errors.status ? 'input-error' : ''} ${status === 'Out of Stock' ? 'selected' : ''}`}>
+                className={`inventory-oval-container ${
+                  errors.status ? 'input-error' : ''
+                } ${status === 'Out of Stock' ? 'selected' : ''}`}>
                 <input
                   type='radio'
                   name='status'
@@ -239,22 +282,35 @@ function EditInventory({ baseURL }) {
             </div>
             {status === 'In Stock' && (
               <label className='inventory-edit-label'>
-                <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Quantity</span>
+                <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>
+                  Quantity
+                </span>
                 <input
-                  className={`inventory-edit-input inventory-edit-input--qty input txt-m txt-black ${errors.quantity ? 'input-error' : ''}`}
+                  className={`inventory-edit-input inventory-edit-input--qty input txt-m txt-black ${
+                    errors.quantity ? 'input-error' : ''
+                  }`}
                   type='number'
                   onChange={handleInputChange(setQuantity, 'quantity')}
                   value={quantity}
                   placeholder='0'
                 />
-                {errors.quantity && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.quantity}</span>}
+                {errors.quantity && (
+                  <span className='error txt-label'>
+                    <img src={errorIcon} alt='Error Alert' />
+                    {errors.quantity}
+                  </span>
+                )}
               </label>
             )}
 
             <label className='inventory-edit-label'>
-              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>Warehouse</span>
+              <span className='inventory-edit-label-txt txt-label txt-bold txt-black'>
+                Warehouse
+              </span>
               <select
-                className={`inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black ${errors.warehouse ? 'input-error' : ''}`}
+                className={`inventory-edit-select inventory-edit-input custom-select-arrow input txt-m txt-black ${
+                  errors.warehouse ? 'input-error' : ''
+                }`}
                 onChange={handleInputChange(setWarehouse, 'warehouse')}
                 value={warehouse}>
                 <option value='' disabled>
@@ -266,7 +322,12 @@ function EditInventory({ baseURL }) {
                   </option>
                 ))}
               </select>
-              {errors.warehouse && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.warehouse}</span>}
+              {errors.warehouse && (
+                <span className='error txt-label'>
+                  <img src={errorIcon} alt='Error Alert' />
+                  {errors.warehouse}
+                </span>
+              )}
             </label>
           </div>
         </div>

@@ -97,7 +97,7 @@
   &__list-padding-side {
     padding-left: sizeIncrement(5);
     padding-right: sizeIncrement(7);
-    
+
     @include for-tablet {
       padding-left: sizeIncrement(7);
       padding-right: sizeIncrement(8.5);
@@ -245,9 +245,9 @@
     width: 1rem;
     cursor: pointer;
     transition: transform 0.15s, fill 0.15s;
-  
+
     &:active {
-      transform: scale(.9);
+      transform: scale(0.9);
       fill: $pri-indigo;
     }
   }
@@ -256,14 +256,14 @@
 .warehouseInventory-list-row-wrapper {
   width: 100%;
   transition: background-color 0.3s;
-  position: relative;  
+  position: relative;
 
   &:hover {
     background-color: ($pri-indigo, 0.7);
   }
 
   .divider {
-    position: absolute; 
+    position: absolute;
     bottom: 0;
     width: 100%;
   }

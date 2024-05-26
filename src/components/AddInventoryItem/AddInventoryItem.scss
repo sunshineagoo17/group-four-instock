@@ -9,11 +9,11 @@
 
   &__arrow-back {
     cursor: pointer;
-    transform: none;    
+    transform: none;
     transition: transform 0.3s ease;
 
     &:hover {
-      transform: translateX(4px);
+      transform: translateX(-4px);
     }
   }
 }
@@ -98,8 +98,9 @@
   font-family: $defaultFont;
   cursor: pointer;
 
-  &:active, &:focus {
-    border: 1px solid $pri-indigo; 
+  &:active,
+  &:focus {
+    border: 1px solid $pri-indigo;
   }
 
   &--qty {
@@ -129,7 +130,8 @@
     width: fit-content;
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     border: 1px solid $pri-indigo;
   }
 }
@@ -179,8 +181,8 @@
   height: 1rem;
   border: 1px solid $sec-cloud;
   border-radius: 50%;
-  margin-right: .625rem;
-  margin-top: .313rem;
+  margin-right: 0.625rem;
+  margin-top: 0.313rem;
 }
 
 .inventory-add-select {
@@ -212,7 +214,7 @@
   color: $sec-red;
   display: flex;
   align-items: center;
-  gap: .25rem;
+  gap: 0.25rem;
 
   img {
     height: 1rem;
@@ -240,9 +242,9 @@
   outline: none;
   cursor: pointer;
   font-family: $defaultFont;
-  
+
   &:active {
-    transform: scale(.98);
+    transform: scale(0.98);
   }
 
   @include for-tablet {

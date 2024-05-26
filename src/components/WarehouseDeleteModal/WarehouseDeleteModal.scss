@@ -125,7 +125,7 @@
     font-size: toRem(14);
 
     &:active {
-      transform: scale(.98);
+      transform: scale(0.98);
     }
 
     @include for-tablet {

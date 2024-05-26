@@ -3,7 +3,7 @@
 
 .warehouse-list {
   background-color: $pri-white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   @include padding(top, sizeIncrement(8));
 
   .warehouse-list-row {
@@ -12,13 +12,13 @@
 
     @include for-desktop {
       &:hover {
-        background-color: rgba($pri-indigo, -.7);
+        background-color: rgba($pri-indigo, -0.7);
       }
     }
   }
 
   .divider {
-    height: .063rem;
+    height: 0.063rem;
     background-color: $sec-cloud;
   }
 }
@@ -140,7 +140,7 @@
   transition: transform 0.15s, fill 0.15s;
 
   &:active {
-    transform: scale(.9);
+    transform: scale(0.9);
     fill: $pri-indigo;
   }
 }

@@ -109,11 +109,10 @@ const InventoryList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'item_name' ? 'active' : ''}`}
             onClick={() => handleSort('item_name')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
@@ -121,11 +120,10 @@ const InventoryList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'category' ? 'active' : ''}`}
             onClick={() => handleSort('category')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
@@ -133,11 +131,10 @@ const InventoryList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'status' ? 'active' : ''}`}
             onClick={() => handleSort('status')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
@@ -145,11 +142,10 @@ const InventoryList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'quantity' ? 'active' : ''}`}
             onClick={() => handleSort('quantity')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
@@ -157,11 +153,10 @@ const InventoryList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'warehouse_name' ? 'active' : ''}`}
             onClick={() => handleSort('warehouse_name')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='inventory-list__filter_cell txt-slate txt-table txt-bold'>
@@ -169,7 +164,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
         </div>
       </div>
       {inventoryList.map((item, index) => (
-        <div key={index} className="inventory-list-row-wrapper">
+        <div key={index} className='inventory-list-row-wrapper'>
           <InventoryListRow
             inventory={item}
             index={index}
@@ -177,7 +172,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
           />
           {/* Conditionally render the divider for all items except the last one */}
           {index !== inventoryList.length - 1 && (
-            <div className="divider"></div>
+            <div className='divider'></div>
           )}
         </div>
       ))}

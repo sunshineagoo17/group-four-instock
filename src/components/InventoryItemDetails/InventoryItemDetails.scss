@@ -9,7 +9,7 @@
   &__back-icon {
     cursor: pointer;
     transform: none;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 
     &:hover {
       transform: translateX(-4px);

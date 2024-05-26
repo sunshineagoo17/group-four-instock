@@ -2,7 +2,7 @@
 
 .inventory-list {
   background-color: $pri-white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   @include padding(top, sizeIncrement(8));
   font-family: $defaultFont;
 }
@@ -97,9 +97,9 @@
     width: 1rem;
     cursor: pointer;
     transition: transform 0.15s, fill 0.15s;
-  
+
     &:active {
-      transform: scale(.9);
+      transform: scale(0.9);
       fill: $pri-indigo;
     }
   }
@@ -111,8 +111,8 @@
 
   @include for-desktop {
     &:hover {
-      background-color: rgba($pri-indigo, -.7);
-    } 
+      background-color: rgba($pri-indigo, -0.7);
+    }
   }
 
   .divider {

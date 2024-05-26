@@ -7,27 +7,27 @@
 
   &__divider {
     width: 100%;
-    height: .063rem;
+    height: 0.063rem;
     background-color: $sec-cloud;
-  
+
     &--horizontal {
       display: block;
       width: 100%;
       margin-top: 1rem;
       margin-bottom: 1rem;
-  
+
       @include for-tablet {
         display: none;
       }
     }
-  
+
     &--vertical {
       display: none;
-  
+
       @include for-tablet {
         display: block;
         height: 25rem;
-        width: .063rem;
+        width: 0.063rem;
         margin-top: 1rem;
       }
     }
@@ -35,7 +35,8 @@
 
   &__back-btn {
     cursor: pointer;
-    transition: transform .3s ease;
+    transform: none;
+    transition: transform 0.3s ease;
 
     &:hover {
       transform: translateX(-4px);
@@ -54,17 +55,17 @@
       font-family: $defaultFont;
 
       &:active {
-        transform: scale(.98);
+        transform: scale(0.98);
       }
 
       @include for-tablet {
-        font-size: .813rem;
+        font-size: 0.813rem;
       }
 
       @media (max-width: 374px) {
         width: toRem(140);
         height: 2.25rem;
-        font-size: .813rem;
+        font-size: 0.813rem;
       }
     }
 
@@ -124,11 +125,13 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4) sizeIncrement(6.5);
+    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4)
+      sizeIncrement(6.5);
 
     @include for-tablet {
-      margin-bottom: .2rem;
-      padding: sizeIncrement(8.5) sizeIncrement(6) sizeIncrement(4) sizeIncrement(6.5);
+      margin-bottom: 0.2rem;
+      padding: sizeIncrement(8.5) sizeIncrement(6) sizeIncrement(4)
+        sizeIncrement(6.5);
     }
 
     &_title {
@@ -190,7 +193,7 @@
 
 .editForm {
   width: 100%;
-  margin-top: .6rem;
+  margin-top: 0.6rem;
 
   @include for-tablet {
     @include padding(side, sizeIncrement(4));
@@ -199,7 +202,8 @@
     align-items: flex-start;
   }
 
-  &__warehouse, &__contact {
+  &__warehouse,
+  &__contact {
     width: 100%;
 
     @include for-tablet {
@@ -209,7 +213,7 @@
 
   &__inputLabelWrapper {
     @include padding(topbottom, sizeIncrement(1.75));
-    
+
     @include for-tablet {
       @include padding(topbottom, sizeIncrement(2.75));
     }
@@ -224,7 +228,7 @@
     border-radius: $input-radius;
     outline: none;
     border: solid $sec-cloud;
-    margin-top: .25rem;
+    margin-top: 0.25rem;
 
     &:focus {
       border: 1px solid $pri-indigo;
@@ -264,7 +268,7 @@
 }
 
 .error {
-  font-size: .813rem;
+  font-size: 0.813rem;
   font-family: $defaultFont;
   color: $sec-red;
 }

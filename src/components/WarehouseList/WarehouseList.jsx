@@ -158,7 +158,10 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           value={searchTerm}
           onChange={handleSearch}
         />
-        <Link to='/warehouse/add-warehouse' className='add-btn' title='Add a new warehouse'>
+        <Link
+          to='/warehouse/add-warehouse'
+          className='add-btn'
+          title='Add a new warehouse'>
           <button className='warehouse-list-header__add-btn btn txt-section'>
             + Add New Warehouse
           </button>
@@ -171,11 +174,10 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'warehouse_name' ? 'active' : ''}`}
             onClick={() => handleSort('warehouse_name')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
@@ -183,11 +185,10 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'contact_name' ? 'active' : ''}`}
             onClick={() => handleSort('contact_name')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
@@ -195,23 +196,23 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           <svg
             className={`icon ${sortBy === 'address' ? 'active' : ''}`}
             onClick={() => handleSort('address')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
           CONTACT INFORMATION
           <svg
-            className={`icon ${sortBy === 'contact_information' ? 'active' : ''}`}
+            className={`icon ${
+              sortBy === 'contact_information' ? 'active' : ''
+            }`}
             onClick={() => handleSort('contact_information')}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
         <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
@@ -220,7 +221,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       </div>
       {sortedWarehouseList.map((item, index) => (
         <div key={index}>
-          <div className="warehouse-list-row">
+          <div className='warehouse-list-row'>
             <WarehouseListRow
               warehouse={item}
               index={index}

@@ -7,7 +7,13 @@ import deleteIcon from '../../assets/images/delete_outline-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
 import rightIcon from '../../assets/images/chevron_right-24px.svg';
 
-const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn }) => {
+const WarehouseInventoryListRow = ({
+  inventory,
+  index,
+  isLast,
+  baseURL,
+  fetchFn,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedInventory, setSelectedInventory] = useState(null);
 
@@ -43,7 +49,9 @@ const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn 
             INVENTORY ITEM
           </div>
           <div className='warehouseInventory__cell_desc warehouseInventory__cell_desc--title txt-m txt-bold txt-indigo'>
-            <Link to={`/inventory/${inventory.id}`} className='txt-indigo warehouseInventory__name'>
+            <Link
+              to={`/inventory/${inventory.id}`}
+              className='txt-indigo warehouseInventory__name'>
               {inventory.item_name}
               <img
                 className='right-arrow'
@@ -93,7 +101,9 @@ const WarehouseInventoryListRow = ({ inventory, index, isLast, baseURL, fetchFn 
               onClick={() => handleDeleteClick(inventory)}
             />
           </div>
-          <Link to={`/inventory/edit-inventory/${inventory.id}`} className='edit-btn'>
+          <Link
+            to={`/inventory/edit-inventory/${inventory.id}`}
+            className='edit-btn'>
             <div className='btn-animate'>
               <img
                 className='warehouseInventory__cell_btn'
