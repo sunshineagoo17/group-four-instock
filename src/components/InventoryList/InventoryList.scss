@@ -93,11 +93,14 @@
   }
 
   .icon {
-    height: sizeIncrement(4);
+    height: 1.5rem;
+    width: 1rem;
     cursor: pointer;
-
+    transition: transform 0.15s, fill 0.15s;
+  
     &:active {
-      transform: scale(0.8);
+      transform: scale(.9);
+      fill: $pri-indigo;
     }
   }
 }

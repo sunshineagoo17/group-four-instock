@@ -5,7 +5,6 @@ import WarehouseInventoryListRow from '../WarehouseInventoryListRow/WarehouseInv
 import './WarehouseInventoryList.scss';
 import backIcon from '../../assets/images/arrow_back-24px.svg';
 import editIcon from '../../assets/images/edit-24px.svg';
-import sortIcon from '../../assets/images/sort-24px.svg';
 
 const WarehouseInventoryList = ({ baseURL }) => {
   const { warehouseId } = useParams();
@@ -101,39 +100,51 @@ const WarehouseInventoryList = ({ baseURL }) => {
         <div className='warehouseInventory-list__filter list-padding-side'>
           <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
             INVENTORY ITEM
-            <img
-              className='icon'
-              src={sortIcon}
-              alt='sort items'
+            <svg
+              className={`icon ${sortBy === 'item_name' ? 'active' : ''}`}
               onClick={() => handleSort('item_name')}
-            />
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            </svg>
           </div>
           <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
             CATEGORY
-            <img
-              className='icon'
-              src={sortIcon}
-              alt='sort categories'
+            <svg
+              className={`icon ${sortBy === 'category' ? 'active' : ''}`}
               onClick={() => handleSort('category')}
-            />
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            </svg>
           </div>
           <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
             STATUS
-            <img
-              className='icon'
-              src={sortIcon}
-              alt='sort statuses'
+            <svg
+              className={`icon ${sortBy === 'status' ? 'active' : ''}`}
               onClick={() => handleSort('status')}
-            />
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            </svg>
           </div>
           <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
             QUANTITY
-            <img
-              className='icon'
-              src={sortIcon}
-              alt='sort quantities'
+            <svg
+              className={`icon ${sortBy === 'quantity' ? 'active' : ''}`}
               onClick={() => handleSort('quantity')}
-            />
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z"/>
+            </svg>
           </div>
           <div className='warehouseInventory-list__filter_cell txt-slate txt-table txt-bold'>
             ACTIONS
