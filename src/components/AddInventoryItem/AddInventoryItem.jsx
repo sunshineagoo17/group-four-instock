@@ -144,7 +144,7 @@ function AddInventoryItem({ baseURL }) {
       {alert.message && <Alert message={alert.message} type={alert.type} />}
       <div className='divider'></div>
       <form onSubmit={handleSubmit}>
-        <div className='inventory-add-form__container '>
+        <div className='inventory-add-form__container'>
           <div className='inventory-add-form__one inventory-add-form list-padding-side'>
             <h2 className='inventory-add-title'>Item Details</h2>
 

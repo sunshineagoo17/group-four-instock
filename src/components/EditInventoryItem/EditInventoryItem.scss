@@ -193,9 +193,14 @@
 }
 
 .custom-select-arrow {
-  background-image: url('../../assets/images/arrow_drop_down-24px.svg');
+  background-image: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7 10L12 15L17 10H7Z' fill='%235C667E'/></svg>");
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) center;
+
+  &:focus,
+  &:active {
+    background-image: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7 10L12 15L17 10H7Z' fill='%232e66e5'/></svg>");
+  }
 }
 
 .error {
