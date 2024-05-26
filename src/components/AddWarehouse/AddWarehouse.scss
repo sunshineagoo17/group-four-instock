@@ -5,6 +5,34 @@
   border-radius: sizeIncrement(1);
   flex-wrap: wrap;
 
+  &__divider {
+    width: 100%;
+    height: .063rem;
+    background-color: $sec-cloud;
+  
+    &--horizontal {
+      display: block;
+      width: 100%;
+      margin-top: .5rem;
+      margin-bottom: 1rem;
+  
+      @include for-tablet {
+        display: none;
+      }
+    }
+  
+    &--vertical {
+      display: none;
+  
+      @include for-tablet {
+        display: block;
+        height: 25rem;
+        width: .063rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+
   &__back-btn {
     cursor: pointer;
     transition: transform .3s ease;
@@ -96,7 +124,12 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4) sizeIncrement(6);
+    padding: sizeIncrement(6) sizeIncrement(6) sizeIncrement(4) sizeIncrement(5);
+
+    @include for-tablet {
+      margin-bottom: .2rem;
+      padding: sizeIncrement(8.5) sizeIncrement(6) sizeIncrement(4) sizeIncrement(5.5);
+    }
 
     &_title {
       display: flex;
@@ -115,57 +148,81 @@
 }
 
 .form-padding-side {
-  @include padding(side, sizeIncrement(4));
+  @include padding(side, sizeIncrement(7.5));
 
   @include for-tablet {
+    @include padding(side, sizeIncrement(4));
     width: 100%;
   }
 }
 
-.form-padding-topbottom {
-  @include padding(topbottom, sizeIncrement(4));
-
-  &--contact {
-    @extend .form-padding-topbottom;
-    border-top: solid 1px $sec-cloud;
-
-    @include for-tablet {
-      border-top: none;
-      border-left: solid 1px $sec-cloud;
-    }
-    @include for-tablet {
-      @include padding(topbottom, sizeIncrement(0));
-    }
-  }
+.subheader_spacing {
+  @include padding(bottom, sizeIncrement(5.2));
 }
 
-.subheader_spacing {
-  @include padding(bottom, sizeIncrement(6));
+.formWrapper {
+  margin-top: 1rem;
+
+  @include for-tablet {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__contact-details {
+    margin-bottom: 1rem;
+
+    @include for-tablet {
+      margin-bottom: 0;
+    }
+  }
+
+  &__contact-details,
+  &__warehouse-details {
+    @include for-tablet {
+      margin-top: 1.05rem;
+    }
+  }
 }
 
 .editForm {
+  width: 100%;
+  margin-top: .6rem;
+
   @include for-tablet {
+    @include padding(side, sizeIncrement(4));
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
-  &__warehouse {
-    @include padding(bottom, sizeIncrement(3));
+  &__warehouse, &__contact {
+    width: 100%;
+
+    @include for-tablet {
+      width: 48%;
+    }
   }
 
   &__inputLabelWrapper {
-    @include padding(topbottom, sizeIncrement(2));
+    @include padding(topbottom, sizeIncrement(1.75));
+    
+    @include for-tablet {
+      @include padding(topbottom, sizeIncrement(2.75));
+    }
   }
 
   &__input {
+    @include padding(side, sizeIncrement(4));
     font-family: $defaultFont;
     color: $pri-black;
     height: $input-height-mobile;
     width: 100%;
     border-radius: $input-radius;
     outline: none;
-    padding-left: 1rem;
-    padding-right: 1rem;
     border: solid $sec-cloud;
     margin-top: .25rem;
 
@@ -173,9 +230,9 @@
       border: 1px solid $pri-indigo;
     }
 
-    @mixin for-tablet {
+    @include for-tablet {
       height: $input-height-tablet;
-      width: fit-content;
+      width: 100%;
     }
 
     &::placeholder {
@@ -210,13 +267,4 @@
   font-size: .813rem;
   font-family: $defaultFont;
   color: $sec-red;
-}
-
-.divider {
-  margin: 0;
-  padding: 0;
-  border: none;
-  height: .063rem;
-  background-color: $sec-cloud;
-  width: 100%;
 }

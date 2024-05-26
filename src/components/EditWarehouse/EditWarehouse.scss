@@ -24,6 +24,10 @@
     padding-top: sizeIncrement(8);
     padding-bottom: sizeIncrement(6);
 
+    @include for-tablet {
+      margin-bottom: 1rem;
+    }
+
     &_title {
       display: flex;
       align-items: center;
@@ -76,14 +80,13 @@
   }
 
   &__input {
+    @include padding (side, sizeIncrement(4));
     font-family: $defaultFont;
     color: $pri-black;
     height: $input-height-mobile;
     width: 100%;
     border-radius: $input-radius;
     outline: none;
-    padding-left: 1rem;
-    padding-right: 1rem;
     border: solid $sec-cloud;
     margin-top: .25rem;
 

@@ -158,20 +158,21 @@ const AddWarehouse = ({ baseURL }) => {
         </div>
       </div>
       {alert.message && <Alert message={alert.message} type={alert.type} />}
-      <div className='divider'></div>
+      <div className='warehouseForm__divider'></div>
       <div className='formWrapper'>
-        <div className='form-padding-side form-padding-topbottom'>
-          <form
-            className='editForm'
-            id='addWarehouseForm'
-            onSubmit={formSubmit}>
-            <div className='editForm__warehouse form-padding-side'>
+        <form
+          className='editForm'
+          id='addWarehouseForm'
+          onSubmit={formSubmit}
+        >
+          <div className='formWrapper__warehouse-details editForm__warehouse'>
+            <div className='form-padding-side'>
               <div className='txt-subheader txt-bold txt-black subheader_spacing'>
                 Warehouse Details
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='warehouse_name'>
                   Warehouse Name
                 </label>
@@ -187,7 +188,7 @@ const AddWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='address'>
                   Street Address
                 </label>
@@ -203,7 +204,7 @@ const AddWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='city'>
                   City
                 </label>
@@ -219,7 +220,7 @@ const AddWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='country'>
                   Country
                 </label>
@@ -233,14 +234,18 @@ const AddWarehouse = ({ baseURL }) => {
                 />
                 {errors.country && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.country}</span>}
               </div>
-            </div>
-            <div className='form-padding-topbottom--contact form-padding-side'>
+            </div> 
+          </div>
+          <div className='warehouseForm__divider warehouseForm__divider--horizontal'></div>
+          <div className='warehouseForm__divider warehouseForm__divider--vertical'></div>
+          <div className='formWrapper__contact-details editForm__contact'>
+            <div className='form-padding-side'>
               <div className='txt-subheader txt-bold txt-black subheader_spacing'>
                 Contact Details
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_name'>
                   Contact Name
                 </label>
@@ -256,7 +261,7 @@ const AddWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_position'>
                   Position
                 </label>
@@ -272,7 +277,7 @@ const AddWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_phone'>
                   Phone Number
                 </label>
@@ -288,7 +293,7 @@ const AddWarehouse = ({ baseURL }) => {
               </div>
               <div className='editForm__inputLabelWrapper'>
                 <label
-                  className='editForm__inputLabel txt-label'
+                  className='editForm__inputLabel txt-label txt-bold'
                   htmlFor='contact_email'>
                   Email
                 </label>
@@ -303,8 +308,8 @@ const AddWarehouse = ({ baseURL }) => {
                 {errors.contact_email && <span className='error txt-label'><img src={errorIcon} alt='Error Alert' />{errors.contact_email}</span>}
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
       <div className='editForm__buttonContainer'>
         <button
@@ -323,7 +328,7 @@ const AddWarehouse = ({ baseURL }) => {
         </button>
       </div>
     </div>
-  );
-};
+  );    
+}; 
 
 export default AddWarehouse;
