@@ -43,9 +43,9 @@
     background-position: calc(100% - sizeIncrement(4)) center;
     background-color: $pri-white;
 
-    @include for-desktop {
-      min-width: toRem(274);
-    }
+    // @include for-desktop {
+    //   min-width: toRem(274);
+    // }
 
     &:active,
     &:focus {
