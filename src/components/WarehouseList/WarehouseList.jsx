@@ -5,6 +5,53 @@ import WarehouseListRow from '../WarehouseListRow/WarehouseListRow';
 import WarehouseDeleteModal from '../WarehouseDeleteModal/WarehouseDeleteModal';
 import './WarehouseList.scss';
 
+// Extract numeric and text parts from addresses for sorting
+const extractAddressParts = (address) => {
+  const addressMatch = address.match(/^(\d+)?\s*(.*)/);
+  const addressNumber = addressMatch[1] ? parseInt(addressMatch[1], 10) : null;
+  const addressText = addressMatch[2] || address;
+  return { addressNumber, addressText };
+};
+
+// Sorts warehouses based on the current sortBy and orderBy criteria
+const sortWarehouses = (warehouses, sortBy, orderBy) => {
+  if (!warehouses) return [];
+
+  const sortOrder = orderBy === 'asc' ? 1 : -1;
+
+  if (sortBy === 'address') {
+    return warehouses.sort((a, b) => {
+      const { addressNumber: aNumber, addressText: aText } =
+        extractAddressParts(a.address);
+      const { addressNumber: bNumber, addressText: bText } =
+        extractAddressParts(b.address);
+
+      // First compare by address number, putting null (letters) last
+      if (aNumber !== null && bNumber !== null) {
+        if (aNumber !== bNumber) {
+          return (aNumber - bNumber) * sortOrder;
+        }
+        return aText.localeCompare(bText) * sortOrder;
+      } else if (aNumber === null && bNumber === null) {
+        return aText.localeCompare(bText) * sortOrder;
+      } else if (aNumber === null) {
+        return 1 * sortOrder;
+      } else {
+        return -1 * sortOrder;
+      }
+    });
+  }
+
+  // General sort
+  return warehouses.sort((a, b) => {
+    const aValue = a[sortBy]?.toLowerCase() || '';
+    const bValue = b[sortBy]?.toLowerCase() || '';
+    if (aValue < bValue) return -1 * sortOrder;
+    if (aValue > bValue) return 1 * sortOrder;
+    return 0;
+  });
+};
+
 const WarehouseList = ({ fetchFn, baseURL }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -17,6 +64,14 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
 
+  // Clean search term for URL by removing special characters and replacing spaces with dashes
+  const cleanSearchTermForURL = (term) => {
+    return term
+      .replace(/[^\w\s]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+
   // Fetch the warehouse data whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +79,8 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
         const response = await fetchFn(
           `/warehouses?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
         );
-        setWarehouseList(response);
+        const sortedData = sortWarehouses(response, sortBy, orderBy);
+        setWarehouseList(sortedData);
       } catch (error) {
         console.error('Error fetching warehouses:', error);
       }
@@ -35,20 +91,6 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
 
   // Updates the URL query parameters whenever searchTerm changes
   useEffect(() => {
-    const cleanSearchTermForURL = (term) => {
-      if (/^\+?\d.*$/.test(term)) {
-        // Formats phone number for URL
-        return term
-          .replace(/[^\d\s-]/g, '')
-          .replace('+', '')
-          .replace(/\s+/g, '-');
-      } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(term) || /@/.test(term)) {
-        // Formats email address for URL
-        return term.replace('@', ' ');
-      }
-      return term;
-    };
-
     const cleanedUpSearchTerm = cleanSearchTermForURL(searchTerm);
     const params = new URLSearchParams();
     if (cleanedUpSearchTerm) params.set('s', cleanedUpSearchTerm);
@@ -76,8 +118,12 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
     try {
       await axios.delete(`${baseURL}/warehouses/${selectedWarehouse.id}`);
       // Update the warehouse list by removing the deleted warehouse
-      setWarehouseList(
-        warehouseList.filter((wh) => wh.id !== selectedWarehouse.id)
+      setWarehouseList((prevList) =>
+        sortWarehouses(
+          prevList.filter((wh) => wh.id !== selectedWarehouse.id),
+          sortBy,
+          orderBy
+        )
       );
       handleCloseModal();
     } catch (error) {
@@ -95,56 +141,8 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       setSortBy(column);
       setOrderBy('asc');
     }
+    setWarehouseList((prevList) => sortWarehouses(prevList, column, orderBy));
   };
-
-  // Extract numeric values from Addresses for sorting
-  const extractAddressNumbers = (warehouses) => {
-    return warehouses.map((warehouse) => {
-      const address = warehouse.address || '';
-      const addressNumber = parseInt(address.match(/\d+/) || 0, 10);
-      return { ...warehouse, addressNumber };
-    });
-  };
-
-  // Sorts warehouses based on the current sortBy and orderBy criteria
-  const sortWarehouses = (warehouses) => {
-    if (!warehouses) return [];
-
-    if (sortBy === 'address') {
-      const extracted = extractAddressNumbers(warehouses);
-      return extracted.sort((a, b) => {
-        const sortOrder = orderBy === 'asc' ? 1 : -1;
-        return (a.addressNumber - b.addressNumber) * sortOrder;
-      });
-    }
-
-    if (sortBy === 'contact_information') {
-      return warehouses.sort((a, b) => {
-        const sortOrder = orderBy === 'asc' ? 1 : -1;
-        const aPhone = a.contact_phone || '';
-        const bPhone = b.contact_phone || '';
-        const aEmail = a.contact_email || '';
-        const bEmail = b.contact_email || '';
-
-        if (aPhone < bPhone) return -1 * sortOrder;
-        if (aPhone > bPhone) return 1 * sortOrder;
-        if (aEmail < bEmail) return -1 * sortOrder;
-        if (aEmail > bEmail) return 1 * sortOrder;
-        return 0;
-      });
-    }
-
-    return warehouses.sort((a, b) => {
-      const sortOrder = orderBy === 'asc' ? 1 : -1;
-      const aValue = a[sortBy] || '';
-      const bValue = b[sortBy] || '';
-      if (aValue < bValue) return -1 * sortOrder;
-      if (aValue > bValue) return 1 * sortOrder;
-      return 0;
-    });
-  };
-
-  const sortedWarehouseList = sortWarehouses(warehouseList);
 
   return (
     <div className='warehouse-list box-shadow'>
@@ -157,6 +155,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           placeholder='Search...'
           value={searchTerm}
           onChange={handleSearch}
+          aria-label='Search warehouses'
         />
         <Link
           to='/warehouse/add-warehouse'
@@ -169,46 +168,54 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
       </div>
       <div className='divider hide-tablet'></div>
       <div className='warehouse-list__filter list-padding-side'>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          aria-label='Sort by warehouse name'
+          onClick={() => handleSort('warehouse_name')}>
           WAREHOUSE
           <svg
             className={`icon ${sortBy === 'warehouse_name' ? 'active' : ''}`}
-            onClick={() => handleSort('warehouse_name')}
             viewBox='0 0 24 24'
             fill='currentColor'
             xmlns='http://www.w3.org/2000/svg'>
             <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          aria-label='Sort by contact name'
+          onClick={() => handleSort('contact_name')}>
           CONTACT NAME
           <svg
             className={`icon ${sortBy === 'contact_name' ? 'active' : ''}`}
-            onClick={() => handleSort('contact_name')}
             viewBox='0 0 24 24'
             fill='currentColor'
             xmlns='http://www.w3.org/2000/svg'>
             <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          aria-label='Sort by address'
+          onClick={() => handleSort('address')}>
           ADDRESS
           <svg
             className={`icon ${sortBy === 'address' ? 'active' : ''}`}
-            onClick={() => handleSort('address')}
             viewBox='0 0 24 24'
             fill='currentColor'
             xmlns='http://www.w3.org/2000/svg'>
             <path d='M12 5.83L15.17 9L16.58 7.59L12 3L7.41003 7.59L8.83003 9L12 5.83ZM12 18.17L8.83003 15L7.42003 16.41L12 21L16.59 16.41L15.17 15L12 18.17Z' />
           </svg>
         </div>
-        <div className='warehouse-list__filter_cell txt-slate txt-table txt-bold'>
+        <div
+          className='warehouse-list__filter_cell txt-slate txt-table txt-bold'
+          aria-label='Sort by contact information'
+          onClick={() => handleSort('contact_information')}>
           CONTACT INFORMATION
           <svg
             className={`icon ${
               sortBy === 'contact_information' ? 'active' : ''
             }`}
-            onClick={() => handleSort('contact_information')}
             viewBox='0 0 24 24'
             fill='currentColor'
             xmlns='http://www.w3.org/2000/svg'>
@@ -219,7 +226,7 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
           ACTIONS
         </div>
       </div>
-      {sortedWarehouseList.map((item, index) => (
+      {warehouseList.map((item, index) => (
         <div key={index}>
           <div className='warehouse-list-row'>
             <WarehouseListRow
