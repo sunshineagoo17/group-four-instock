@@ -44,7 +44,7 @@ const WarehouseInventoryList = ({ baseURL }) => {
   };
 
   return (
-    <div className='warehouseInventoryList'>
+    <div className='warehouseInventoryList box-shadow'>
       <div className='warehouseInventoryList__header warehouseDetails__list-padding-side'>
         <div className='warehouseInventoryList__header_title txt-header txt-bold txt-black'>
           <Link to='/'>

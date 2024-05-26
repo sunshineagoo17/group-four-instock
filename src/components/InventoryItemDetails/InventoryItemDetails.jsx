@@ -32,7 +32,7 @@ const InventoryItemDetails = ({ fetchFn }) => {
   };
 
   return (
-    <div className='inventoryItemDetails'>
+    <div className='inventoryItemDetails box-shadow'>
       <div className='inventoryItemDetails__header list-padding-side'>
         <div className='inventoryItemDetails__header_title txt-header txt-bold txt-black'>
           <img
