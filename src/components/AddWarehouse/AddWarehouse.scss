@@ -76,6 +76,7 @@
       padding: 0.5rem;
 
       &:hover {
+        border: solid 1px $bg-graphite;
         background-color: $bg-graphite;
       }
 
