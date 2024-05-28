@@ -17,12 +17,20 @@ const InventoryList = ({ fetchFn, baseURL }) => {
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState(params.get('s') || '');
 
+  // Function to clean and encode the search term
+  const cleanSearchTermForURL = (term) => {
+    return term
+      .replace(/[^\w\s-]/g, '') 
+      .replace(/\s+/g, '-')    
+      .replace(/^-+|-+$/g, ''); 
+  };
+
   // Fetching inventory from API whenever sortBy, orderBy, or searchTerm changes
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetchFn(
-          `/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${searchTerm}`
+          `/inventories?sort_by=${sortBy}&order_by=${orderBy}&s=${cleanSearchTermForURL(searchTerm)}`
         );
         setInventoryList(response);
       } catch (error) {
@@ -35,8 +43,9 @@ const InventoryList = ({ fetchFn, baseURL }) => {
 
   // Update the URL query parameters whenever searchTerm changes
   useEffect(() => {
+    const cleanedUpSearchTerm = cleanSearchTermForURL(searchTerm);
     const params = new URLSearchParams();
-    if (searchTerm) params.set('s', searchTerm);
+    if (cleanedUpSearchTerm) params.set('s', cleanedUpSearchTerm);
     navigate({ search: params.toString() });
   }, [searchTerm, navigate]);
 
@@ -61,9 +70,7 @@ const InventoryList = ({ fetchFn, baseURL }) => {
     try {
       await axios.delete(`${baseURL}/inventories/${selectedInventory.id}`);
       // Updates the inventory list by removing the deleted item
-      setInventoryList(
-        inventoryList.filter((item) => item.id !== selectedInventory.id)
-      );
+      setInventoryList(inventoryList.filter((item) => item.id !== selectedInventory.id));
       handleCloseModal();
     } catch (error) {
       console.error(`Error deleting inventory item: ${error.message}`);
