@@ -193,3 +193,23 @@
     order: 5;
   }
 }
+
+.warehouse__cell_btn {
+  transition: fill 0.3s ease;
+
+  &.delete-icon:hover path {
+    fill: $pri-black; 
+  }
+
+  &.delete-icon:active path {
+    fill: $sec-slate;
+  }
+
+  &.edit-icon:hover path {
+    fill: $pri-black; 
+  }
+
+  &.edit-icon:active path {
+    fill: $sec-slate;
+  }
+}

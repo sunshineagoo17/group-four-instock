@@ -1,6 +1,6 @@
 @use '../../styles/partials/index' as *;
 
-.warehouseInventory {
+.warehouse-inventory {
   display: flex;
   flex-wrap: wrap;
   row-gap: sizeIncrement(4);
@@ -115,7 +115,7 @@
 
 // Order and width for tablet
 @include for-tablet {
-  .warehouseInventory__cell {
+  .warehouse-inventory__cell {
     &:nth-of-type(1) {
       order: 1;
       width: 80%;
@@ -135,5 +135,25 @@
       width: 40%;
     }
     order: 4;
+  }
+}
+
+.warehouse-inventory__cell_btn {
+  transition: fill 0.3s ease;
+
+  &.delete-icon:hover path {
+    fill: $pri-black; 
+  }
+
+  &.delete-icon:active path {
+    fill: $sec-slate;
+  }
+
+  &.edit-icon:hover path {
+    fill: $pri-black; 
+  }
+
+  &.edit-icon:active path {
+    fill: $sec-slate;
   }
 }
