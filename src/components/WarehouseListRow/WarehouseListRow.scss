@@ -21,8 +21,33 @@
     }
   }
 
-  &__name:hover {
-    text-decoration: underline;
+  &__name {
+    display: flex;
+    align-items: center;
+    max-width: 100%; 
+    color: $pri-indigo; 
+
+    @include for-tablet {
+      max-width: 100%; 
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+    }
+
+    .icon {
+      flex-shrink: 0;
+      margin-left: sizeIncrement(1); 
+      height: 1.25rem;
+      transition: transform 0.3s ease;
+    }
   }
 
   &__cell {
@@ -30,6 +55,11 @@
     flex-wrap: wrap;
     width: 50%;
     gap: sizeIncrement(1);
+
+    @include for-tablet {
+      flex-direction: row;
+      align-items: center;
+    }
 
     &_header {
       width: 100%;
@@ -76,6 +106,17 @@
       }
     }
 
+    &_desc--title {
+      display: flex;
+      align-items: center;
+      gap: sizeIncrement(1); // Adds space between text and arrow 
+      flex-grow: 1;
+      min-width: 0; // Allows text to properly truncate in a flex container
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &_desc--btn {
       border-radius: $btn-radius;
       border: none;
@@ -92,7 +133,7 @@
 }
 
 .right-arrow {
-  vertical-align: middle;
+  flex-shrink: 0; /* Prevents the arrow from shrinking */
   height: 1.25rem;
   transition: transform 0.3s ease;
 }
