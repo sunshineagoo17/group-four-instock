@@ -150,13 +150,16 @@ const WarehouseList = ({ fetchFn, baseURL }) => {
         <h1 className='warehouse-list-header__title txt-header txt-black'>
           Warehouses
         </h1>
-        <input
-          className='warehouse-list-header__search input txt-m txt-black'
-          placeholder='Search...'
-          value={searchTerm}
-          onChange={handleSearch}
-          aria-label='Search warehouses'
-        />
+        <div className='search-container'>
+          <input
+            className='search-input input txt-m txt-black'
+            placeholder='Search...'
+            value={searchTerm}
+            onChange={handleSearch}
+            aria-label='Search warehouses'
+          />
+           <div className="search-icon"></div>
+        </div>
         <Link
           to='/warehouse/add-warehouse'
           className='add-btn'
