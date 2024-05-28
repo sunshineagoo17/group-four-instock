@@ -250,6 +250,8 @@
 
   &__buttonContainer {
     background-color: $bg-grey;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
     justify-content: space-between;
     display: flex;
     gap: 1.06rem;
@@ -302,6 +304,7 @@
     }
 
     &:hover {
+      border: solid 1px $bg-graphite;
       background-color: $bg-graphite;
     }
   }

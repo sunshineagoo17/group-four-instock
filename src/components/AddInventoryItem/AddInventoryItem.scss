@@ -227,8 +227,10 @@
   justify-content: space-around;
   gap: sizeIncrement(4);
   align-items: center;
-
+  border-bottom-left-radius: .25rem;
+  border-bottom-right-radius: .25rem;
   background-color: $bg-grey;
+  
   @include for-tablet {
     justify-content: flex-end;
   }

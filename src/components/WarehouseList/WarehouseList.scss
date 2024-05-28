@@ -8,6 +8,7 @@
 
   .warehouse-list-row {
     background-color: $pri-white;
+    border-radius: 0.25rem;
     transition: background-color 0.3s;
 
     @include for-desktop {
