@@ -23,19 +23,6 @@
     flex-grow: 1;
   }
 
-  &__search {
-    border: 1px solid $sec-cloud;
-    background-image: url(../../assets/images/search-24px.svg);
-    background-repeat: no-repeat;
-    background-position: calc(100% - sizeIncrement(4)) center;
-    background-color: $pri-white;
-
-    &:active,
-    &:focus {
-      border-color: $pri-indigo;
-    }
-  }
-
   &__add-btn {
     background-color: $pri-indigo;
     color: $pri-white;
@@ -126,5 +113,49 @@
 @include for-tablet {
   .hide-tablet {
     display: none;
+  }
+}
+
+.search-container-items {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  @include for-tablet {
+    width: 11.563rem;
+  }
+
+  @include for-desktop {
+    width: 17.125rem;
+  }
+
+  .search-input-items {
+    width: 100%;
+    padding-right: 2rem; 
+    border: 1px solid $sec-cloud;
+    background-color: $pri-white;
+
+    &:active,
+    &:focus {
+      border-color: $pri-indigo;
+    }
+
+    &::placeholder {
+      color: $sec-cloud;
+    }
+  }
+
+  .search-icon-items {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem; 
+    transform: translateY(-50%);
+    background-image: url('../../assets/images/search-24px.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 3.5rem;
+    width: 1.5rem;
+    height: 1.5rem; 
+    pointer-events: none; 
   }
 }

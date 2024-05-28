@@ -88,12 +88,16 @@ const InventoryList = ({ fetchFn, baseURL }) => {
         <h1 className='inventory-list-header__title txt-header txt-black'>
           Inventory
         </h1>
-        <input
-          className='inventory-list-header__search input txt-m txt-black'
-          placeholder='Search...'
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+        <div className='search-container-items'>
+          <input
+            className='search-input-items input txt-m txt-black'
+            placeholder='Search...'
+            value={searchTerm}
+            onChange={handleSearch}
+            aria-label='Search items'
+          />
+           <div className="search-icon-items"></div>
+        </div>
         <Link
           className='inventory-list-header__add-btn btn txt-section'
           to={'/inventory/add-inventory'}>
