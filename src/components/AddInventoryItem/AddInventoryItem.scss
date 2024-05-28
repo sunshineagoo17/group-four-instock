@@ -107,6 +107,20 @@
     @include for-desktop {
       max-width: 7.625rem;
       cursor: default;
+      -moz-appearance: textfield;
+      appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &::-moz-outer-spin-button,
+      &::-moz-inner-spin-button {
+        -moz-appearance: none;
+        margin: 0;
+      }
     }
   }
 }
