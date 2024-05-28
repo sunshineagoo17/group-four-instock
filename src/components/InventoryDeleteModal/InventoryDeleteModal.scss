@@ -80,6 +80,10 @@
     @include for-tablet {
       margin-top: 0;
     }
+
+    &--small {
+      font-size: toRem(22.5); 
+    }
   }
 
   &__txt {

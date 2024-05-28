@@ -1,7 +1,18 @@
 import './WarehouseDeleteModal.scss';
 import closeIcon from '../../assets/images/close-24px.svg';
+import { useEffect, useState } from 'react';
 
 const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
+  const [isWarehouseNameLong, setIsWarehouseNameLong] = useState(false);
+
+  useEffect(() => {
+    if (warehouseName.length > 20) { 
+      setIsWarehouseNameLong(true);
+    } else {
+      setIsWarehouseNameLong(false);
+    }
+  }, [warehouseName]);
+
   if (!show) {
     return null;
   }
@@ -22,12 +33,11 @@ const WarehouseDeleteModal = ({ show, onClose, onDelete, warehouseName }) => {
           </button>
         </div>
         <div className='warehouse-modal__content'>
-          <h1 id='modal-title' className='warehouse-modal__title'>
+          <h1 id='modal-title' className={`warehouse-modal__title ${isWarehouseNameLong ? 'warehouse-modal__title--small' : ''}`}>
             Delete {warehouseName} warehouse?
           </h1>
           <p id='modal-description' className='warehouse-modal__txt'>
-            Please confirm that you’d like to delete the {warehouseName} from
-            the list of warehouses. You won’t be able to undo this action.
+            Please confirm that you’d like to delete the {warehouseName} from the list of warehouses. You won’t be able to undo this action.
           </p>
           <div className='warehouse-modal__buttons-container'>
             <button
